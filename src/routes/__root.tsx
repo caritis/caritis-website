@@ -72,6 +72,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "waspy" },
+      { property: "og:title", content: "waspy" },
+      { name: "twitter:title", content: "waspy" },
+      { name: "description", content: "Conseils & Audits techniques numériques pour TPE/PME" },
+      { property: "og:description", content: "Conseils & Audits techniques numériques pour TPE/PME" },
+      { name: "twitter:description", content: "Conseils & Audits techniques numériques pour TPE/PME" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/qAsB56m4IsSdW4m8YCHy7mMtLyG2/social-images/social-1779356617389-android-chrome-192x192.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/qAsB56m4IsSdW4m8YCHy7mMtLyG2/social-images/social-1779356617389-android-chrome-192x192.webp" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
