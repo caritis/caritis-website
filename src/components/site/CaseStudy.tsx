@@ -38,7 +38,7 @@ export function CaseStudy() {
             target="_blank" rel="noopener noreferrer"
             className="mt-10 inline-flex items-center gap-2 text-primary hover:underline underline-offset-4"
           >
-            Découvrir le portail Waspy <ExternalLink className="h-4 w-4" />
+            Découvrir la plateforme wasptracker.com <ExternalLink className="h-4 w-4" />
           </a>
         </div>
 
