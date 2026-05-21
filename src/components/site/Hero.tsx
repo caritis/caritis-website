@@ -14,7 +14,7 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:pt-32 lg:pb-24">
+      <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-20 lg:pt-14 lg:pb-24">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
           Conseils & Audits numériques pour TPE/PME — environnement, éco-conception, EFC
