@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { sendContactMessage } from "@/lib/contact.functions";
-import { ArrowRight, CheckCircle2, Linkedin, MapPin } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function Contact() {
   const send = useServerFn(sendContactMessage);
@@ -43,21 +43,6 @@ export function Contact() {
             Décrivez votre contexte — je reviens vers vous sous 48h ouvrées avec une
             première lecture et des options concrètes.
           </p>
-
-          <div className="mt-10 space-y-4 text-sm">
-            <a
-              href="https://www.linkedin.com/in/richard-labrador"
-              target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 text-foreground/90 hover:text-primary transition"
-            >
-              <Linkedin className="h-4 w-4 text-primary" />
-              Profil LinkedIn de Richard Labrador
-            </a>
-            <div className="inline-flex items-center gap-3 text-muted-foreground">
-              <MapPin className="h-4 w-4 text-primary" />
-              Mobilité : Paris · Bordeaux · Dax
-            </div>
-          </div>
         </div>
 
         <form
