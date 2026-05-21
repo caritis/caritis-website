@@ -17,7 +17,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-32 lg:pt-32 lg:pb-40">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
-          Conseils & accompagnement Dirigeants TPE/PME
+          Conseils & Audits techniques numériques pour Dirigeants de TPE/PME
         </div>
 
         <h1 className="mt-6 max-w-4xl text-5xl md:text-7xl leading-[1.02] font-display">
