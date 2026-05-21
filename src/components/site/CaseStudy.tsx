@@ -50,16 +50,16 @@ export function CaseStudy() {
           <img
             src={waspyAdmin}
             alt="Tableau de bord WaspTracker Admin avec carte des signalements en France"
-            width={1400}
-            height={900}
+            width={1920}
+            height={1416}
             loading="lazy"
             className="relative rounded-2xl border border-border/70 shadow-elev"
           />
           <img
             src={wasptrackerMobile}
             alt="Application mobile WaspTracker pour le signalement terrain"
-            width={300}
-            height={600}
+            width={1926}
+            height={1809}
             loading="lazy"
             className="hidden md:block absolute -bottom-10 -right-6 w-40 rounded-2xl border border-border/70 shadow-elev ring-1 ring-primary/20 rotate-3"
           />

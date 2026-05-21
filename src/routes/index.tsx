@@ -10,19 +10,45 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "waspy.life — Conseil IT & EFC pour TPE/PME de l'environnement" },
+      { title: "waspy.life — Conseil IT & EFC pour TPE/PME environnement" },
       {
         name: "description",
         content:
-          "Conseil numérique pour TPE/PME de la protection de l'environnement et de l'éco-conception : transformation digitale sobre, dette technique, conformité IT (RGPD, NIS2, ISO 42001) et EFC.",
+          "Conseil IT et EFC pour TPE/PME de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
       },
-      { property: "og:title", content: "waspy.life — Conseil IT & EFC pour TPE/PME de l'environnement" },
+      { property: "og:title", content: "waspy.life — Conseil IT & EFC pour TPE/PME environnement" },
       {
         property: "og:description",
         content:
-          "20 ans aux côtés des dirigeants engagés : aligner le SI avec l'Économie de la Fonctionnalité et de la Coopération, l'éco-conception et la conformité.",
+          "Conseil IT et EFC pour TPE/PME de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://waspy.life/" },
+    ],
+    links: [{ rel: "canonical", href: "https://waspy.life/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Conseil IT & EFC pour TPE/PME",
+          provider: {
+            "@type": "Person",
+            name: "Richard Labrador",
+            url: "https://waspy.life",
+          },
+          areaServed: "FR",
+          serviceType: [
+            "Conseil en transformation digitale",
+            "Audit de dette technique & sobriété logicielle",
+            "Conformité IT (RGPD, NIS2, ISO 42001)",
+          ],
+          description:
+            "Conseil et audits numériques pour TPE/PME de la protection de l'environnement et de l'éco-conception, alignés avec l'Économie de la Fonctionnalité et de la Coopération.",
+          url: "https://waspy.life/",
+        }),
+      },
     ],
   }),
   component: Index,
