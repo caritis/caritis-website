@@ -2,10 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { Linkedin } from "lucide-react";
 import waspyLogo from "@/assets/waspy-logo.webp";
 
-const nav = [
-  { href: "#services", label: "Services" },
-  { href: "#case", label: "Réalisation" },
-  { href: "#contact", label: "Contact" },
+const nav: { href?: string; to?: string; label: string }[] = [
+  { href: "/#services", label: "Services" },
+  { to: "/realisations", label: "Réalisations" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -19,11 +19,22 @@ export function Header() {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          {nav.map((n) => (
-            <a key={n.href} href={n.href} className="hover:text-foreground transition-colors">
-              {n.label}
-            </a>
-          ))}
+          {nav.map((n) =>
+            n.to ? (
+              <Link
+                key={n.to}
+                to={n.to}
+                className="hover:text-foreground transition-colors"
+                activeProps={{ className: "text-foreground" }}
+              >
+                {n.label}
+              </Link>
+            ) : (
+              <a key={n.href} href={n.href} className="hover:text-foreground transition-colors">
+                {n.label}
+              </a>
+            )
+          )}
         </nav>
         <div className="flex items-center gap-3">
           <a
