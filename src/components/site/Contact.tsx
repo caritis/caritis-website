@@ -56,8 +56,9 @@ export function Contact() {
             <Field label="Sujet" name="subject" required placeholder="Audit, conformité, transfo…" />
           </div>
           <div className="mt-5">
-            <label className="text-xs uppercase tracking-wider text-muted-foreground">Message</label>
+            <label htmlFor="contact-message" className="text-xs uppercase tracking-wider text-muted-foreground">Message</label>
             <textarea
+              id="contact-message"
               name="message" required minLength={10} maxLength={4000} rows={6}
               placeholder="Contexte, enjeux, calendrier indicatif…"
               className="mt-2 w-full rounded-md bg-background/60 border border-border/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30 px-4 py-3 text-sm"
@@ -96,10 +97,12 @@ export function Contact() {
 function Field({
   label, name, type = "text", required, placeholder,
 }: { label: string; name: string; type?: string; required?: boolean; placeholder?: string }) {
+  const id = `contact-${name}`;
   return (
     <div>
-      <label className="text-xs uppercase tracking-wider text-muted-foreground">{label}</label>
+      <label htmlFor={id} className="text-xs uppercase tracking-wider text-muted-foreground">{label}</label>
       <input
+        id={id}
         name={name} type={type} required={required} placeholder={placeholder}
         className="mt-2 w-full rounded-md bg-background/60 border border-border/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30 px-4 py-3 text-sm"
       />

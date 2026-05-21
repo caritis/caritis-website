@@ -72,9 +72,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "waspy" },
-      { property: "og:title", content: "waspy" },
-      { name: "twitter:title", content: "waspy" },
+      { title: "waspy — Conseil IT & EFC" },
+      { property: "og:title", content: "waspy — Conseil IT & EFC" },
+      { name: "twitter:title", content: "waspy — Conseil IT & EFC" },
       { name: "description", content: "Conseils & Audits techniques numériques pour TPE/PME" },
       { property: "og:description", content: "Conseils & Audits techniques numériques pour TPE/PME" },
       { name: "twitter:description", content: "Conseils & Audits techniques numériques pour TPE/PME" },
@@ -87,6 +87,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "icon", type: "image/webp", href: "/favicon.webp" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "waspy",
+              url: "https://waspy.life",
+              description: "Conseil IT & EFC pour TPE/PME de l'environnement et de l'éco-conception.",
+            },
+            {
+              "@type": "WebSite",
+              name: "waspy.life",
+              url: "https://waspy.life",
+              description: "Conseil IT & EFC pour TPE/PME de l'environnement.",
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
