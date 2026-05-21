@@ -31,7 +31,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-28 lg:py-36 border-t border-border/60">
+    <section id="contact" className="relative py-16 lg:py-24 border-t border-border/60">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-5">
           <p className="text-xs uppercase tracking-[0.2em] text-primary">Contact</p>
