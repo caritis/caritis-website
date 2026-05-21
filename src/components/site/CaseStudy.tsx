@@ -43,14 +43,22 @@ export function CaseStudy() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-4 bg-gradient-accent opacity-20 blur-3xl rounded-3xl" />
+          <div className="absolute -inset-6 bg-gradient-accent opacity-20 blur-3xl rounded-3xl" />
           <img
-            src={waspyImg}
-            alt="Carte de France des nids signalés via la plateforme WaspTracker"
+            src={waspyAdmin}
+            alt="Tableau de bord WaspTracker Admin avec carte des signalements en France"
             width={1400}
             height={900}
             loading="lazy"
             className="relative rounded-2xl border border-border/70 shadow-elev"
+          />
+          <img
+            src={wasptrackerMobile}
+            alt="Application mobile WaspTracker pour le signalement terrain"
+            width={300}
+            height={600}
+            loading="lazy"
+            className="hidden md:block absolute -bottom-10 -right-6 w-40 rounded-2xl border border-border/70 shadow-elev ring-1 ring-primary/20 rotate-3"
           />
         </div>
       </div>
