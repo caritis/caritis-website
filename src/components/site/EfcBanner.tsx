@@ -1,4 +1,4 @@
-import { Leaf } from "lucide-react";
+import { Leaf, ExternalLink } from "lucide-react";
 
 export function EfcBanner() {
   return (
