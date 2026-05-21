@@ -22,7 +22,7 @@ export function CaseStudy() {
 
           <ul className="mt-8 space-y-3 text-sm">
             {[
-              "Cadrage métier et validation des hypothèses avec les communes de Bayonne et Bordeaux",
+              "Cadrage métier et validation des hypothèses avec les communes de Biarritz et Bordeaux",
               "Conduite du changement : formation des équipes terrain et administration",
               "Déploiement progressif avec mesure de l'adoption et ajustements itératifs",
               "Accompagnement de la croissance : encadrement d'équipe et montée en charge",
