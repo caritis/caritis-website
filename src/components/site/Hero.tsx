@@ -17,19 +17,21 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-32 lg:pt-32 lg:pb-40">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
-          Conseils & Audits techniques numériques pour Dirigeants de TPE/PME
+          Conseils & Audits numériques pour TPE/PME — environnement, éco-conception, EFC
         </div>
 
         <h1 className="mt-6 max-w-4xl text-5xl md:text-7xl leading-[1.02] font-display">
-          Transformer votre SI en <span className="text-gradient">avantage compétitif</span>,
-          sans renoncer à la conformité.
+          Faire de votre SI un levier de <span className="text-gradient">sobriété, de coopération</span> et de performance durable.
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          20 ans aux côtés des DSI et dirigeants — pour cadrer, prioriser et exécuter
-          votre transformation digitale, réduire votre dette technique logicielle
-          et sécuriser votre conformité IT (RGPD, NIS2, ISO 42001).
+          20 ans aux côtés des dirigeants de TPE/PME engagées dans la protection
+          de l'environnement et l'éco-conception. J'aligne votre SI avec les principes
+          de l'Économie de la Fonctionnalité et de la Coopération (EFC) :
+          cadrer l'usage, mutualiser les briques, sécuriser la conformité
+          (RGPD, NIS2, ISO 42001) et réduire la dette technique.
         </p>
+
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
