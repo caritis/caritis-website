@@ -3,7 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { EfcBanner } from "@/components/site/EfcBanner";
 import { Services } from "@/components/site/Services";
-import { CaseStudy } from "@/components/site/CaseStudy";
+import { CaseStudyTeaser } from "@/components/site/CaseStudyTeaser";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 
@@ -62,7 +62,7 @@ function Index() {
         <Hero />
         <EfcBanner />
         <Services />
-        <CaseStudy />
+        <CaseStudyTeaser />
         <Contact />
       </main>
       <Footer />
