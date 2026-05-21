@@ -12,10 +12,11 @@ export function CaseStudy() {
             WaspTracker — de l'idée au déploiement, une <span className="text-gradient">prise de hauteur</span> sur toute la chaîne.
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Co-fondateur de Waspy, j'ai piloté le passage de l'intuition à l'opérationnel :
-            cadrage métier avec les collectivités, conduite du changement, formation des équipes,
-            et déploiement progressif. Un exemple concret de ce qu'un bon pilotage projet
-            permet de réaliser — de la vision stratégique à l'adoption terrain.
+            Plateforme wasptracker.com : une plateforme SaaS et un service à destination des collectivités
+            et des entreprises spécialisées dans la lutte contre le frelon asiatique.
+            J'ai piloté le passage de l'intuition à l'opérationnel : cadrage métier avec les collectivités,
+            conduite du changement, formation des équipes, et déploiement progressif.
+            Un exemple concret de ce qu'un bon pilotage projet permet de réaliser — de la vision stratégique à l'adoption terrain.
           </p>
 
           <ul className="mt-8 space-y-3 text-sm">
