@@ -1,4 +1,5 @@
-import waspyImg from "@/assets/waspy-case.jpg";
+import waspyAdmin from "@/assets/waspy-admin.png";
+import wasptrackerMobile from "@/assets/wasptracker-mobile.png";
 import { ExternalLink } from "lucide-react";
 
 export function CaseStudy() {

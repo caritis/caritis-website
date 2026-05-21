@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin } from "lucide-react";
+import waspyLogo from "@/assets/waspy-logo.webp";
 
 const nav = [
   { href: "#services", label: "Services" },
@@ -12,8 +13,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/60">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_20px] shadow-primary/60" />
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <img src={waspyLogo} alt="" width={28} height={28} className="h-7 w-7 rounded-md" />
           <span className="font-display text-xl tracking-tight">
             waspy<span className="text-primary">.</span>life
           </span>
