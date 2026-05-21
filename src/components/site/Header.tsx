@@ -5,7 +5,6 @@ import waspyLogo from "@/assets/waspy-logo.webp";
 const nav = [
   { href: "#services", label: "Services" },
   { href: "#case", label: "Réalisation" },
-  { href: "#about", label: "Parcours" },
   { href: "#contact", label: "Contact" },
 ];
 
