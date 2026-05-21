@@ -13,12 +13,14 @@ export function CaseStudy() {
           </h2>
           <p className="mt-5 text-muted-foreground">
             Plateforme wasptracker.com : une plateforme SaaS et un service à destination des collectivités
-            et des entreprises spécialisées dans la lutte contre le frelon asiatique.{" "}
+            et des entreprises spécialisées dans la lutte contre le frelon asiatique —
+            un projet à impact environnemental direct, au service de la biodiversité et de l'apiculture.{" "}
             <span className="font-semibold text-foreground">Qu'avons-nous fait ?</span>{" "}
             Le passage de l'intuition à l'opérationnel : cadrage métier avec les collectivités,
             conduite du changement, formation des équipes, et déploiement progressif.
             Un exemple concret de ce qu'un bon pilotage projet permet de réaliser — de la vision stratégique à l'adoption terrain.
           </p>
+
 
           <ul className="mt-8 space-y-3 text-sm">
             {[
