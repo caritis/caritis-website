@@ -20,7 +20,7 @@ const services = [
     points: [
       "Cartographie applicative & risques",
       "Plan de remédiation chiffré (coût + empreinte)",
-      "Standards DevOps & CI/CD Azure",
+      "RÉALISATIONS",
     ],
   },
   {
