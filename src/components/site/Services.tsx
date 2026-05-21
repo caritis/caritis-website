@@ -3,31 +3,31 @@ import { Cpu, GitBranch, ShieldCheck } from "lucide-react";
 const services = [
   {
     icon: Cpu,
-    title: "Transformation digitale",
+    title: "Transformation digitale & éco-conception du SI",
     pitch:
-      "Cadrer votre feuille de route SI, prioriser les investissements et embarquer vos équipes — du POC au déploiement.",
+      "Cadrer une feuille de route numérique sobre : prioriser ce qui crée de la valeur d'usage, mutualiser les briques, mesurer l'impact.",
     points: [
-      "Diagnostic 360° SI & métier",
-      "Roadmap Cloud / IA / Data",
+      "Diagnostic 360° SI, métier & impact",
+      "Roadmap Cloud / Data orientée sobriété",
       "Conduite du changement & adoption",
     ],
   },
   {
     icon: GitBranch,
-    title: "Audit de dette technique logicielle",
+    title: "Audit de dette technique & sobriété logicielle",
     pitch:
-      "Mesurer, cartographier et reprendre la main sur la dette qui freine vos releases et alourdit vos coûts d'exploitation.",
+      "Réduire la dette qui alourdit vos coûts et votre empreinte : cartographier, prioriser, rationaliser — sans casser le run.",
     points: [
       "Cartographie applicative & risques",
-      "Plan de remédiation chiffré",
+      "Plan de remédiation chiffré (coût + empreinte)",
       "Standards DevOps & CI/CD Azure",
     ],
   },
   {
     icon: ShieldCheck,
-    title: "Conformité IT & gouvernance",
+    title: "Conformité IT, gouvernance & coopération",
     pitch:
-      "Mettre votre SI en conformité RGPD, NIS2 et ISO 42001 — avec une gouvernance RACI/RBAC qui tient dans la durée.",
+      "Mettre votre SI en conformité RGPD, NIS2 et ISO 42001 — avec une gouvernance qui favorise la coopération entre parties prenantes.",
     points: [
       "Audits internes & cartographie risques",
       "Politiques RACI / RBAC / ITSM",
@@ -43,13 +43,15 @@ export function Services() {
         <div className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] text-primary">Services</p>
           <h2 className="mt-4 text-4xl md:text-5xl font-display">
-            Trois leviers pour reprendre la <span className="text-gradient">main</span> sur votre SI.
+            Trois leviers pour aligner votre SI avec vos <span className="text-gradient">engagements environnementaux</span>.
           </h2>
           <p className="mt-5 text-muted-foreground">
             Des interventions ciblées, livrables et chiffrées — pensées pour les
-            DSI et dirigeants de TPE/PME qui veulent avancer vite sans hypothéquer l'avenir.
+            TPE/PME de la protection de l'environnement, de l'éco-conception et
+            de l'Économie de la Fonctionnalité et de la Coopération.
           </p>
         </div>
+
 
         <div className="mt-14 grid md:grid-cols-3 gap-6">
           {services.map((s) => (
