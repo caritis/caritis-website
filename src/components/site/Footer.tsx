@@ -8,7 +8,7 @@ export function Footer() {
           <span className="h-2 w-2 rounded-full bg-primary" />
           <span className="font-display text-base text-foreground">waspy.life</span>
           <span className="mx-2">·</span>
-          <span>Richard Labrador — Conseil & accompagnement DSI</span>
+          <span>Conseils & accompagnement Dirigeants TPE/PME</span>
         </div>
         <div className="flex items-center gap-5">
           <a
