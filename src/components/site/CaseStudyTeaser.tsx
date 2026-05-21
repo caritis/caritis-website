@@ -4,7 +4,7 @@ import waspyAdmin from "@/assets/waspy-admin.png";
 
 export function CaseStudyTeaser() {
   return (
-    <section id="case" className="relative py-24 lg:py-32 border-y border-border/60 bg-[oklch(0.16_0.03_240)]">
+    <section id="case" className="relative py-16 lg:py-20 border-y border-border/60 bg-[oklch(0.16_0.03_240)]">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-primary">Réalisations</p>
