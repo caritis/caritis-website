@@ -24,12 +24,10 @@ export function Hero() {
           Développez vos leviers de <span className="text-gradient">sobriété, de coopération</span> et de performance durable.
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          20 ans aux côtés des dirigeants de TPE/PME engagées dans la protection
-          de l'environnement et l'éco-conception. J'aligne votre SI avec les principes
-          de l'Économie de la Fonctionnalité et de la Coopération (EFC) :
-          cadrer l'usage, mutualiser les briques, sécuriser la conformité
-          (RGPD, NIS2, ISO 42001) et réduire la dette technique.
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground whitespace-pre-line">
+          Depuis plus de 20 ans, nous aidons les dirigeants de TPE/PME à faire évoluer leur système d'information au service de leur performance opérationnelle.
+          {"\n"}
+          Notre approche intègre désormais les principes de l'Économie de la Fonctionnalité et de la Coopération (EFC) afin de développer des modèles serviciels plus durables, sobres et résilients : pilotage par les usages, mutualisation des capacités numériques, conformité réglementaire et maîtrise de la dette technique.
         </p>
 
 
