@@ -1,4 +1,4 @@
-import { Cpu, GitBranch, ShieldCheck } from "lucide-react";
+import { Brain, Cpu, GitBranch, ShieldCheck } from "lucide-react";
 
 const services = [
   {
@@ -34,6 +34,16 @@ const services = [
       "Sensibilisation & lead audit ISO 42001",
     ],
   },
+  {
+    icon: Brain,
+    title: "Accompagnement projets IA & maîtrise des coûts",
+    pitch:
+      "Structurer vos projets d'IA en entreprise tout en maîtrisant les coûts cachés liés à la facturation au token.",
+    points: [
+      "Optimisation : modèles plus légers, caching, prompts structurés, agents hybrides.",
+      "Gouvernance : budgets par équipe, dashboards de consommation et règles d'usage.",
+    ],
+  },
 ];
 
 export function Services() {
@@ -53,7 +63,7 @@ export function Services() {
         </div>
 
 
-        <div className="mt-14 grid md:grid-cols-3 gap-6">
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s) => (
             <article
               key={s.title}
