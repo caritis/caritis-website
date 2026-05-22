@@ -21,7 +21,7 @@ export function Hero() {
         </div>
 
         <h1 className="mt-6 max-w-4xl text-5xl md:text-7xl leading-[1.02] font-display">
-          Standards méthodologiques
+          Faire de votre SI un levier de <span className="text-gradient">sobriété, de coopération</span> et de performance durable.
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
