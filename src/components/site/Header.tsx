@@ -38,7 +38,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-3">
           <a
-            href="https://www.linkedin.com/in/richard-labrador"
+            href="https://www.linkedin.com/in/rlabrador2000"
             target="_blank" rel="noopener noreferrer"
             aria-label="LinkedIn de Richard Labrador"
             className="p-2 rounded-md border border-border/70 hover:border-primary/60 hover:text-primary transition"

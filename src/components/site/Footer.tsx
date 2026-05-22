@@ -12,7 +12,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-5">
           <a
-            href="https://www.linkedin.com/in/richard-labrador"
+            href="https://www.linkedin.com/in/rlabrador2000"
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 hover:text-primary transition"
           >
