@@ -25,7 +25,7 @@ const services = [
   },
   {
     icon: ShieldCheck,
-    title: "Conformité IT, gouvernance & coopération",
+    title: "Conformité IT, gouvernance de l'IA & coopération",
     pitch:
       "Mettre votre SI en conformité RGPD, NIS2 et ISO 42001 — avec une gouvernance qui favorise la coopération entre parties prenantes.",
     points: [
