@@ -71,26 +71,22 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     `;
 
     try {
-      const { WorkerMailer } = await import("worker-mailer");
-      const mailer = await WorkerMailer.connect({
+      const nodemailer = (await import("nodemailer")).default;
+      const transporter = nodemailer.createTransport({
         host,
         port,
         secure: port === 465,
-        credentials: { username: user, password },
-        authType: ["plain", "login"],
-        startTls: port !== 465,
+        auth: { user, pass: password },
       });
 
-      await mailer.send({
-        from: { name: "Waspy — Formulaire de contact", email: user },
-        to: { email: RECIPIENT },
-        reply: { name: data.name, email: data.email },
+      await transporter.sendMail({
+        from: `"Waspy — Formulaire de contact" <${user}>`,
+        to: RECIPIENT,
+        replyTo: `"${data.name}" <${data.email}>`,
         subject: `Nouveau message via waspy.life — ${data.subject}`,
         text: textBody,
         html: htmlBody,
       });
-
-      await mailer.close().catch(() => {});
     } catch (err) {
       console.error("[contact] SMTP send failed", err);
       throw new Error("L'envoi a échoué. Merci de réessayer dans un instant.");
