@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { WorkerMailer } from "worker-mailer";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(120),
