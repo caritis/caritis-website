@@ -46,9 +46,9 @@ export function Services() {
             Trois leviers pour aligner votre SI avec vos <span className="text-gradient">engagements sociaux et environnementaux</span>.
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Des interventions ciblées, livrables et chiffrées — pensées pour les
-            TPE/PME de la protection de l'environnement, de l'éco-conception et
-            de l'Économie de la Fonctionnalité et de la Coopération.
+            Des interventions ciblées, cadrées et mesurables, conçues pour les
+            TPE/PME voulant s'engager dans la protection de l’environnement,
+            l’éco-conception et l’Économie de la Fonctionnalité et de la Coopération (EFC).
           </p>
         </div>
 
