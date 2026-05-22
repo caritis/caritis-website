@@ -84,7 +84,7 @@ export const sendContactMessage = createServerFn({ method: "POST" })
       await mailer.send({
         from: { name: "Waspy — Formulaire de contact", email: user },
         to: { email: RECIPIENT },
-        replyTo: { name: data.name, email: data.email },
+        reply: { name: data.name, email: data.email },
         subject: `Nouveau message via waspy.life — ${data.subject}`,
         text: textBody,
         html: htmlBody,
