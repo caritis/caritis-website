@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { WorkerMailer } from "worker-mailer";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(120),
@@ -72,6 +71,7 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     `;
 
     try {
+      const { WorkerMailer } = await import("worker-mailer");
       const mailer = await WorkerMailer.connect({
         host,
         port,
