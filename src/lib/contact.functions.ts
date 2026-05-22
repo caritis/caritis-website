@@ -71,6 +71,7 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     `;
 
     try {
+      const { WorkerMailer } = await import("worker-mailer");
       const mailer = await WorkerMailer.connect({
         host,
         port,
