@@ -1,49 +1,60 @@
-## Constat actuel
+## Contexte
 
-Le formulaire de contact (`src/components/site/Contact.tsx` → `src/lib/contact.functions.ts`) **n'envoie aucun email aujourd'hui**. Le server function se contente d'un `console.log` côté serveur. Aucun service d'envoi n'est branché, donc rien n'arrive dans votre boîte.
+Vous disposez d'une boîte **noreply@waspy.eu** hébergée sur **OVH Zimbra**. Plutôt que de configurer le domaine d'envoi Lovable (Mailgun) sur `wasptracker.com` — qui demande une délégation NS et jusqu'à 72h de propagation — on va brancher le formulaire directement sur le SMTP OVH. Avantage : ça marche tout de suite, sans toucher au DNS, et les emails partent réellement depuis votre adresse.
 
 ## Objectif
 
-Quand un visiteur clique sur **Envoyer** :
-- Vous recevez une notification à **richard.labrador@outlook.fr** avec nom, email, société, sujet et message du visiteur
-- L'email part de **noreply@wasptracker.com** (avec `Reply-To` = email du visiteur pour répondre directement)
-- Le visiteur voit toujours le message de confirmation à l'écran
+Quand un visiteur clique sur **Envoyer** dans le formulaire :
+- Un email part de `noreply@waspy.eu` (SMTP OVH Zimbra)
+- Destinataire : `richard.labrador@outlook.fr`
+- `Reply-To` = email du visiteur (pour répondre directement depuis Outlook)
+- Sujet : `Nouveau message via waspy.life — {sujet}`
+- Corps : nom, société, email, sujet, message, horodatage
 
 ## Plan d'implémentation
 
-### 1. Activer Lovable Cloud
-Prérequis pour la file d'envoi, le suivi et la résilience (retries, anti-spam). Aucun compte externe, aucune config manuelle.
+### 1. Désactiver le setup Lovable Emails (optionnel mais propre)
+On n'utilisera plus l'infra email Lovable. Je désactiverai le scaffolding qui a été préparé pour éviter toute confusion. **Le domaine `wasptracker.com` n'a pas encore été délégué** côté DNS donc rien à nettoyer chez le registrar.
 
-### 2. Configurer le domaine d'envoi `wasptracker.com`
-Un sous-domaine `notify.wasptracker.com` sera délégué à Lovable pour signer SPF/DKIM. Vous devrez ajouter 2 enregistrements **NS** chez le registrar de `wasptracker.com` (étape guidée par une fenêtre dédiée — je vous donnerai les valeurs exactes).
+### 2. Stocker les identifiants SMTP OVH comme secrets serveur
+Quatre secrets à ajouter (jamais exposés au navigateur) :
+- `SMTP_HOST` (ex. `ssl0.ovh.net`)
+- `SMTP_PORT` (ex. `465` SSL ou `587` STARTTLS)
+- `SMTP_USER` (`noreply@waspy.eu`)
+- `SMTP_PASSWORD` (mot de passe de la boîte Zimbra)
 
-L'adresse affichée dans la boîte du destinataire sera bien **noreply@wasptracker.com** (option *display from root* activée).
+Je vous demanderai chaque valeur via le dialogue sécurisé `add_secret`.
 
-> ⚠️ Important : la vérification DNS peut prendre jusqu'à 72h. Le code est déployable avant — les envois démarreront automatiquement dès que la vérif passe au vert.
-
-### 3. Scaffolder l'infra emails
-Création des routes serveur (`send-transactional-email`, file `process-email-queue`, suppression, désinscription) et des tables associées.
-
-### 4. Créer un template React Email `contact-notification`
-- Destinataire : `richard.labrador@outlook.fr` (en dur dans `contact.functions.ts`)
-- Sujet : `Nouveau message via waspy.life — {sujet}`
-- Contenu : nom, société, email, sujet, message, horodatage
-- Style aligné sur l'identité waspy
-
-### 5. Brancher l'envoi dans `sendContactMessage`
+### 3. Brancher l'envoi SMTP dans `sendContactMessage`
+Dans `src/lib/contact.functions.ts` (server function TanStack, exécuté côté serveur) :
 - Garder la validation Zod existante
-- Appeler le serveur d'envoi avec `templateName: 'contact-notification'`, `recipientEmail: 'richard.labrador@outlook.fr'`, `templateData` = champs du formulaire, `replyTo` = email du visiteur, `idempotencyKey` dérivée d'un UUID de soumission
+- Utiliser **`nodemailer`** (compatible avec le runtime Worker via `nodejs_compat` déjà activé dans `wrangler.jsonc`) pour ouvrir une connexion SMTP authentifiée
+- Construire l'email (From, To, Reply-To, Subject, texte + HTML simple)
+- Envoyer ; en cas d'erreur SMTP, remonter un message générique au visiteur et logger le détail côté serveur
 
-### 6. Vérification de bout en bout
-- Une fois Cloud + domaine actifs : envoyer un test depuis le formulaire en production
-- Vérifier la réception sur `richard.labrador@outlook.fr` (incluant dossier spam le premier coup)
-- Confirmer dans **Cloud → Emails** que le statut est `sent`
+### 4. Vérification de bout en bout
+- Soumettre un test depuis le formulaire en preview
+- Vérifier la réception sur `richard.labrador@outlook.fr` (et dossier spam au premier coup)
+- Vérifier les logs serveur via `server-function-logs` si l'envoi échoue
 
 ## Hors périmètre
-- Pas d'email de confirmation au visiteur (à ajouter plus tard si souhaité)
-- Pas de stockage des soumissions en base (à ajouter si vous voulez un historique consultable)
-- Aucun changement UI sur le formulaire
+- Pas d'email de confirmation au visiteur
+- Pas de stockage en base
+- Pas de file de retry (un échec SMTP = erreur affichée au visiteur, qui peut renvoyer)
+- Pas de changement UI
 
-## Question avant de lancer
+## Détails techniques
 
-Avez-vous accès au **registrar DNS de wasptracker.com** pour ajouter les 2 enregistrements NS sur `notify.wasptracker.com` ? Sans ça, les emails ne pourront pas partir (mais tout le reste peut être préparé).
+| Élément | Valeur |
+|---|---|
+| Lib | `nodemailer` (à installer) |
+| Runtime | Cloudflare Worker + `nodejs_compat` (déjà actif) |
+| Transport | SMTP OVH, TLS implicite (port 465) ou STARTTLS (587) |
+| Auth | login + password de la boîte Zimbra |
+
+> ⚠️ Limite OVH Zimbra : ~500 envois/jour par boîte. Largement suffisant pour un formulaire de contact.
+
+## Questions avant de lancer
+
+1. **Quel port SMTP** voulez-vous utiliser : `465` (SSL, recommandé) ou `587` (STARTTLS) ?
+2. Avez-vous le **mot de passe** de la boîte `noreply@waspy.eu` sous la main pour le coller dans le dialogue secret ?
