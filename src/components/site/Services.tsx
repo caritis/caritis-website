@@ -29,7 +29,7 @@ const services = [
     pitch:
       "Mettre votre SI en conformité RGPD, NIS2 et ISO 42001 — avec une gouvernance qui favorise la coopération entre parties prenantes.",
     points: [
-      "Audits internes & cartographie risques & cartographie Acteurs/Système",
+      "Audits internes & cartographie risques/process & cartographie Acteurs/Système",
       "Politiques RACI / RBAC / ITSM",
       "Sensibilisation & lead audit ISO 42001",
     ],
