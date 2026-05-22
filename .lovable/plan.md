@@ -1,62 +1,49 @@
+## Constat actuel
+
+Le formulaire de contact (`src/components/site/Contact.tsx` → `src/lib/contact.functions.ts`) **n'envoie aucun email aujourd'hui**. Le server function se contente d'un `console.log` côté serveur. Aucun service d'envoi n'est branché, donc rien n'arrive dans votre boîte.
 
 ## Objectif
 
-Repositionner le discours de waspy.life autour d'un angle unique : **conseil en IT intégré à l'EFC (Économie de la fonctionnalité et de la coopération)**, dédié aux TPE/PME du secteur de la protection de l'environnement et de l'éco-conception. Le SI n'est plus une fin en soi mais un levier de sobriété, mutualisation et coopération.
+Quand un visiteur clique sur **Envoyer** :
+- Vous recevez une notification à **richard.labrador@outlook.fr** avec nom, email, société, sujet et message du visiteur
+- L'email part de **noreply@wasptracker.com** (avec `Reply-To` = email du visiteur pour répondre directement)
+- Le visiteur voit toujours le message de confirmation à l'écran
 
-## Modifications proposées
+## Plan d'implémentation
 
-### 1. Hero (`src/components/site/Hero.tsx`)
-- **Badge** (déjà mis à jour) : conserver `Conseils & Audits techniques numériques pour Dirigeants de TPE/PME`, et lui adjoindre une précision sectorielle, par exemple : *« — environnement, éco-conception, EFC »*.
-- **H1** : remplacer *« Transformer votre SI en avantage compétitif, sans renoncer à la conformité »* par un titre qui marie performance numérique et sobriété, par exemple :
-  *« Faire de votre SI un levier de sobriété, de coopération et de performance durable. »*
-- **Sous-titre** : reformuler pour expliciter la cible (TPE/PME environnement / éco-conception) et la méthode EFC : cadrer, mutualiser, prioriser ; allier conformité (RGPD, NIS2, ISO 42001) et éco-conception logicielle.
-- **Stats** : conserver les 4 KPI actuels (pas de chiffre inventé).
+### 1. Activer Lovable Cloud
+Prérequis pour la file d'envoi, le suivi et la résilience (retries, anti-spam). Aucun compte externe, aucune config manuelle.
 
-### 2. Bandeau explicatif EFC (nouveau, court)
-Insérer juste sous le Hero une bande discrète (1 ligne + définition courte) qui explique l'EFC pour un visiteur non initié, ex :
-> **EFC — Économie de la Fonctionnalité et de la Coopération** : vendre l'usage plutôt que le bien, mutualiser les ressources, et coopérer entre acteurs pour réduire l'empreinte tout en créant de la valeur.
+### 2. Configurer le domaine d'envoi `wasptracker.com`
+Un sous-domaine `notify.wasptracker.com` sera délégué à Lovable pour signer SPF/DKIM. Vous devrez ajouter 2 enregistrements **NS** chez le registrar de `wasptracker.com` (étape guidée par une fenêtre dédiée — je vous donnerai les valeurs exactes).
 
-Implémentation : petit composant `EfcBanner.tsx` intégré dans `src/routes/index.tsx` entre `<Hero />` et `<Services />`.
+L'adresse affichée dans la boîte du destinataire sera bien **noreply@wasptracker.com** (option *display from root* activée).
 
-### 3. Services (`src/components/site/Services.tsx`)
-Réécrire les 3 cartes pour ancrer chaque service dans l'angle EFC + environnement, sans inventer de nouvelles offres :
+> ⚠️ Important : la vérification DNS peut prendre jusqu'à 72h. Le code est déployable avant — les envois démarreront automatiquement dès que la vérif passe au vert.
 
-1. **Transformation digitale & éco-conception du SI**
-   *Cadrer une feuille de route numérique sobre : prioriser ce qui crée de la valeur d'usage, mutualiser les briques, mesurer l'impact.*
-   Points : Diagnostic 360° SI & impact ; Roadmap Cloud / Data orientée sobriété ; Conduite du changement & adoption.
+### 3. Scaffolder l'infra emails
+Création des routes serveur (`send-transactional-email`, file `process-email-queue`, suppression, désinscription) et des tables associées.
 
-2. **Audit de dette technique & sobriété logicielle**
-   *Réduire la dette qui alourdit coûts et empreinte : cartographier, prioriser, rationaliser.*
-   Points : Cartographie applicative & risques ; Plan de remédiation chiffré (coût + empreinte) ; Standards DevOps / CI-CD Azure.
+### 4. Créer un template React Email `contact-notification`
+- Destinataire : `richard.labrador@outlook.fr` (en dur dans `contact.functions.ts`)
+- Sujet : `Nouveau message via waspy.life — {sujet}`
+- Contenu : nom, société, email, sujet, message, horodatage
+- Style aligné sur l'identité waspy
 
-3. **Conformité IT, gouvernance & coopération**
-   *Mettre votre SI en conformité (RGPD, NIS2, ISO 42001) avec une gouvernance qui favorise la coopération entre parties prenantes.*
-   Points : Audits internes & cartographie risques ; Politiques RACI / RBAC / ITSM ; Sensibilisation & lead audit ISO 42001.
+### 5. Brancher l'envoi dans `sendContactMessage`
+- Garder la validation Zod existante
+- Appeler le serveur d'envoi avec `templateName: 'contact-notification'`, `recipientEmail: 'richard.labrador@outlook.fr'`, `templateData` = champs du formulaire, `replyTo` = email du visiteur, `idempotencyKey` dérivée d'un UUID de soumission
 
-Le titre de section devient : *« Trois leviers pour aligner votre SI avec vos engagements environnementaux. »*
-Le chapeau remplace l'argument générique TPE/PME par une mention explicite du secteur environnement / éco-conception / EFC.
-
-### 4. Réalisation — WaspTracker (`src/components/site/CaseStudy.tsx`)
-Conserver le cas Waspy comme unique référence. Ajuster légèrement le chapeau pour faire ressortir le lien avec le secteur environnement :
-- ajouter une phrase courte du type *« Un projet à impact environnemental direct : outiller la lutte contre une espèce invasive menaçant la biodiversité et l'apiculture. »*
-- Reste de la section inchangé (puces, image, lien wasptracker.com).
-
-### 5. SEO (`src/routes/index.tsx`)
-Mettre à jour `title` et `description` :
-- **title** : `waspy.life — Conseil IT & EFC pour TPE/PME de l'environnement | Richard Labrador` (≤ 60 car. cible).
-- **description** : reformuler autour de « Conseil et audits numériques pour TPE/PME de la protection de l'environnement et de l'éco-conception : transformation digitale sobre, dette technique, conformité IT (RGPD, NIS2, ISO 42001), Économie de la Fonctionnalité et de la Coopération. » (≤ 160 car. — à raccourcir).
-- Mettre à jour `og:title` / `og:description` en cohérence.
-
-### 6. Header & Footer
-- **Header** : pas de changement structurel (nav déjà OK).
-- **Footer** : si le pitch d'accroche y figure, le réaligner sur le nouveau positionnement (à confirmer en lecture rapide du fichier).
+### 6. Vérification de bout en bout
+- Une fois Cloud + domaine actifs : envoyer un test depuis le formulaire en production
+- Vérifier la réception sur `richard.labrador@outlook.fr` (incluant dossier spam le premier coup)
+- Confirmer dans **Cloud → Emails** que le statut est `sent`
 
 ## Hors périmètre
-- Pas de nouveau projet ajouté à la section Réalisation.
-- Pas d'ajout d'images ni de changement de palette / typographie.
-- Pas de modification du backend ni des routes.
+- Pas d'email de confirmation au visiteur (à ajouter plus tard si souhaité)
+- Pas de stockage des soumissions en base (à ajouter si vous voulez un historique consultable)
+- Aucun changement UI sur le formulaire
 
-## Détails techniques
-- Tous les changements sont front-only (composants `src/components/site/*` + `src/routes/index.tsx`).
-- Aucun nouveau package requis.
-- Le nouveau `EfcBanner.tsx` utilise les tokens existants (`text-muted-foreground`, `border-border/60`, `bg-card-grad`) — aucune couleur en dur.
+## Question avant de lancer
+
+Avez-vous accès au **registrar DNS de wasptracker.com** pour ajouter les 2 enregistrements NS sur `notify.wasptracker.com` ? Sans ça, les emails ne pourront pas partir (mais tout le reste peut être préparé).
