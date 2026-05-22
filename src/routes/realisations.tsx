@@ -89,7 +89,7 @@ function RealisationsPage() {
 
         {/* Visuals */}
         <section className="py-12 lg:py-16 border-b border-border/60">
-          <div className="mx-auto max-w-5xl px-6 grid md:grid-cols-2 gap-6">
+          <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-3 gap-6">
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-accent opacity-15 blur-3xl rounded-3xl" />
               <img
@@ -115,6 +115,17 @@ function RealisationsPage() {
               />
               <p className="mt-3 text-xs text-muted-foreground text-center">
                 Application mobile terrain — signalement géolocalisé.
+              </p>
+            </div>
+            <div className="relative">
+              <img
+                src={wasptrapIot}
+                alt="Piège sélectif connecté avec capteurs IoT pour la détection du frelon asiatique"
+                loading="lazy"
+                className="relative rounded-2xl border border-border/70 shadow-elev w-full"
+              />
+              <p className="mt-3 text-xs text-muted-foreground text-center">
+                Pièges sélectifs connectés et capteurs IoT, pour une meilleure prédiction de nuisance.
               </p>
             </div>
           </div>
