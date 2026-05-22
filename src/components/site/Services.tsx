@@ -43,7 +43,7 @@ export function Services() {
         <div className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] text-primary">Services</p>
           <h2 className="mt-4 text-4xl md:text-5xl font-display">
-            Trois leviers pour aligner votre SI avec vos <span className="text-gradient">engagements sociaux et</span>.
+            Trois leviers pour aligner votre SI avec vos <span className="text-gradient">engagements sociaux et environnementaux</span>.
           </h2>
           <p className="mt-5 text-muted-foreground">
             Des interventions ciblées, livrables et chiffrées — pensées pour les
