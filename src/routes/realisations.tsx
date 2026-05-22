@@ -4,6 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import waspyAdmin from "@/assets/waspy-admin.png";
 import wasptrackerMobile from "@/assets/wasptracker-mobile.png";
+import wasptrapIot from "@/assets/wasptrap-iot.jpg";
 
 export const Route = createFileRoute("/realisations")({
   head: () => ({
