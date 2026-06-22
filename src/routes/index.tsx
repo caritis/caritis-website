@@ -11,17 +11,17 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "waspy.life — Conseil IT & EFC pour TPE/PME environnement" },
+      { title: "waspy.life — Conseil IT & EFC pour entreprises environnement" },
       {
         name: "description",
         content:
-          "Conseil IT et EFC pour TPE/PME de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
+          "Conseil IT et EFC pour entreprises de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
       },
-      { property: "og:title", content: "waspy.life — Conseil IT & EFC pour TPE/PME environnement" },
+      { property: "og:title", content: "waspy.life — Conseil IT & EFC pour entreprises environnement" },
       {
         property: "og:description",
         content:
-          "Conseil IT et EFC pour TPE/PME de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
+          "Conseil IT et EFC pour entreprises de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://waspy.life/" },
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Conseil IT & EFC pour TPE/PME",
+          name: "Conseil IT & EFC pour entreprises",
           provider: {
             "@type": "Person",
             name: "Richard Labrador",
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/")({
             "Conformité IT (RGPD, NIS2, ISO 42001)",
           ],
           description:
-            "Conseil et audits numériques pour TPE/PME de la protection de l'environnement et de l'éco-conception, alignés avec l'Économie de la Fonctionnalité et de la Coopération.",
+            "Conseil et audits numériques pour entreprises de la protection de l'environnement et de l'éco-conception, alignés avec l'Économie de la Fonctionnalité et de la Coopération.",
           url: "https://waspy.life/",
         }),
       },
