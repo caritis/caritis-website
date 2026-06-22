@@ -57,7 +57,7 @@ export function Services() {
           </h2>
           <p className="mt-5 text-muted-foreground">
             Des interventions ciblées, cadrées et mesurables, conçues pour les
-            TPE/PME voulant s'engager dans la protection de l’environnement,
+            entreprises voulant s'engager dans la protection de l’environnement,
             l’éco-conception et l’Économie de la Fonctionnalité et de la Coopération (EFC).
           </p>
         </div>
