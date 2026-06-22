@@ -103,7 +103,7 @@ export function Hero() {
 
         <div className="mt-10 inline-flex items-center gap-2 text-xs text-muted-foreground">
           <ShieldCheck className="h-4 w-4 text-primary" />
-          Certifications : RGPD-DPO (CNIL) · Scrum PSPO · Azure AZ-900/203 · Lean Six Sigma
+          Certifications : PMP (PMI.org) · RGPD-DPO (CNIL) · Scrum PSPO · Azure AZ-900/203 · Lean Six Sigma
         </div>
       </div>
     </section>
