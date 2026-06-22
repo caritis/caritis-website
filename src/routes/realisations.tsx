@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ExternalLink, Leaf, Users, Wrench, TrendingUp } from "lucide-react";
+import { ArrowLeft, ExternalLink, Leaf, Linkedin, Users, Wrench, TrendingUp } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import waspyAdmin from "@/assets/waspy-admin.png";
