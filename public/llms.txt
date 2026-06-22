@@ -1,8 +1,8 @@
 # waspy.life
 
-> Conseil et audits techniques numériques pour dirigeants de TPE/PME engagés dans la protection de l'environnement et l'éco-conception, avec une approche EFC (Économie de la Fonctionnalité et de la Coopération).
+> Conseil et audits techniques numériques — environnement, éco-conception, trajectoires EFC, pour dirigeants d'entreprise engagés dans la protection de l'environnement et l'éco-conception.
 
-waspy.life est le site de Richard Labrador, consultant indépendant. Il aligne le SI des TPE/PME environnementales avec les principes de l'EFC : sobriété logicielle, mutualisation des briques, coopération entre parties prenantes et conformité (RGPD, NIS2, ISO 42001). 20 ans d'expérience SI, dont une réalisation de référence : la plateforme WaspTracker pour la lutte contre le frelon asiatique.
+waspy.life est le site de Richard Labrador, consultant indépendant. Il aligne le SI des entreprises environnementales avec les principes de l'EFC : sobriété logicielle, mutualisation des briques, coopération entre parties prenantes et conformité (RGPD, NIS2, ISO 42001). 20 ans d'expérience SI, dont une réalisation de référence : la plateforme WaspTracker pour la lutte contre le frelon asiatique.
 
 ## Pages
 
