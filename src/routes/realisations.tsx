@@ -87,6 +87,40 @@ function RealisationsPage() {
           </div>
         </section>
 
+        {/* Expérience adossée — bandeau sobre */}
+        <section className="border-b border-border/60 py-12 lg:py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">Adossé à 20+ ans d'expérience SI</p>
+            <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-3xl">
+              WaspTracker s'appuie sur une expérience structurée de pilotage SI, conformité et transformation —
+              menée chez Prodware, IBM et SAP BusinessObjects.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {[
+                "DSI Adjoint & PMO Compliance · Prodware (RGPD / NIS2 / ISO 42001, 3 pays)",
+                "Responsable Projets R&D · Dynamics 365 (1,5 M€, équipes de 20)",
+                "Consultant SI · IBM — DataMart CMA-CGM",
+                "Architecte BI · SAP BusinessObjects (France Télécom)",
+              ].map((chip) => (
+                <li
+                  key={chip}
+                  className="text-xs md:text-sm px-3 py-1.5 rounded-full border border-border/70 bg-card-grad text-muted-foreground"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="https://www.linkedin.com/in/rlabrador2000/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition"
+            >
+              <Linkedin className="h-4 w-4" /> Voir le parcours détaillé sur LinkedIn
+            </a>
+          </div>
+        </section>
+
         {/* Visuals */}
         <section className="py-12 lg:py-16 border-b border-border/60">
           <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-3 gap-6">
