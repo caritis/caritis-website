@@ -64,6 +64,7 @@ function Index() {
         <EfcBanner />
         <Services />
         <CaseStudyTeaser />
+        <About />
         <Contact />
       </main>
       <Footer />
