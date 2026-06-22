@@ -187,6 +187,27 @@ function RealisationsPage() {
           </div>
         </section>
 
+        {/* Ce que j'apporte */}
+        <section className="border-t border-border/60 py-12 lg:py-16">
+          <div className="mx-auto max-w-3xl px-6">
+            <h2 className="text-2xl md:text-3xl font-display">
+              Ce que j'apporte sur ce type de projet
+            </h2>
+            <ul className="mt-6 space-y-3 text-sm md:text-base text-muted-foreground">
+              {[
+                "Cadrage métier et gouvernance projet (PMO, RACI, conformité).",
+                "Pilotage budget, prestataires et delivery multi-pays.",
+                "Conduite du changement et adoption terrain.",
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="border-t border-border/60 py-16 lg:py-20 bg-[oklch(0.16_0.03_240)]">
           <div className="mx-auto max-w-3xl px-6 text-center">
