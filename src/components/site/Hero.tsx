@@ -24,12 +24,53 @@ export function Hero() {
           Développez vos leviers de <span className="text-gradient">sobriété, de coopération</span> et de performance durable.
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground whitespace-pre-line">
+        <p className="mt-6 max-w-3xl text-xl font-medium text-foreground border-l-2 border-primary pl-4 py-1">
+          Direction et transformation des systèmes d’information : portefeuille projets, gouvernance applicative, modernisation et conduite du changement.
+        </p>
+
+        <p className="mt-6 max-w-2xl text-base text-muted-foreground whitespace-pre-line">
           Depuis plus de 20 ans, nous aidons les dirigeants de TPE/PME à faire évoluer leur système d'information au service de leur performance opérationnelle.
           {"\n"}
           Notre approche intègre désormais les principes de l'Économie de la Fonctionnalité et de la Coopération (EFC) afin de développer des modèles serviciels plus durables, sobres et résilients : pilotage par les usages, mutualisation des capacités numériques, conformité réglementaire et maîtrise de la dette technique.
         </p>
 
+        {/* Bloc factuel - piliers d'expertise */}
+        <div className="mt-10 max-w-4xl">
+          <h2 className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-5">Savoir-faire clé en Transformation SI</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+            {[
+              {
+                title: "Management d'équipes",
+                desc: "Management d’équipes internes et partenaires."
+              },
+              {
+                title: "Pilotage & Budgets",
+                desc: "Pilotage de budgets, prestataires, licences et engagements de service."
+              },
+              {
+                title: "Gouvernance portefeuille",
+                desc: "Arbitrage, priorisation, risques et feuille de route pragmatique."
+              },
+              {
+                title: "Modernisation & Cloud",
+                desc: "Modernisation applicative, API, cloud et sécurisation du run."
+              },
+              {
+                title: "Alignement Métiers",
+                desc: "Transformation menée en lien avec directions métiers, DSI et opérationnels."
+              }
+            ].map((item, idx) => (
+              <div 
+                key={idx} 
+                className="p-5 rounded-xl border border-border/60 bg-background/30 backdrop-blur-sm hover:border-primary/40 hover:bg-background/50 transition-all duration-300"
+              >
+                <span className="text-primary font-mono text-xs font-semibold block mb-2">0{idx + 1}.</span>
+                <h3 className="font-display font-medium text-foreground text-sm mb-1">{item.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
