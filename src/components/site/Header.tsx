@@ -4,6 +4,7 @@ import waspyLogo from "@/assets/waspy-logo.webp";
 
 const nav: { href?: string; to?: string; label: string }[] = [
   { href: "/#services", label: "Services" },
+  { href: "/#about", label: "À propos" },
   { to: "/realisations", label: "Réalisations" },
   { href: "/#contact", label: "Contact" },
 ];
