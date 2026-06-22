@@ -17,7 +17,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-20 lg:pt-14 lg:pb-24">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
-          Conseils & Audits numériques pour TPE/PME — environnement, éco-conception, EFC
+          Conseils & Audits numériques — environnement, éco-conception, trajectoires EFC
         </div>
 
         <h1 className="mt-6 max-w-4xl text-5xl md:text-7xl leading-[1.02] font-display">
@@ -29,7 +29,7 @@ export function Hero() {
         </p>
 
         <p className="mt-6 max-w-2xl text-base text-muted-foreground whitespace-pre-line">
-          Depuis plus de 20 ans, nous aidons les dirigeants de TPE/PME à faire évoluer leur système d'information au service de leur performance opérationnelle.
+          Depuis plus de 20 ans, nous aidons les dirigeants d'entreprise à faire évoluer leur système d'information au service de leur performance opérationnelle.
           {"\n"}
           Notre approche intègre désormais les principes de l'Économie de la Fonctionnalité et de la Coopération (EFC) afin de développer des modèles serviciels plus durables, sobres et résilients : pilotage par les usages, mutualisation des capacités numériques, conformité réglementaire et maîtrise de la dette technique.
         </p>
