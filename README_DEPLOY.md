@@ -1,10 +1,40 @@
 # Déploiement Vercel — RLAB ONE
 
-## 1. Import du projet
+## État actuel
+
+| Élément | Statut |
+| --- | --- |
+| Projet Vercel | **`rlab-one`** (équipe `richard-2575's projects`) — créé |
+| Déploiement production | **En ligne** — https://rlab-one.vercel.app |
+| Branche de production | `main` (dépôt `rlab-one/waspy-digital-boost`) |
+| Connexion Git automatique | ⚠️ **À autoriser** — voir §1 |
+| Variables SMTP | ⚠️ **À créer** — voir §3 |
+| Domaines `rlab-one.fr` / `.eu` | ⚠️ **À rattacher** — voir §4 |
+
+Tant que les variables SMTP ne sont pas renseignées, le formulaire de contact
+répond « Le service d'envoi n'est pas configuré. » ; le reste du site fonctionne.
+
+## 1. Connexion du dépôt GitHub
+
+Le projet Vercel a été créé, mais la liaison automatique au dépôt a échoué :
 
 ```text
-Vercel → Add New… → Project → Import Git Repository
-→ rlab-one/waspy-digital-boost
+You need admin or write access to the repository "waspy-digital-boost" to link it.
+```
+
+L'application GitHub de Vercel n'est pas autorisée sur l'organisation `rlab-one`.
+Pour activer les déploiements automatiques à chaque `git push` sur `main` :
+
+1. https://github.com/organizations/rlab-one/settings/installations
+   → **Vercel** → *Configure* → autoriser le dépôt `waspy-digital-boost`
+   (ou installer l'application Vercel sur l'organisation si elle est absente).
+2. Vercel → projet `rlab-one` → *Settings* → *Git* → **Connect Git Repository**
+   → `rlab-one/waspy-digital-boost`, branche de production `main`.
+
+En attendant, un déploiement production se lance depuis le poste local :
+
+```sh
+vercel deploy --prod --yes
 ```
 
 ## 2. Réglages du projet
@@ -49,6 +79,10 @@ indisponibles en runtime Edge). Ne pas basculer le projet en Edge Runtime.
 
 ## 4. Domaines
 
+Les domaines `rlab-one.fr` et `rlab-one.eu` ne sont pas encore rattachés au
+compte Vercel (seuls `howner.fr`, `affinityhouse.fr`, `affinityhome.fr` et
+`affinityhousefactory.com` y figurent).
+
 `Project → Settings → Domains` :
 
 1. Ajouter `rlab-one.fr` → **Primary domain** (production).
@@ -58,7 +92,12 @@ indisponibles en runtime Edge). Ne pas basculer le projet en Edge Runtime.
 Puis, chez le registrar / fournisseur DNS, reporter **exactement** les valeurs
 affichées par Vercel dans cet écran (enregistrement `A` pour l'apex, `CNAME` pour
 le `www`). Ne pas utiliser de valeurs mémorisées ou supposées : Vercel indique
-les cibles à jour pour chaque domaine.
+les cibles à jour pour chaque domaine, et elles peuvent différer d'un domaine à
+l'autre.
+
+Une fois `rlab-one.fr` défini comme domaine principal, aucune modification de
+code n'est nécessaire : les URLs canoniques, OpenGraph et le sitemap pointent
+déjà vers `https://rlab-one.fr` (constante `SITE_URL` dans `src/lib/site.ts`).
 
 Vérifications après propagation :
 
@@ -68,6 +107,9 @@ Vérifications après propagation :
 - [ ] Certificat TLS émis pour les quatre entrées
 
 ## 5. Contrôles post-déploiement
+
+Sur le déploiement actuel (`https://rlab-one.vercel.app`), ces contrôles sont
+déjà passés — hormis l'envoi réel du formulaire, qui attend les variables SMTP.
 
 ```text
 /                    page d'accueil (hero, services, parcours)
