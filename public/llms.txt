@@ -1,9 +1,18 @@
-# waspy.life
+# RLAB ONE
 
-> Conseil et audits techniques numériques — environnement, éco-conception, trajectoires EFC, pour dirigeants d'entreprise engagés dans la protection de l'environnement et l'éco-conception.
+> Technology · Governance · Transformation — conseil en transformation des systèmes
+> d'information, gouvernance SI et IA, risques et conformité, pour dirigeants et DSI.
 
-waspy.life est le site de Richard Labrador, consultant indépendant. Il aligne le SI des entreprises environnementales avec les principes de l'EFC : sobriété logicielle, mutualisation des briques, coopération entre parties prenantes et conformité (RGPD, NIS2, ISO 42001). 20 ans d'expérience SI, dont une réalisation de référence : la plateforme WaspTracker pour la lutte contre le frelon asiatique.
+RLAB ONE est la structure de conseil et de produits numériques de Richard Labrador.
+Elle intervient sur la direction et la transformation des SI, la gouvernance SI et IA
+(ISO/IEC 27001, ISO/IEC 42001, AI Act), la maîtrise des risques et de la conformité
+(RGPD, NIS2), la modernisation cloud et applicative, ainsi que la sobriété logicielle
+et l'Économie de la Fonctionnalité et de la Coopération (EFC).
+
+Produit stratégique : AIGMS — AI Governance Management System by RLAB ONE (en développement).
 
 ## Pages
 
-- [Accueil](/): Positionnement, services, réalisation WaspTracker, parcours et contact.
+- [Accueil](/): positionnement, services, parcours.
+- [Réalisations](/realisations): WaspTracker (SaaS environnement), Howner (SI fabrication hors-site), AIGMS (gouvernance IA).
+- [Contact](/contact): formulaire de contact, réponse sous 48h ouvrées.
