@@ -12,13 +12,13 @@ export function Footer() {
     <footer className="border-t border-border/60 py-12">
       <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-3 md:items-start">
         <div>
-          <Link to="/" className="inline-flex items-center gap-2.5" aria-label="RLAB ONE — accueil">
+          <Link to="/" className="inline-flex items-center gap-2.5" aria-label="CARITIS — accueil">
             <img src={rlabMark} alt="" width={32} height={32} className="h-8 w-8" />
-            <span className="font-display text-xl tracking-tight text-foreground">RLAB ONE</span>
+            <span className="font-display text-xl tracking-tight text-foreground">CARITIS</span>
           </Link>
           <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-            Technology · Governance · Transformation — conseil et audits numériques, gouvernance SI
-            et IA, éco-conception et trajectoires EFC.
+            Responsible AI Governance — gouvernance de l'IA et des SI, conformité et maîtrise des
+            risques, transformation numérique sobre et coopérative.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export function Footer() {
           >
             <Linkedin className="h-4 w-4" /> LinkedIn
           </a>
-          <p className="mt-6">© {new Date().getFullYear()} RLAB ONE</p>
+          <p className="mt-6">© {new Date().getFullYear()} CARITIS</p>
         </div>
       </div>
     </footer>

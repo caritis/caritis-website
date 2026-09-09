@@ -14,7 +14,7 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2.5 group shrink-0">
           <img src={rlabMark} alt="" width={32} height={32} className="h-8 w-8" />
-          <span className="font-display text-xl tracking-tight">RLAB ONE</span>
+          <span className="font-display text-xl tracking-tight">CARITIS</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">

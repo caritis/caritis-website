@@ -3,8 +3,8 @@ import portrait from "@/assets/portrait.jpg";
 const milestones = [
   {
     y: "Aujourd'hui",
-    t: "Fondateur · RLAB ONE",
-    d: "Conseil en transformation SI, gouvernance des risques numériques et de l'IA — et développement d'AIGMS, système de management de la gouvernance de l'IA.",
+    t: "Fondateur · CARITIS",
+    d: "Conseil en gouvernance de l'IA, transformation SI et maîtrise des risques numériques — et développement d'AIGMS, AI Governance Management System.",
   },
   {
     y: "2023 → aujourd'hui",
@@ -53,7 +53,7 @@ export function About() {
             <p className="font-display text-2xl text-foreground">Richard Labrador</p>
             <p className="mt-1">
               Digital &amp; AI Governance | DSI / Transformation | ISO 27001 &amp; ISO 42001 |
-              Founder RLAB ONE – Building AIGMS
+              Founder CARITIS – Building AIGMS
             </p>
           </div>
         </div>
@@ -65,7 +65,7 @@ export function About() {
           </h2>
           <p className="mt-5 text-muted-foreground">
             20+ ans entre R&D, intégration ERP, gouvernance SI et entrepreneuriat — chez IBM, SAP
-            BusinessObjects, Prodware Group, puis Waspy et aujourd'hui RLAB ONE. La conviction qui
+            BusinessObjects, Prodware Group, puis Waspy et aujourd'hui CARITIS. La conviction qui
             guide chaque mission : la technologie ne crée de la valeur que lorsqu'elle est adoptée,
             gouvernée et conforme.
           </p>

@@ -73,11 +73,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: `${SITE_NAME} | Technology, Governance & Transformation` },
+      { title: `${SITE_NAME} | ${SITE_TAGLINE}` },
       {
         name: "description",
         content:
-          "RLAB ONE accompagne dirigeants et DSI dans la transformation numérique, la gouvernance des SI et de l'IA, les risques et la conformité.",
+          "CARITIS accompagne les organisations dans la gouvernance responsable de l'IA, la conformité, la maîtrise des risques et la transformation numérique.",
       },
       { name: "author", content: "Richard Labrador" },
       { name: "robots", content: "index, follow" },
@@ -86,11 +86,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "fr_FR" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/` },
-      { property: "og:image", content: `${SITE_URL}/brand/og-rlab-one.png` },
+      { property: "og:image", content: `${SITE_URL}/brand/og-caritis.png` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: `${SITE_URL}/brand/og-rlab-one.png` },
+      { name: "twitter:image", content: `${SITE_URL}/brand/og-caritis.png` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -110,10 +110,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@type": "Organization",
               name: SITE_NAME,
               url: SITE_URL,
-              logo: `${SITE_URL}/brand/rlab-one-icon.png`,
+              logo: `${SITE_URL}/brand/caritis-icon.png`,
               slogan: SITE_TAGLINE,
               description:
-                "RLAB ONE — conseil en transformation des systèmes d'information, gouvernance SI et IA, risques et conformité.",
+                "CARITIS — gouvernance responsable de l'IA (ISO/IEC 42001, AI Act), conformité et maîtrise des risques, transformation des systèmes d'information.",
               founder: {
                 "@type": "Person",
                 name: "Richard Labrador",

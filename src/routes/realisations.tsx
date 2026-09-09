@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { cta, CtaRow } from "@/components/site/Cta";
-import { SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { Footer } from "@/components/site/Footer";
 import waspyAdmin from "@/assets/waspy-admin.png";
 import wasptrackerMobile from "@/assets/wasptracker-mobile.png";
@@ -21,13 +21,16 @@ import wasptrapIot from "@/assets/wasptrap-iot.jpg";
 export const Route = createFileRoute("/realisations")({
   head: () => ({
     meta: [
-      { title: "Réalisations — WaspTracker, Howner, AIGMS | RLAB ONE" },
+      { title: `Réalisations — WaspTracker, Howner, AIGMS | ${SITE_NAME}` },
       {
         name: "description",
         content:
-          "Trois réalisations RLAB ONE : WaspTracker (SaaS environnement), Howner (structuration SI fabrication hors-site) et AIGMS (gouvernance IA, ISO 42001).",
+          "Trois réalisations CARITIS : WaspTracker (SaaS environnement), Howner (structuration SI fabrication hors-site) et AIGMS (gouvernance IA, ISO 42001).",
       },
-      { property: "og:title", content: "Réalisations — WaspTracker, Howner, AIGMS | RLAB ONE" },
+      {
+        property: "og:title",
+        content: `Réalisations — WaspTracker, Howner, AIGMS | ${SITE_NAME}`,
+      },
       {
         property: "og:description",
         content:
