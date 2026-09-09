@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin } from "lucide-react";
 import { cta } from "@/components/site/Cta";
-import rlabMark from "@/assets/brand/rlab-one-mark.png";
+import caritisMark from "@/assets/brand/caritis-mark.png";
 
 const nav = [
   { href: "/#services", label: "Services" },
@@ -13,7 +13,7 @@ export function Header() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/60">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-          <img src={rlabMark} alt="" width={32} height={32} className="h-8 w-8" />
+          <img src={caritisMark} alt="" width={32} height={32} className="h-8 w-8" />
           <span className="font-display text-xl tracking-tight">CARITIS</span>
         </Link>
 

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin } from "lucide-react";
-import rlabMark from "@/assets/brand/rlab-one-mark.png";
+import caritisMark from "@/assets/brand/caritis-mark.png";
 
 const footerNav = [
   { href: "/#services", label: "Services" },
@@ -13,7 +13,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-3 md:items-start">
         <div>
           <Link to="/" className="inline-flex items-center gap-2.5" aria-label="CARITIS — accueil">
-            <img src={rlabMark} alt="" width={32} height={32} className="h-8 w-8" />
+            <img src={caritisMark} alt="" width={32} height={32} className="h-8 w-8" />
             <span className="font-display text-xl tracking-tight text-foreground">CARITIS</span>
           </Link>
           <p className="mt-4 text-sm text-muted-foreground max-w-xs">
