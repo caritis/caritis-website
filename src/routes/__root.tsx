@@ -97,7 +97,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
       { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon-192.png" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
-      { rel: "canonical", href: `${SITE_URL}/` },
+      // Le canonical est défini par chaque route (voir src/routes/*.tsx) :
+      // en poser un ici produirait deux balises par page.
     ],
     scripts: [
       {
