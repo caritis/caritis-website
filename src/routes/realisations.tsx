@@ -271,10 +271,10 @@ function RealisationsPage() {
               <span className="text-gradient">gouvernance de l'IA</span>.
             </h2>
             <p className="mt-4 text-muted-foreground max-w-3xl">
-              AI Governance Management System : une plateforme qui fait vivre un véritable cycle de
-              management de l'IA en entreprise, plutôt qu'un tableur de conformité. Du recensement
-              des cas d'usage à la mise en production sous contrôle, puis à la réévaluation à chaque
-              changement significatif.
+              AI Governance Management System by CARITIS : une plateforme qui fait vivre un
+              véritable cycle de management de l'IA en entreprise, plutôt qu'un tableur de
+              conformité. Du recensement des cas d'usage à la mise en production sous contrôle, puis
+              à la réévaluation à chaque changement significatif.
             </p>
 
             <div className="mt-8 rounded-2xl border border-border/70 bg-card-grad p-6 md:p-8 shadow-elev">
@@ -410,10 +410,10 @@ function RealisationsPage() {
             </p>
             <CtaRow className="mt-8 justify-center">
               <Link to="/contact" className={cta("primary")}>
-                Me contacter
+                Nous contacter
               </Link>
-              <Link to="/" className={cta("secondary")}>
-                Découvrir mes expertises
+              <Link to="/" hash="expertises" className={cta("secondary")}>
+                Découvrir nos expertises
               </Link>
             </CtaRow>
           </div>

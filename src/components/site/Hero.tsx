@@ -2,7 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { cta, CtaRow } from "@/components/site/Cta";
+import { SITE_TAGLINE } from "@/lib/site";
 
+/**
+ * Socle opérationnel hérité : ces savoir-faire restent le contrepoids concret
+ * du discours de gouvernance (§18.4 — ne pas paraître mono-produit).
+ */
 const pillars = [
   {
     title: "Management d'équipes",
@@ -42,46 +47,47 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-20 lg:pt-14 lg:pb-24">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
-          Technology · Governance · Transformation
+          {SITE_TAGLINE}
         </div>
 
         <h1 className="mt-6 max-w-4xl text-5xl md:text-7xl leading-[1.02] font-display">
-          Développez vos leviers de <span className="text-gradient">sobriété, de coopération</span>{" "}
-          et de performance durable.
+          Gouverner l’IA avec <span className="text-gradient">confiance, responsabilité</span> et
+          maîtrise.
         </h1>
 
         <p className="mt-6 max-w-3xl text-xl font-medium text-foreground border-l-2 border-primary pl-4 py-1">
-          Direction et transformation des systèmes d’information : portefeuille projets, gouvernance
-          applicative, modernisation et conduite du changement.
+          CARITIS accompagne les organisations dans la mise en œuvre d’une gouvernance de l’IA
+          démontrable, proportionnée et soutenable.
         </p>
 
         <p className="mt-6 max-w-2xl text-base text-muted-foreground whitespace-pre-line">
-          Depuis plus de 20 ans, nous aidons les dirigeants d'entreprise à faire évoluer leur
-          système d'information au service de leur performance opérationnelle.
+          Depuis plus de 20 ans, nous aidons les dirigeants à faire évoluer leur système
+          d’information au service de leur performance opérationnelle. Cette expérience du terrain
+          est ce qui rend la gouvernance exigible plutôt que déclarative.
           {"\n"}
-          Notre approche intègre désormais les principes de l'Économie de la Fonctionnalité et de la
-          Coopération (EFC) afin de développer des modèles serviciels plus durables, sobres et
-          résilients : pilotage par les usages, mutualisation des capacités numériques, conformité
-          réglementaire et maîtrise de la dette technique.
+          Notre approche intègre les principes de l’Économie de la Fonctionnalité et de la
+          Coopération (EFC) afin de développer des modèles plus durables, sobres et résilients :
+          pilotage par les usages, mutualisation des capacités numériques, conformité réglementaire
+          et maîtrise de la dette technique.
         </p>
 
         {/* CTA principaux — même hauteur, alignés sur une seule ligne de base */}
         <CtaRow className="mt-10">
-          <Link to="/contact" className={cta("primary")}>
-            Me contacter <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link to="/realisations" className={cta("secondary")}>
-            Voir mes réalisations
-          </Link>
-          <a href="#services" className={cta("secondary")}>
-            Découvrir mes expertises
+          <a href="#aigms" className={cta("primary")}>
+            Découvrir AIGMS <ArrowRight className="h-4 w-4" />
           </a>
+          <a href="#expertises" className={cta("secondary")}>
+            Explorer nos expertises
+          </a>
+          <Link to="/contact" className={cta("secondary")}>
+            Nous contacter
+          </Link>
         </CtaRow>
 
-        {/* Bloc factuel - piliers d'expertise */}
+        {/* Bloc factuel - socle opérationnel */}
         <div className="mt-14 max-w-4xl">
           <h2 className="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-5">
-            Savoir-faire clé en Transformation SI
+            Socle opérationnel — direction et transformation SI
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
             {pillars.map((item, idx) => (

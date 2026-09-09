@@ -1,66 +1,73 @@
-import { Brain, Cpu, GitBranch, ShieldCheck } from "lucide-react";
+import { Brain, Cpu, Leaf, ShieldCheck } from "lucide-react";
 
+/**
+ * Ordre imposé par l'architecture de marque CARITIS (§3, §18) :
+ * AI Governance → Risk & Compliance → Digital Transformation → Frugal AI.
+ * Le contenu des cartes RLAB ONE est conservé, redistribué sur ces domaines.
+ */
 const services = [
   {
+    icon: Brain,
+    title: "Gouvernance de l'IA",
+    pitch:
+      "Rendre la gouvernance de l'IA exigible plutôt que déclarative : des usages recensés, des risques évalués, des contrôles tenus et des décisions tracées.",
+    points: [
+      "Cadrage d'un système de management de l'IA (ISO/IEC 42001)",
+      "Cartographie des usages, classification par risque, impacts (AIIA)",
+      "Contrôles, preuves datées et registre de décisions",
+      "Sensibilisation & lead audit ISO 42001",
+    ],
+  },
+  {
+    icon: ShieldCheck,
+    title: "Risque & conformité",
+    pitch:
+      "Mettre votre SI en conformité RGPD, NIS2 et ISO/IEC 27001 — avec une gouvernance qui favorise la coopération entre parties prenantes.",
+    points: [
+      "Audits internes & cartographie risques/process & cartographie Acteurs/Système",
+      "Politiques RACI / RBAC / ITSM",
+      "Trajectoire RGPD, NIS2, ISO/IEC 27001",
+    ],
+  },
+  {
     icon: Cpu,
-    title: "Transformation digitale & éco-conception du SI",
+    title: "Transformation & éco-conception du SI",
     pitch:
       "Cadrer une feuille de route numérique sobre : prioriser ce qui crée de la valeur d'usage, mutualiser les briques, mesurer l'impact.",
     points: [
       "Diagnostic 360° SI, métier & impact",
       "Roadmap Cloud / Data orientée sobriété",
+      "Dette technique : cartographie applicative et plan de remédiation chiffré (coût + empreinte)",
+      "Standards méthodologiques DevOps & CI/CD",
       "Conduite du changement & adoption",
     ],
   },
   {
-    icon: GitBranch,
-    title: "Audit de dette technique & sobriété logicielle",
+    icon: Leaf,
+    title: "IA responsable & frugale",
     pitch:
-      "Réduire la dette qui alourdit vos coûts et votre empreinte : cartographier, prioriser, rationaliser — sans casser le run.",
-    points: [
-      "Cartographie applicative & risques",
-      "Plan de remédiation chiffré (coût + empreinte)",
-      "Standards méthodologiques DevOps & CI/CD",
-    ],
-  },
-  {
-    icon: ShieldCheck,
-    title: "Conformité IT, gouvernance de l'IA & coopération",
-    pitch:
-      "Mettre votre SI en conformité RGPD, NIS2 et ISO 42001 — avec une gouvernance qui favorise la coopération entre parties prenantes.",
-    points: [
-      "Audits internes & cartographie risques/process & cartographie Acteurs/Système",
-      "Politiques RACI / RBAC / ITSM",
-      "Sensibilisation & lead audit ISO 42001",
-    ],
-  },
-  {
-    icon: Brain,
-    title: "Accompagnement projets IA & maîtrise des coûts",
-    pitch:
-      "Structurer vos projets d'IA en entreprise tout en maîtrisant les coûts cachés liés à la facturation au token.",
+      "Structurer vos projets d'IA tout en maîtrisant les coûts cachés liés à la facturation au token — et les impacts qui vont avec.",
     points: [
       "Optimisation : modèles plus légers, caching, prompts structurés, agents hybrides.",
       "Gouvernance : budgets par équipe, dashboards de consommation et règles d'usage.",
+      "Proportionnalité des modèles, sobriété logicielle et mesure des impacts.",
     ],
   },
 ];
 
 export function Services() {
   return (
-    <section id="services" className="relative py-16 lg:py-24">
+    <section id="expertises" className="scroll-mt-20 relative py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary">Services</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-primary">Expertises</p>
           <h2 className="mt-4 text-4xl md:text-5xl font-display">
-            Quatre leviers pour aligner votre SI avec vos{" "}
-            <span className="text-gradient">engagements sociaux et environnementaux</span> à l'ère
-            de l'IA.
+            Quatre domaines pour gouverner l'IA{" "}
+            <span className="text-gradient">sans freiner la transformation</span>.
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Des interventions ciblées, cadrées et mesurables, conçues pour les entreprises voulant
-            s'engager dans la protection de l’environnement, l’éco-conception et l’Économie de la
-            Fonctionnalité et de la Coopération (EFC).
+            Des interventions ciblées, cadrées et mesurables, conçues pour les organisations qui
+            doivent démontrer leur maîtrise — de l'IA comme du reste du système d'information.
           </p>
         </div>
 

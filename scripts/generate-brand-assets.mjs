@@ -31,8 +31,14 @@ const MUTED = "#9BA6B1";
 
 /** Rogne les bords entièrement transparents. */
 async function trimAlpha(input) {
-  const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-  let minX = info.width, minY = info.height, maxX = -1, maxY = -1;
+  const { data, info } = await sharp(input)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  let minX = info.width,
+    minY = info.height,
+    maxX = -1,
+    maxY = -1;
   for (let y = 0; y < info.height; y++) {
     for (let x = 0; x < info.width; x++) {
       if (data[(y * info.width + x) * 4 + 3] > 20) {
@@ -54,7 +60,10 @@ async function trimAlpha(input) {
  * recolorisation en near-white pour un fond sombre.
  */
 async function extractWordmark() {
-  const { data, info } = await sharp(LOGO_SRC).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { data, info } = await sharp(LOGO_SRC)
+    .removeAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
   const lum = (o) => 0.2126 * data[o] + 0.7152 * data[o + 1] + 0.0722 * data[o + 2];
 
   // Colonnes encrées, pour isoler le wordmark du monogramme via la gouttière.
@@ -66,12 +75,17 @@ async function extractWordmark() {
   }
   const first = inked.findIndex((v) => v > 0);
   const last = info.width - 1 - [...inked].reverse().findIndex((v) => v > 0);
-  let gapStart = -1, gapEnd = -1, run = -1;
+  let gapStart = -1,
+    gapEnd = -1,
+    run = -1;
   for (let x = first; x <= last; x++) {
     if (inked[x] === 0) {
       if (run < 0) run = x;
     } else if (run >= 0) {
-      if (x - run > 20 && gapStart < 0) { gapStart = run; gapEnd = x - 1; }
+      if (x - run > 20 && gapStart < 0) {
+        gapStart = run;
+        gapEnd = x - 1;
+      }
       run = -1;
     }
   }
@@ -79,7 +93,9 @@ async function extractWordmark() {
 
   const left = gapEnd + 1;
   const width = last - left + 1;
-  let top = info.height, bottom = -1, darkest = 255;
+  let top = info.height,
+    bottom = -1,
+    darkest = 255;
   for (let y = 0; y < info.height; y++) {
     for (let x = left; x <= last; x++) {
       const l = lum((y * info.width + x) * 3);
@@ -107,13 +123,21 @@ async function extractWordmark() {
       out[o + 3] = a;
     }
   }
-  return { buffer: await sharp(out, { raw: { width, height, channels: 4 } }).png().toBuffer(), width, height };
+  return {
+    buffer: await sharp(out, { raw: { width, height, channels: 4 } })
+      .png()
+      .toBuffer(),
+    width,
+    height,
+  };
 }
 
 /** Carré au fond navy avec le monogramme centré. */
 async function squareIcon(mark, size, ratio = 0.76) {
   const inner = Math.round(size * ratio);
-  const markPng = await sharp(mark).resize(inner, inner, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } }).toBuffer();
+  const markPng = await sharp(mark)
+    .resize(inner, inner, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .toBuffer();
   return sharp({ create: { width: size, height: size, channels: 4, background: NAVY } })
     .composite([{ input: markPng, gravity: "centre" }])
     .png()
@@ -129,8 +153,10 @@ await mkdir("public/brand", { recursive: true });
 
 // 1. Monogramme d'interface (header, footer) — transparent, affiché en 32px.
 // 128px suffit pour un écran retina : inutile d'embarquer 512px dans le bundle.
-await sharp(mark).resize(128, 128, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
-  .png({ compressionLevel: 9, palette: true }).toFile("src/assets/brand/caritis-mark.png");
+await sharp(mark)
+  .resize(128, 128, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png({ compressionLevel: 9, palette: true })
+  .toFile("src/assets/brand/caritis-mark.png");
 
 // 2. Icône carrée (logo Schema.org, usages externes).
 await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png");
@@ -142,10 +168,22 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
   const wmW = Math.round((wordmark.width / wordmark.height) * wmH);
   const gap = Math.round(H * 0.16);
   const W = H + gap + wmW;
-  await sharp({ create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+  await sharp({
+    create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+  })
     .composite([
-      { input: await sharp(mark).resize(H, H, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } }).toBuffer(), left: 0, top: 0 },
-      { input: await sharp(wordmark.buffer).resize(wmW, wmH).toBuffer(), left: H + gap, top: Math.round((H - wmH) / 2) },
+      {
+        input: await sharp(mark)
+          .resize(H, H, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          .toBuffer(),
+        left: 0,
+        top: 0,
+      },
+      {
+        input: await sharp(wordmark.buffer).resize(wmW, wmH).toBuffer(),
+        left: H + gap,
+        top: Math.round((H - wmH) / 2),
+      },
     ])
     .png({ compressionLevel: 9 })
     .toFile("public/brand/caritis-logo.png");
@@ -153,8 +191,10 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
 
 // 4. Image OpenGraph 1200×630.
 {
-  const W = 1200, H = 630;
-  const background = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  const W = 1200,
+    H = 630;
+  const background =
+    Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="glow" cx="50%" cy="0%" r="80%">
         <stop offset="0%" stop-color="#12C281" stop-opacity="0.22"/>
@@ -180,8 +220,21 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
 
   await sharp(background)
     .composite([
-      { input: await sharp(mark).resize(markSize, markSize, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } }).toBuffer(), left, top: markTop },
-      { input: await sharp(wordmark.buffer).resize(wmW, wmH).toBuffer(), left: left + markSize + 46, top: markTop + Math.round((markSize - wmH) / 2) },
+      {
+        input: await sharp(mark)
+          .resize(markSize, markSize, {
+            fit: "contain",
+            background: { r: 0, g: 0, b: 0, alpha: 0 },
+          })
+          .toBuffer(),
+        left,
+        top: markTop,
+      },
+      {
+        input: await sharp(wordmark.buffer).resize(wmW, wmH).toBuffer(),
+        left: left + markSize + 46,
+        top: markTop + Math.round((markSize - wmH) / 2),
+      },
       { input: tagline, left: 0, top: 0 },
     ])
     .png({ compressionLevel: 9 })
@@ -189,7 +242,12 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
 }
 
 // 5. Favicons et icône Apple — fond navy opaque (iOS ne gère pas la transparence).
-for (const [file, size] of [["public/favicon-32.png", 32], ["public/favicon-192.png", 192], ["public/favicon-512.png", 512], ["public/apple-touch-icon.png", 180]]) {
+for (const [file, size] of [
+  ["public/favicon-32.png", 32],
+  ["public/favicon-192.png", 192],
+  ["public/favicon-512.png", 512],
+  ["public/apple-touch-icon.png", 180],
+]) {
   await sharp(await squareIcon(mark, size, size <= 32 ? 0.88 : 0.78)).toFile(file);
   console.log(`écrit ${file} (${size}×${size})`);
 }

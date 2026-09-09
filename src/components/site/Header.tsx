@@ -4,8 +4,8 @@ import { cta } from "@/components/site/Cta";
 import caritisMark from "@/assets/brand/caritis-mark.png";
 
 const nav = [
-  { href: "/#services", label: "Services" },
-  { href: "/#about", label: "À propos" },
+  { href: "/#aigms", label: "AIGMS" },
+  { href: "/#expertises", label: "Expertises" },
 ] as const;
 
 export function Header() {
@@ -50,7 +50,7 @@ export function Header() {
             <Linkedin className="h-4 w-4" />
           </a>
           <Link to="/contact" className={cta("primary", "hidden sm:inline-flex h-10 px-4")}>
-            Me contacter
+            Nous contacter
           </Link>
         </div>
       </div>

@@ -3,7 +3,8 @@ import { Linkedin } from "lucide-react";
 import caritisMark from "@/assets/brand/caritis-mark.png";
 
 const footerNav = [
-  { href: "/#services", label: "Services" },
+  { href: "/#aigms", label: "AIGMS" },
+  { href: "/#expertises", label: "Expertises" },
   { href: "/#about", label: "À propos" },
 ] as const;
 
