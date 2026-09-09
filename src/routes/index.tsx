@@ -3,51 +3,48 @@ import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { EfcBanner } from "@/components/site/EfcBanner";
 import { Services } from "@/components/site/Services";
-import { CaseStudyTeaser } from "@/components/site/CaseStudyTeaser";
 import { About } from "@/components/site/About";
-import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import { SITE_URL } from "@/lib/site";
+
+const title = "RLAB ONE | Technology, Governance & Transformation";
+const description =
+  "RLAB ONE accompagne dirigeants et DSI dans la transformation numérique, la gouvernance des SI et de l'IA, les risques et la conformité.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "waspy.life — Conseil IT & EFC pour entreprises environnement" },
-      {
-        name: "description",
-        content:
-          "Conseil IT et EFC pour entreprises de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
-      },
-      { property: "og:title", content: "waspy.life — Conseil IT & EFC pour entreprises environnement" },
-      {
-        property: "og:description",
-        content:
-          "Conseil IT et EFC pour entreprises de l'environnement : transformation digitale sobre, audit de dette technique, conformité RGPD, NIS2, ISO 42001.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://waspy.life/" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
-    links: [{ rel: "canonical", href: "https://waspy.life/" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Conseil IT & EFC pour entreprises",
+          name: "Conseil SI, gouvernance IA et transformation",
           provider: {
             "@type": "Person",
             name: "Richard Labrador",
-            url: "https://waspy.life",
+            url: SITE_URL,
           },
           areaServed: "FR",
           serviceType: [
-            "Conseil en transformation digitale",
+            "Direction et transformation des systèmes d'information",
+            "Gouvernance SI et gouvernance de l'IA",
             "Audit de dette technique & sobriété logicielle",
-            "Conformité IT (RGPD, NIS2, ISO 42001)",
+            "Conformité IT (RGPD, NIS2, ISO 27001, ISO 42001)",
           ],
-          description:
-            "Conseil et audits numériques pour entreprises de la protection de l'environnement et de l'éco-conception, alignés avec l'Économie de la Fonctionnalité et de la Coopération.",
-          url: "https://waspy.life/",
+          description,
+          url: `${SITE_URL}/`,
         }),
       },
     ],
@@ -63,12 +60,9 @@ function Index() {
         <Hero />
         <EfcBanner />
         <Services />
-        <CaseStudyTeaser />
         <About />
-        <Contact />
       </main>
       <Footer />
     </div>
   );
 }
-

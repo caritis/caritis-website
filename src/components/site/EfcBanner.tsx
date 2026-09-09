@@ -6,18 +6,16 @@ export function EfcBanner() {
       <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col md:flex-row gap-4 md:items-center">
         <div className="flex items-center gap-2 shrink-0">
           <Leaf className="h-4 w-4 text-primary" />
-          <span className="text-xs uppercase tracking-[0.2em] text-primary font-medium">
-            EFC
-          </span>
+          <span className="text-xs uppercase tracking-[0.2em] text-primary font-medium">EFC</span>
         </div>
         <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
           <p className="text-sm text-muted-foreground leading-relaxed flex-1">
             <span className="text-foreground font-medium">
               Économie de la Fonctionnalité et de la Coopération
             </span>{" "}
-            — un modèle qui privilégie l'usage plutôt que la possession, la mutualisation
-            des ressources et la coopération entre acteurs, pour créer de la valeur tout
-            en réduisant l'empreinte environnementale.
+            — un modèle qui privilégie l'usage plutôt que la possession, la mutualisation des
+            ressources et la coopération entre acteurs, pour créer de la valeur tout en réduisant
+            l'empreinte environnementale.
           </p>
           <a
             href="https://economie-circulaire.ademe.fr/economie-fonctionnalite-cooperation-entreprises"

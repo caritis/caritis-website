@@ -53,15 +53,16 @@ export function Services() {
         <div className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] text-primary">Services</p>
           <h2 className="mt-4 text-4xl md:text-5xl font-display">
-            Quatre leviers pour aligner votre SI avec vos <span className="text-gradient">engagements sociaux et environnementaux</span> à l'ère de l'IA.
+            Quatre leviers pour aligner votre SI avec vos{" "}
+            <span className="text-gradient">engagements sociaux et environnementaux</span> à l'ère
+            de l'IA.
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Des interventions ciblées, cadrées et mesurables, conçues pour les
-            entreprises voulant s'engager dans la protection de l’environnement,
-            l’éco-conception et l’Économie de la Fonctionnalité et de la Coopération (EFC).
+            Des interventions ciblées, cadrées et mesurables, conçues pour les entreprises voulant
+            s'engager dans la protection de l’environnement, l’éco-conception et l’Économie de la
+            Fonctionnalité et de la Coopération (EFC).
           </p>
         </div>
-
 
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s) => (
