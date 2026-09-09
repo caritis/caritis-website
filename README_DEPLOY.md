@@ -1,41 +1,41 @@
-# Déploiement Vercel — RLAB ONE
+# Déploiement Vercel — CARITIS
 
 ## État actuel
 
 | Élément | Statut |
 | --- | --- |
-| Projet Vercel | **`rlab-one`** (équipe `richard-2575's projects`) — créé |
-| Déploiement production | **En ligne** — https://rlab-one.vercel.app |
-| Branche de production | `main` (dépôt `rlab-one/waspy-digital-boost`) |
-| Connexion Git automatique | ⚠️ **À autoriser** — voir §1 |
+| Dépôt GitHub | **`caritis/caritis-website`** — créé, public, branche `main` |
+| Organisation GitHub `caritis` | Créée ; compte `rlabrador` administrateur |
+| Application GitHub de Vercel | Installée sur l'organisation, en mode *selected repositories* — ⚠️ voir §1 |
+| Projet Vercel | ⚠️ **À créer** — ne jamais réutiliser le projet `rlab-one` |
+| Déploiement | **Aucun** à ce jour |
 | Variables SMTP | ⚠️ **À créer** — voir §3 |
-| Domaines `rlab-one.fr` / `.eu` | ⚠️ **À rattacher** — voir §4 |
+| Domaine `caritis.fr` | ⚠️ **À rattacher** — voir §4 |
+
+Rien n'est déployé : ce document décrit la procédure, il ne constate pas un
+déploiement existant.
 
 Tant que les variables SMTP ne sont pas renseignées, le formulaire de contact
 répond « Le service d'envoi n'est pas configuré. » ; le reste du site fonctionne.
 
 ## 1. Connexion du dépôt GitHub
 
-Le projet Vercel a été créé, mais la liaison automatique au dépôt a échoué :
+L'application GitHub de Vercel est installée sur l'organisation `caritis`, mais
+avec `repository_selection: selected` : elle ne voit que les dépôts explicitement
+cochés. Tant que `caritis-website` n'y figure pas, l'import Vercel échoue avec le
+même message que sur RLAB ONE :
 
 ```text
-You need admin or write access to the repository "waspy-digital-boost" to link it.
+You need admin or write access to the repository "caritis-website" to link it.
 ```
 
-L'application GitHub de Vercel n'est pas autorisée sur l'organisation `rlab-one`.
-Pour activer les déploiements automatiques à chaque `git push` sur `main` :
+1. https://github.com/organizations/caritis/settings/installations
+   → **Vercel** → *Configure* → cocher le dépôt `caritis-website`.
+2. Vercel → *Add New Project* → importer `caritis/caritis-website`,
+   branche de production `main`.
 
-1. https://github.com/organizations/rlab-one/settings/installations
-   → **Vercel** → *Configure* → autoriser le dépôt `waspy-digital-boost`
-   (ou installer l'application Vercel sur l'organisation si elle est absente).
-2. Vercel → projet `rlab-one` → *Settings* → *Git* → **Connect Git Repository**
-   → `rlab-one/waspy-digital-boost`, branche de production `main`.
-
-En attendant, un déploiement production se lance depuis le poste local :
-
-```sh
-vercel deploy --prod --yes
-```
+Créer un **nouveau** projet. Réutiliser le projet `rlab-one` ferait qu'un
+déploiement CARITIS écrase le site rlab-one.fr en production.
 
 ## 2. Réglages du projet
 
@@ -68,26 +68,22 @@ CONTACT_TO_EMAIL
 ```
 
 - `CONTACT_TO_EMAIL` : adresse de réception des messages. Elle n'apparaît jamais
-  dans le HTML servi au navigateur.
+  dans le HTML servi au navigateur. L'organisation publie `contact@caritis.fr`.
 - `SMTP_FROM` : expéditeur affiché ; doit être autorisé par le fournisseur SMTP.
-  À défaut, `SMTP_USER` est utilisé.
+  À défaut, `SMTP_USER` est utilisé. Les messages partent sous l'identité
+  « CARITIS — Formulaire de contact » (dérivée de `SITE_NAME`).
 - Sans ces variables, le formulaire renvoie « Le service d'envoi n'est pas
   configuré. » — le reste du site fonctionne normalement.
 
 Le runtime des Server Functions est **Node.js** (Nodemailer nécessite `net`/`tls`,
 indisponibles en runtime Edge). Ne pas basculer le projet en Edge Runtime.
 
-## 4. Domaines
+## 4. Domaine
 
-Les domaines `rlab-one.fr` et `rlab-one.eu` ne sont pas encore rattachés au
-compte Vercel (seuls `howner.fr`, `affinityhouse.fr`, `affinityhome.fr` et
-`affinityhousefactory.com` y figurent).
+`caritis.fr` est le domaine de production retenu. `Project → Settings → Domains` :
 
-`Project → Settings → Domains` :
-
-1. Ajouter `rlab-one.fr` → **Primary domain** (production).
-2. Ajouter `www.rlab-one.fr` → configurer en **Redirect to `rlab-one.fr`** (308).
-3. Ajouter `rlab-one.eu` et `www.rlab-one.eu` → **Redirect to `rlab-one.fr`** (308).
+1. Ajouter `caritis.fr` → **Primary domain** (production).
+2. Ajouter `www.caritis.fr` → configurer en **Redirect to `caritis.fr`** (308).
 
 Puis, chez le registrar / fournisseur DNS, reporter **exactement** les valeurs
 affichées par Vercel dans cet écran (enregistrement `A` pour l'apex, `CNAME` pour
@@ -95,32 +91,35 @@ le `www`). Ne pas utiliser de valeurs mémorisées ou supposées : Vercel indiqu
 les cibles à jour pour chaque domaine, et elles peuvent différer d'un domaine à
 l'autre.
 
-Une fois `rlab-one.fr` défini comme domaine principal, aucune modification de
-code n'est nécessaire : les URLs canoniques, OpenGraph et le sitemap pointent
-déjà vers `https://rlab-one.fr` (constante `SITE_URL` dans `src/lib/site.ts`).
+Aucune modification de code n'est nécessaire : les URLs canoniques, OpenGraph et
+le sitemap pointent déjà vers `https://caritis.fr` (constante `SITE_URL` dans
+`src/lib/site.ts`). Seul `public/robots.txt` répète le domaine en dur, le fichier
+étant statique.
+
+Le sort de `rlab-one.fr` et `rlab-one.eu` est traité dans
+[`docs/REDIRECT_PLAN.md`](./docs/REDIRECT_PLAN.md) — aucune redirection n'est
+activée sans décision explicite.
 
 Vérifications après propagation :
 
-- [ ] `http://rlab-one.fr` → `https://rlab-one.fr` (301/308)
-- [ ] `https://www.rlab-one.fr` → `https://rlab-one.fr` (308)
-- [ ] `https://rlab-one.eu` → `https://rlab-one.fr` (308)
-- [ ] Certificat TLS émis pour les quatre entrées
+- [ ] `http://caritis.fr` → `https://caritis.fr` (301/308)
+- [ ] `https://www.caritis.fr` → `https://caritis.fr` (308)
+- [ ] Certificat TLS émis pour les deux entrées
 
 ## 5. Contrôles post-déploiement
 
-Sur le déploiement actuel (`https://rlab-one.vercel.app`), ces contrôles sont
-déjà passés — hormis l'envoi réel du formulaire, qui attend les variables SMTP.
+À passer sur l'URL de préversion **avant** toute promotion en production :
 
 ```text
-/                    page d'accueil (hero, services, parcours)
-/realisations        WaspTracker · Howner · AIGMS
-/contact             formulaire (test d'envoi réel)
-/sitemap.xml         3 URLs en https://rlab-one.fr
-/robots.txt          Sitemap: https://rlab-one.fr/sitemap.xml
+/                      accueil : hero, AIGMS, expertises, EFC, parcours
+/realisations          WaspTracker · Howner · AIGMS
+/contact               formulaire (test d'envoi réel)
+/sitemap.xml           3 URLs en https://caritis.fr
+/robots.txt            Sitemap: https://caritis.fr/sitemap.xml
 /llms.txt
-/favicon-32.png      favicon RLAB ONE
-/brand/og-rlab-one.png   image OpenGraph 1200×630
-une URL inexistante  page 404 personnalisée
+/favicon-32.png        favicon CARITIS
+/brand/og-caritis.png  image OpenGraph 1200×630
+une URL inexistante    page 404 personnalisée
 ```
 
 Vérifier aussi le rendu à 390 px, 768 px et 1440 px, ainsi que la carte

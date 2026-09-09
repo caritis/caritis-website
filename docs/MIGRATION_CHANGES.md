@@ -49,3 +49,46 @@ Le design system (`src/styles.css`) n'a pas été touché : palette navy/emerald
 typographies `Instrument Serif` / `Inter`, dégradés, ombres et utilitaires
 (`bg-hero`, `text-gradient`, `ring-glow`, `shadow-elev`) sont identiques.
 Les primitives `src/components/ui/**` (shadcn/ui) sont conservées telles quelles.
+
+---
+
+# Rebranding CARITIS (branche `migration/caritis-rebrand`)
+
+## Suppressions
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| `src/assets/brand/rlab-one-mark.png` | Monogramme RLAB ONE | `src/assets/brand/caritis-mark.png` | Logo CARITIS dans le header et le footer |
+| `public/brand/rlab-one-{icon,logo}.png`, `public/brand/og-rlab-one.png` | Assets de marque RLAB ONE | `public/brand/caritis-{icon,logo}.png`, `og-caritis.png` | Carte de partage et logo Schema.org à l'identité CARITIS |
+
+Aucun contenu éditorial n'a été supprimé.
+
+## Contenu déplacé, pas retiré
+
+- Les puces de la carte **« Audit de dette technique & sobriété logicielle »**
+  rejoignent la carte *Transformation & éco-conception du SI* (cartographie
+  applicative, plan de remédiation chiffré, standards DevOps & CI/CD). Le sujet
+  reste traité, sous un autre regroupement.
+- Les puces **conformité** de l'ancienne carte « Conformité IT, gouvernance de
+  l'IA & coopération » se répartissent entre *Gouvernance de l'IA* (ISO 42001,
+  cartographie des usages, contrôles et preuves) et *Risque & conformité*
+  (audits internes, RACI/RBAC/ITSM, RGPD/NIS2/ISO 27001).
+- Le bloc **« Savoir-faire clé en Transformation SI »** du hero est conservé à
+  l'identique, renommé *Socle opérationnel — direction et transformation SI*.
+
+## Ajouts
+
+| Changement | Détail |
+| --- | --- |
+| Section AIGMS sur l'accueil | `src/components/site/Aigms.tsx` — produit, cycle DISCOVERY → RE-ASSESS, statut *In development* |
+| `SITE_SIGNATURE` | « Govern AI with care. », employée seule pour éviter l'empilement de slogans |
+| `scripts/generate-brand-assets.mjs` | Génération reproductible des logos, favicons et carte OpenGraph |
+| `docs/CARITIS_BRAND_MIGRATION.md` | Journal de la bascule de marque |
+
+## Ce qui reste inchangé
+
+`src/styles.css` n'a toujours pas été modifié : palette navy/emerald/gold,
+typographies `Instrument Serif` / `Inter`, dégradés et utilitaires sont
+identiques. Les KPI, les certifications, le parcours et les réalisations sont
+conservés à l'identique — seule la ligne d'activité actuelle passe de
+« Fondateur · RLAB ONE » à « Fondateur · CARITIS ».

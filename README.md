@@ -1,9 +1,10 @@
-# RLAB ONE — site corporate
+# CARITIS — site corporate
 
-Site officiel de **RLAB ONE** — *Technology · Governance · Transformation*.
+Site officiel de **CARITIS** — *Responsible AI Governance*. « Govern AI with care. »
 
-- Production : https://rlab-one.fr
-- Domaine secondaire : https://rlab-one.eu (redirection permanente vers `.fr`)
+- Production : https://caritis.fr (à rattacher — voir `README_DEPLOY.md`)
+- Dépôt : https://github.com/caritis/caritis-website
+- Origine du code : `rlab-one/waspy-digital-boost`, historique Git conservé
 
 ## Stack
 
@@ -36,14 +37,28 @@ formulaire de contact en local. **`.env` n'est jamais versionné.**
 ```text
 src/
   routes/          # /, /contact, /realisations, /sitemap.xml
-  components/site/ # Header, Hero, Services, About, Contact, Footer, Cta
+  components/site/ # Header, Hero, Aigms, Services, EfcBanner, About, Contact, Footer, Cta
   components/ui/   # primitives shadcn/ui
   lib/             # site.ts (constantes), contact.functions.ts (server fn)
-  assets/brand/    # monogramme RLAB ONE utilisé dans l'UI
+  assets/brand/    # monogramme CARITIS utilisé dans l'UI
 public/
   brand/           # logo, icône, image OpenGraph
   favicon-*.png    # favicons
+scripts/
+  generate-brand-assets.mjs  # régénère logos, favicons et carte OpenGraph
 ```
+
+Le nom de marque, la signature et l'URL canonique sont centralisés dans
+`src/lib/site.ts` : c'est le seul endroit à modifier pour changer de domaine.
+
+## Marque
+
+L'identité corporate est CARITIS. **AIGMS** est le produit stratégique — « AIGMS —
+AI Governance Management System by CARITIS » — et non la raison sociale.
+**Waspy / WaspTracker** et **Howner** restent des réalisations et ventures
+antérieures : ils ne sont jamais présentés comme des marques CARITIS.
+
+Détail de la bascule : [`docs/CARITIS_BRAND_MIGRATION.md`](./docs/CARITIS_BRAND_MIGRATION.md).
 
 ## Déploiement
 
