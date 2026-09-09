@@ -1,25 +1,61 @@
+import { Link } from "@tanstack/react-router";
 import { Linkedin } from "lucide-react";
-import rlabMark from "@/assets/rlabone-mark.png.asset.json";
+import rlabMark from "@/assets/brand/rlab-one-mark.png";
+
+const footerNav = [
+  { href: "/#services", label: "Services" },
+  { href: "/#about", label: "À propos" },
+] as const;
 
 export function Footer() {
   return (
     <footer className="border-t border-border/60 py-12">
-      <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row gap-6 items-center justify-between text-sm text-muted-foreground">
-        <div className="flex items-center gap-3">
-          <img src={rlabMark.url} alt="" width={24} height={24} className="h-6 w-6 rounded-md" />
-          <span className="font-display text-base text-foreground">RLAB ONE</span>
-          <span className="mx-1">·</span>
-          <span>Conseils & Audits numériques — gouvernance IA, éco-conception, trajectoires EFC</span>
+      <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-3 md:items-start">
+        <div>
+          <Link to="/" className="inline-flex items-center gap-2.5" aria-label="RLAB ONE — accueil">
+            <img src={rlabMark} alt="" width={32} height={32} className="h-8 w-8" />
+            <span className="font-display text-xl tracking-tight text-foreground">RLAB ONE</span>
+          </Link>
+          <p className="mt-4 text-sm text-muted-foreground max-w-xs">
+            Technology · Governance · Transformation — conseil et audits numériques, gouvernance SI
+            et IA, éco-conception et trajectoires EFC.
+          </p>
         </div>
-        <div className="flex items-center gap-5">
+
+        <nav aria-label="Navigation de pied de page" className="text-sm">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary">Navigation</p>
+          <ul className="mt-4 space-y-2 text-muted-foreground">
+            {footerNav.map((n) => (
+              <li key={n.href}>
+                <a href={n.href} className="hover:text-primary transition">
+                  {n.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <Link to="/realisations" className="hover:text-primary transition">
+                Réalisations
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-primary transition">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="text-sm text-muted-foreground md:text-right">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary md:text-right">Suivre</p>
           <a
             href="https://www.linkedin.com/in/rlabrador2000"
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 hover:text-primary transition"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 hover:text-primary transition"
           >
             <Linkedin className="h-4 w-4" /> LinkedIn
           </a>
-          <span>© {new Date().getFullYear()}</span>
+          <p className="mt-6">© {new Date().getFullYear()} RLAB ONE</p>
         </div>
       </div>
     </footer>

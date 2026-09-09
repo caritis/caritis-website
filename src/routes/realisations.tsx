@@ -11,6 +11,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Header } from "@/components/site/Header";
+import { cta, CtaRow } from "@/components/site/Cta";
+import { SITE_URL } from "@/lib/site";
 import { Footer } from "@/components/site/Footer";
 import waspyAdmin from "@/assets/waspy-admin.png";
 import wasptrackerMobile from "@/assets/wasptracker-mobile.png";
@@ -32,9 +34,9 @@ export const Route = createFileRoute("/realisations")({
           "Trois réalisations : plateforme SaaS environnementale, structuration SI industrielle et système de management de la gouvernance IA.",
       },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: "https://waspy.life/realisations" },
+      { property: "og:url", content: `${SITE_URL}/realisations` },
     ],
-    links: [{ rel: "canonical", href: "https://waspy.life/realisations" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/realisations` }],
   }),
   component: RealisationsPage,
 });
@@ -84,12 +86,13 @@ function RealisationsPage() {
             </Link>
             <p className="mt-8 text-xs uppercase tracking-[0.2em] text-primary">Réalisations</p>
             <h1 className="mt-3 text-4xl md:text-6xl font-display leading-tight">
-              Trois projets, une même <span className="text-gradient">prise de hauteur</span> sur toute la chaîne.
+              Trois projets, une même <span className="text-gradient">prise de hauteur</span> sur
+              toute la chaîne.
             </h1>
             <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl">
-              Du cadrage métier à l'adoption terrain : une plateforme SaaS environnementale,
-              la structuration SI d'une activité industrielle, et un système de management
-              de la gouvernance de l'IA.
+              Du cadrage métier à l'adoption terrain : une plateforme SaaS environnementale, la
+              structuration SI d'une activité industrielle, et un système de management de la
+              gouvernance de l'IA.
             </p>
           </div>
         </section>
@@ -116,23 +119,25 @@ function RealisationsPage() {
         {/* ——— WaspTracker ——— */}
         <section id="wasptracker" className="scroll-mt-32 py-14 lg:py-20 border-b border-border/60">
           <div className="mx-auto max-w-5xl px-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary">01 · waspy.life</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">01 · wasptracker</p>
             <h2 className="mt-3 text-3xl md:text-4xl font-display leading-tight">
               WaspTracker — de l'idée au déploiement d'un SaaS à impact.
             </h2>
             <p className="mt-4 text-muted-foreground max-w-3xl">
-              Plateforme SaaS et service pour les collectivités et les entreprises spécialisées
-              dans la lutte contre le frelon asiatique. Mon rôle : cadrage métier, conduite du
+              Plateforme SaaS et service pour les collectivités et les entreprises spécialisées dans
+              la lutte contre le frelon asiatique. Mon rôle : cadrage métier, conduite du
               changement, déploiement progressif et encadrement de l'équipe.
             </p>
-            <a
-              href="https://waspy-portal-official-53.lovable.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
-            >
-              Découvrir la plateforme <ExternalLink className="h-4 w-4" />
-            </a>
+            <CtaRow className="mt-6">
+              <a
+                href="https://waspy-portal-official-53.lovable.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cta("primary")}
+              >
+                Découvrir la plateforme <ExternalLink className="h-4 w-4" />
+              </a>
+            </CtaRow>
           </div>
 
           {/* Visuels */}
@@ -172,7 +177,8 @@ function RealisationsPage() {
                 className="relative rounded-2xl border border-border/70 shadow-elev w-full"
               />
               <p className="mt-3 text-xs text-muted-foreground text-center">
-                Pièges sélectifs connectés et capteurs IoT, pour une meilleure prédiction de nuisance.
+                Pièges sélectifs connectés et capteurs IoT, pour une meilleure prédiction de
+                nuisance.
               </p>
             </div>
           </div>
@@ -209,10 +215,10 @@ function RealisationsPage() {
               <span className="text-gradient">fabrication hors-site</span>.
             </h2>
             <p className="mt-4 text-muted-foreground max-w-3xl">
-              Howner conçoit et produit en atelier des maisons et extensions préfabriquées :
-              délais maîtrisés, qualité industrielle, chantiers courts et sobriété matière.
-              Un modèle qui déplace la valeur du chantier vers l'usine — et qui demande un SI
-              structuré, de la vente aux fournisseurs.
+              Howner conçoit et produit en atelier des maisons et extensions préfabriquées : délais
+              maîtrisés, qualité industrielle, chantiers courts et sobriété matière. Un modèle qui
+              déplace la valeur du chantier vers l'usine — et qui demande un SI structuré, de la
+              vente aux fournisseurs.
             </p>
 
             <div className="mt-8 rounded-2xl border border-border/70 bg-card-grad p-6 md:p-8 shadow-elev">
@@ -240,14 +246,16 @@ function RealisationsPage() {
               </ul>
             </div>
 
-            <a
-              href="https://howner.fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 text-primary hover:underline underline-offset-4"
-            >
-              Voir howner.fr <ExternalLink className="h-4 w-4" />
-            </a>
+            <CtaRow className="mt-8">
+              <a
+                href="https://howner.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cta("secondary")}
+              >
+                Voir howner.fr <ExternalLink className="h-4 w-4" />
+              </a>
+            </CtaRow>
           </div>
         </section>
 
@@ -260,10 +268,10 @@ function RealisationsPage() {
               <span className="text-gradient">gouvernance de l'IA</span>.
             </h2>
             <p className="mt-4 text-muted-foreground max-w-3xl">
-              AI Governance Management System : une plateforme qui fait vivre un véritable cycle
-              de management de l'IA en entreprise, plutôt qu'un tableur de conformité.
-              Du recensement des cas d'usage à la mise en production sous contrôle, puis à la
-              réévaluation à chaque changement significatif.
+              AI Governance Management System : une plateforme qui fait vivre un véritable cycle de
+              management de l'IA en entreprise, plutôt qu'un tableur de conformité. Du recensement
+              des cas d'usage à la mise en production sous contrôle, puis à la réévaluation à chaque
+              changement significatif.
             </p>
 
             <div className="mt-8 rounded-2xl border border-border/70 bg-card-grad p-6 md:p-8 shadow-elev">
@@ -303,36 +311,43 @@ function RealisationsPage() {
                     d: "Chaque changement significatif déclenche une réévaluation explicable et historisée.",
                   },
                 ].map((b) => (
-                  <div key={b.t} className="rounded-xl border border-border/60 bg-background/30 p-4">
+                  <div
+                    key={b.t}
+                    className="rounded-xl border border-border/60 bg-background/30 p-4"
+                  >
                     <p className="font-display text-sm text-foreground">{b.t}</p>
                     <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{b.d}</p>
                   </div>
                 ))}
               </div>
               <p className="mt-6 text-sm text-muted-foreground">
-                Cadre de référence : ISO/IEC 42001 et ISO/IEC 27001, avec traçabilité d'audit
-                de bout en bout et cloisonnement strict des données par organisation.
+                Cadre de référence : ISO/IEC 42001 et ISO/IEC 27001, avec traçabilité d'audit de
+                bout en bout et cloisonnement strict des données par organisation.
               </p>
             </div>
 
-            <a
-              href="https://gamma.app/docs/AIGMS-AI-Governance-Management-System-o9fprii1olrad37"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
-            >
-              Voir la présentation AIGMS <ExternalLink className="h-4 w-4" />
-            </a>
+            <CtaRow className="mt-8">
+              <a
+                href="https://gamma.app/docs/AIGMS-AI-Governance-Management-System-o9fprii1olrad37"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cta("primary")}
+              >
+                Voir la présentation AIGMS <ExternalLink className="h-4 w-4" />
+              </a>
+            </CtaRow>
           </div>
         </section>
 
         {/* Expérience adossée */}
         <section className="border-b border-border/60 py-12 lg:py-16">
           <div className="mx-auto max-w-5xl px-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary">Adossé à 20+ ans d'expérience SI</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">
+              Adossé à 20+ ans d'expérience SI
+            </p>
             <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-3xl">
-              Ces projets s'appuient sur une expérience structurée de pilotage SI, de conformité
-              et de transformation — menée chez Prodware, IBM et SAP BusinessObjects.
+              Ces projets s'appuient sur une expérience structurée de pilotage SI, de conformité et
+              de transformation — menée chez Prodware, IBM et SAP BusinessObjects.
             </p>
             <ul className="mt-6 flex flex-wrap gap-2">
               {[
@@ -390,13 +405,14 @@ function RealisationsPage() {
             <p className="mt-4 text-muted-foreground">
               Parlons de votre contexte, de vos contraintes et de l'impact visé.
             </p>
-            <Link
-              to="/"
-              hash="contact"
-              className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:opacity-90 transition"
-            >
-              Réserver un échange
-            </Link>
+            <CtaRow className="mt-8 justify-center">
+              <Link to="/contact" className={cta("primary")}>
+                Me contacter
+              </Link>
+              <Link to="/" className={cta("secondary")}>
+                Découvrir mes expertises
+              </Link>
+            </CtaRow>
           </div>
         </section>
       </main>
