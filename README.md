@@ -1,26 +1,50 @@
-# RLab One - Digital Transformation 
+# RLAB ONE — site corporate
 
-Créer un site web de mon activité de conseil pour waspy.life avec formulaire de contact et envoir de mail sur richard.labrador@outlook.fr (ne pas afficher mon email), mettre un lien sur mon profile linkedin. Se baser sur mon cv joint et wasptracker.com (https://waspy-portal-official-53.lovable.app) pour mettre en avant une proposition de valeur percutente et comme asset réussi. proposer un service de conseil et d'accompagnement aux DSI et décideurs  TPE/PME dans leur transfo digitale, analyse de dettes techniques Logiciel et conformité IT.
+Site officiel de **RLAB ONE** — *Technology · Governance · Transformation*.
 
-This project was built with [Lovable](https://lovable.dev).
+- Production : https://rlab-one.fr
+- Domaine secondaire : https://rlab-one.eu (redirection permanente vers `.fr`)
 
-**Live app**: https://waspy-digital-boost.lovable.app
+## Stack
 
-## Build with Lovable
+| Élément | Choix |
+| --- | --- |
+| Framework | TanStack Start (React 19, SSR) |
+| Bundler | Vite 7 |
+| Serveur | Nitro (runtime Node.js) |
+| Styles | Tailwind CSS 4 + Radix UI |
+| Formulaire | Server Function TanStack + Zod + Nodemailer (SMTP) |
+| Hébergement | Vercel — branche de production `main` |
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/87c4a0e2-8575-492b-9306-e4389c4cf0ef).
+## Développement
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Le projet utilise **Bun**.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev      # http://localhost:3000
+bun run lint
+bun run build    # sortie .output (Node) ou .vercel/output (sur Vercel)
+bun run start    # sert le build Node local
 ```
+
+Copier `.env.example` vers `.env` et renseigner les variables SMTP pour tester le
+formulaire de contact en local. **`.env` n'est jamais versionné.**
+
+## Structure
+
+```text
+src/
+  routes/          # /, /contact, /realisations, /sitemap.xml
+  components/site/ # Header, Hero, Services, About, Contact, Footer, Cta
+  components/ui/   # primitives shadcn/ui
+  lib/             # site.ts (constantes), contact.functions.ts (server fn)
+  assets/brand/    # monogramme RLAB ONE utilisé dans l'UI
+public/
+  brand/           # logo, icône, image OpenGraph
+  favicon-*.png    # favicons
+```
+
+## Déploiement
+
+Voir [`README_DEPLOY.md`](./README_DEPLOY.md).
