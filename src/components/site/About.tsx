@@ -24,7 +24,9 @@ export function About() {
           </div>
           <div className="mt-6 text-sm text-muted-foreground">
             <p className="font-display text-2xl text-foreground">Richard Labrador</p>
-            <p className="mt-1">Technology & Operations Leader · Paris / Bordeaux / Dax</p>
+            <p className="mt-1">
+              Digital &amp; AI Governance | DSI / Transformation | ISO 27001 &amp; ISO 42001 | Founder RLAB ONE – Building AIGMS
+            </p>
           </div>
         </div>
 

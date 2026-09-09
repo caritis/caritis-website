@@ -72,9 +72,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "waspy — Conseil IT & EFC" },
-      { property: "og:title", content: "waspy — Conseil IT & EFC" },
-      { name: "twitter:title", content: "waspy — Conseil IT & EFC" },
+      { title: "RLAB ONE — Conseil IT, gouvernance IA & EFC" },
+      { property: "og:title", content: "RLAB ONE — Conseil IT, gouvernance IA & EFC" },
+      { name: "twitter:title", content: "RLAB ONE — Conseil IT, gouvernance IA & EFC" },
       { name: "description", content: "Conseils & Audits techniques numériques pour entreprises — environnement, éco-conception, trajectoires EFC" },
       { property: "og:description", content: "Conseils & Audits techniques numériques pour entreprises — environnement, éco-conception, trajectoires EFC" },
       { name: "twitter:description", content: "Conseils & Audits techniques numériques pour entreprises — environnement, éco-conception, trajectoires EFC" },
@@ -85,8 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "icon", type: "image/webp", href: "/favicon.webp" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
     scripts: [
       {
@@ -96,15 +95,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@graph": [
             {
               "@type": "Organization",
-              name: "waspy",
+              name: "RLAB ONE",
               url: "https://waspy.life",
-              description: "Conseil IT & EFC pour entreprises de l'environnement et de l'éco-conception.",
+              description: "Conseil IT, gouvernance IA et EFC — transformation SI, conformité, éco-conception.",
             },
             {
               "@type": "WebSite",
-              name: "waspy.life",
+              name: "RLAB ONE",
               url: "https://waspy.life",
-              description: "Conseil IT & EFC pour entreprises de l'environnement.",
+              description: "RLAB ONE — conseil IT, gouvernance IA et trajectoires EFC.",
             },
           ],
         }),
