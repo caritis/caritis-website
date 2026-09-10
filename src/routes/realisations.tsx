@@ -77,7 +77,7 @@ function RealisationsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
+      <main id="contenu">
         {/* Hero */}
         <section className="relative border-b border-border/60 bg-surface">
           <div className="mx-auto max-w-5xl px-6 pt-12 pb-10 lg:pt-20 lg:pb-14">

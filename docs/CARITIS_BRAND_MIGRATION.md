@@ -68,9 +68,10 @@ commanditaire.
 | `--card` | `#ffffff` | cartes et formulaires |
 | `--surface` | `#f1f6fa` | bandes de section alternées |
 | `--foreground` | `#0c2036` | encre navy |
-| `--muted-foreground` | `#52657a` | texte secondaire |
+| `--muted-foreground` | `#4b5c6b` | texte secondaire (6,8:1 sur le fond) |
 | `--primary` | `#00787d` | teal du monogramme : eyebrows, icônes, focus |
 | `--cta` | `#0c2036` | bouton principal, navy plein |
+| `--header` | `#016287` | bandeau de navigation, lettrage blanc (6,9:1) |
 | `--accent` | `#a15c07` | ambre : statuts (« In development ») |
 | `--border` / `--input` | `#dde4ea` / `#cbd6e0` | filets et champs |
 

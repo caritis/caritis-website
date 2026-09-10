@@ -29,7 +29,7 @@ function ContactPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
+      <main id="contenu">
         <Contact />
       </main>
       <Footer />

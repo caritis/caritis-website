@@ -80,8 +80,8 @@ export function Services() {
               <div className="absolute -top-20 -right-20 h-44 w-44 rounded-full bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition" />
               <s.icon className="h-7 w-7 text-primary" />
               <h3 className="mt-5 text-2xl font-display">{s.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.pitch}</p>
-              <ul className="mt-6 space-y-2 text-sm">
+              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{s.pitch}</p>
+              <ul className="mt-6 space-y-2.5 text-[15px]">
                 {s.points.map((p) => (
                   <li key={p} className="flex gap-2 items-start text-foreground/90">
                     <span className="mt-2 h-1 w-1 rounded-full bg-primary shrink-0" />

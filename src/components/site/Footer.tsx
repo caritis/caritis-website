@@ -10,7 +10,7 @@ const footerNav = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 py-12">
+    <footer className="border-t border-border bg-surface py-12">
       <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-3 md:items-start">
         <div>
           <Link to="/" className="inline-flex items-center gap-2.5" aria-label="CARITIS — accueil">

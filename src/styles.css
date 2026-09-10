@@ -34,6 +34,8 @@
   --color-gold: var(--gold);
   --color-cta: var(--cta);
   --color-cta-foreground: var(--cta-foreground);
+  --color-header: var(--header);
+  --color-header-foreground: var(--header-foreground);
 
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -58,7 +60,8 @@
   --secondary-foreground: #0c2036;
 
   --muted: #edf3f8;
-  --muted-foreground: #52657a;
+  /* Remonté de #52657a : 6,8:1 sur le fond de page au lieu de 5,9:1. */
+  --muted-foreground: #4b5c6b;
 
   --accent: #a15c07; /* ambre — statuts et mentions à surveiller */
   --accent-foreground: #ffffff;
@@ -67,6 +70,10 @@
   /* CTA principal : navy plein, comme la maquette de référence. */
   --cta: #0c2036;
   --cta-foreground: #fafcfe;
+
+  /* Bandeau de navigation : bleu canard plein, lettrage blanc (6,9:1). */
+  --header: #016287;
+  --header-foreground: #ffffff;
 
   --destructive: #b42318;
   --destructive-foreground: #ffffff;
@@ -90,6 +97,8 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Le bandeau est collant : les ancres doivent s'arrêter en dessous. */
+    scroll-padding-top: 5.5rem;
   }
   body {
     background-color: var(--color-background);
@@ -104,9 +113,30 @@
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
+  /* Interlignage de lecture par défaut, surchargeable par les utilitaires. */
+  p,
+  li {
+    line-height: 1.65;
+  }
   ::selection {
     background: var(--primary);
     color: var(--primary-foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

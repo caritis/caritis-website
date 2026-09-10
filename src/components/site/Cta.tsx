@@ -15,6 +15,8 @@ export const ctaVariants = {
     base,
     "border border-border bg-card text-foreground hover:border-primary/60 hover:text-primary",
   ),
+  /** Sur le bandeau coloré : pastille blanche, lettrage bleu canard. */
+  invert: cn(base, "bg-white text-header hover:bg-white/90"),
 } as const;
 
 export type CtaVariant = keyof typeof ctaVariants;
