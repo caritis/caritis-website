@@ -55,23 +55,43 @@ Ordre retenu, conforme au cahier des charges :
 
 ## Identité visuelle
 
-Le design system est **conservé** : navy profond, emerald, warm gold,
-`Instrument Serif` pour les titres, `Inter` pour le texte. `src/styles.css` n'a
-pas été modifié.
+Les **typographies sont conservées** — `Instrument Serif` pour les titres,
+`Inter` pour le texte — ainsi que le logo. La **palette, elle, a basculé en
+thème clair** le 2026-09-10, sur décision de Richard : « le fond noir n'est pas
+percutant ». Cela s'écarte du §15 du cahier des charges, qui demandait de
+préserver l'univers dark premium de RLAB ONE ; l'arbitrage appartient au
+commanditaire.
 
-Le logo CARITIS — monogramme circulaire de six silhouettes reliées, wordmark
-géométrique — remplace les images RLAB ONE. Le wordmark source étant gris-bleu
-foncé sur fond blanc, il est **détouré** (luminance convertie en canal alpha)
-puis recolorisé en near-white pour rester lisible sur le fond sombre : il n'est
-jamais redessiné. `scripts/generate-brand-assets.mjs` reproduit l'opération.
+| Token | Valeur | Rôle |
+| --- | --- | --- |
+| `--background` | `#fafcfe` | fond de page |
+| `--card` | `#ffffff` | cartes et formulaires |
+| `--surface` | `#f1f6fa` | bandes de section alternées |
+| `--foreground` | `#0c2036` | encre navy |
+| `--muted-foreground` | `#52657a` | texte secondaire |
+| `--primary` | `#00787d` | teal du monogramme : eyebrows, icônes, focus |
+| `--cta` | `#0c2036` | bouton principal, navy plein |
+| `--accent` | `#a15c07` | ambre : statuts (« In development ») |
+| `--border` / `--input` | `#dde4ea` / `#cbd6e0` | filets et champs |
+
+`src/assets/hero-bg.jpg` a été supprimé : cette image noire, pensée pour le
+thème sombre, devenait un rectangle opaque sur fond clair.
+
+Le logo CARITIS — monogramme circulaire de **sept** silhouettes reliées,
+wordmark géométrique — remplace les images RLAB ONE. Le wordmark source étant
+gris-bleu foncé sur fond blanc, il est **détouré** (luminance convertie en canal
+alpha) puis reteinté : navy pour les fonds clairs du site, near-white pour les
+fonds sombres. Il n'est jamais redessiné.
+`scripts/generate-brand-assets.mjs` reproduit l'opération depuis `logos/new/`.
 
 | Asset | Rôle |
 | --- | --- |
 | `src/assets/brand/caritis-mark.png` | monogramme d'interface (header, footer) |
-| `public/brand/caritis-icon.png` | icône carrée 512 px, logo Schema.org |
-| `public/brand/caritis-logo.png` | verrouillage horizontal sur fond transparent |
-| `public/brand/og-caritis.png` | carte OpenGraph 1200×630 |
-| `public/favicon-{32,192,512}.png`, `public/apple-touch-icon.png` | favicons |
+| `public/brand/caritis-icon.png` | icône carrée 512 px sur fond clair, logo Schema.org |
+| `public/brand/caritis-logo.png` | verrouillage horizontal, wordmark navy, fond transparent |
+| `public/brand/caritis-wordmark-light.png` | wordmark near-white pour fonds sombres |
+| `public/brand/og-caritis.png` | carte OpenGraph 1200×630, fond clair |
+| `public/favicon-{32,192,512}.png`, `public/apple-touch-icon.png` | favicons, fond navy |
 
 ## Ce qui est délibérément préservé
 
@@ -81,7 +101,7 @@ jamais redessiné. `scripts/generate-brand-assets.mjs` reproduit l'opération.
   de « Fondateur · RLAB ONE » à « Fondateur · CARITIS » ;
 - Waspy / WaspTracker et Howner comme réalisations ;
 - la profondeur transformation SI, EFC et sobriété numérique ;
-- le design system et les primitives shadcn/ui.
+- les typographies et les primitives shadcn/ui.
 
 ## Ce qui reste à faire
 

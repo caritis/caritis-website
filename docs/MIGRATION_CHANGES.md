@@ -109,3 +109,18 @@ des cartes d'expertise ont été **conservés** : seule la frise était visée.
 | Portrait | Affiché en 240 px de large au lieu de la pleine colonne ; forme, cadre et fond inchangés |
 | Envoi du formulaire | Bascule sur l'API HTTP **Resend**, destinataire `contact@caritis.fr` ; le SMTP devient un repli |
 | Champs obligatoires | Astérisque sur Nom, Email, Sujet et Message ; « Société (optionnel) » explicite |
+
+## Bascule en thème clair et atelier de qualification (2026-09-10)
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| `src/assets/hero-bg.jpg` | Image noire conçue pour le thème sombre ; sur fond clair, elle devenait un rectangle opaque | Dégradé radial teal du hero (`--gradient-hero`) | Hero plus lisible |
+| Champs `sujet` et `message` du formulaire de contact | La page devient une demande d'atelier de qualification, pas un formulaire de contact générique | Champs `profil` et `usages d'IA`, plus organisation et téléphone | Formulaire plus court et plus ciblé |
+| Palette sombre de `src/styles.css` | Décision de Richard : « le fond noir n'est pas percutant » | Thème clair documenté dans `CARITIS_BRAND_MIGRATION.md` | Lecture plus confortable ; s'écarte du §15 du cahier des charges |
+
+| Ajout | Détail |
+| --- | --- |
+| `src/lib/contact.schema.ts` | Schéma Zod et liste des profils, partagés entre le composant et la validation serveur |
+| Déroulé de l'atelier | 10 min contexte · 20 min deux cas d'usage · 10 min démonstration · 5 min suite — 45 min au total |
+| Logo à 7 silhouettes | Assets régénérés depuis `logos/new/`, wordmark décliné en navy et en near-white |
+| Token `--cta` | Bouton principal navy, distinct de `--primary` (teal) |
