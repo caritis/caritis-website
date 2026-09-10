@@ -101,9 +101,9 @@ export function Contact() {
               autoComplete="email"
             />
             <Field
-              label="Société"
+              label="Société (optionnel)"
               name="company"
-              placeholder="(optionnel)"
+              placeholder="Votre organisation"
               autoComplete="organization"
             />
             <Field
@@ -118,7 +118,7 @@ export function Contact() {
               htmlFor="contact-message"
               className="text-xs uppercase tracking-wider text-muted-foreground"
             >
-              Message
+              Message <span className="text-primary">*</span>
             </label>
             <textarea
               id="contact-message"
@@ -146,8 +146,9 @@ export function Contact() {
 
           <div className="mt-7 flex flex-wrap items-center gap-4 justify-between">
             <p className="text-xs text-muted-foreground max-w-sm">
-              En soumettant ce formulaire, vos informations sont transmises uniquement pour traiter
-              votre demande. Aucune réutilisation commerciale.
+              <span className="text-primary">*</span> Champs obligatoires. En soumettant ce
+              formulaire, vos informations sont transmises uniquement pour traiter votre demande.
+              Aucune réutilisation commerciale.
             </p>
             <button
               type="submit"
@@ -195,6 +196,7 @@ function Field({
     <div>
       <label htmlFor={id} className="text-xs uppercase tracking-wider text-muted-foreground">
         {label}
+        {required && <span className="text-primary"> *</span>}
       </label>
       <input
         id={id}

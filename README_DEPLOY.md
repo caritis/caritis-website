@@ -9,14 +9,14 @@
 | Application GitHub de Vercel | Installée sur l'organisation, en mode *selected repositories* — ⚠️ voir §1 |
 | Projet Vercel | ⚠️ **À créer** — ne jamais réutiliser le projet `rlab-one` |
 | Déploiement | **Aucun** à ce jour |
-| Variables SMTP | ⚠️ **À créer** — voir §3 |
+| Variables d'envoi (Resend) | ⚠️ **À créer** — voir §3 |
 | Domaine `caritis.fr` | ⚠️ **À rattacher** — voir §4 |
 
 Rien n'est déployé : ce document décrit la procédure, il ne constate pas un
 déploiement existant.
 
-Tant que les variables SMTP ne sont pas renseignées, le formulaire de contact
-répond « Le service d'envoi n'est pas configuré. » ; le reste du site fonctionne.
+Tant que `RESEND_API_KEY` n'est pas renseignée, le formulaire de contact répond
+« Le service d'envoi n'est pas configuré. » ; le reste du site fonctionne.
 
 ## 1. Connexion du dépôt GitHub
 
@@ -55,8 +55,23 @@ déploiement CARITIS écrase le site rlab-one.fr en production.
 ## 3. Variables d'environnement
 
 À créer dans `Project → Settings → Environment Variables`, scope **Production**
-(et *Preview* si vous voulez tester le formulaire sur les previews).
+(et *Preview* pour tester le formulaire sur les previews).
 **Noms uniquement — ne jamais committer les valeurs.**
+
+```text
+RESEND_API_KEY        obligatoire
+CONTACT_TO_EMAIL      contact@caritis.fr
+CONTACT_FROM_EMAIL    CARITIS <contact@caritis.fr>
+```
+
+Le formulaire envoie via l'**API HTTP de Resend**. Le domaine `caritis.fr` y est
+vérifié (envoi activé, région `eu-west-1`), donc `contact@caritis.fr` est un
+expéditeur valide. Sans `CONTACT_TO_EMAIL`, les messages partent quand même vers
+`contact@caritis.fr` : c'est le destinataire par défaut codé dans
+`src/lib/contact.functions.ts`.
+
+Un **repli SMTP** reste disponible et n'est utilisé que si `RESEND_API_KEY` est
+absent :
 
 ```text
 SMTP_HOST
@@ -64,19 +79,14 @@ SMTP_PORT
 SMTP_USER
 SMTP_PASSWORD
 SMTP_FROM
-CONTACT_TO_EMAIL
 ```
 
-- `CONTACT_TO_EMAIL` : adresse de réception des messages. Elle n'apparaît jamais
-  dans le HTML servi au navigateur. L'organisation publie `contact@caritis.fr`.
-- `SMTP_FROM` : expéditeur affiché ; doit être autorisé par le fournisseur SMTP.
-  À défaut, `SMTP_USER` est utilisé. Les messages partent sous l'identité
-  « CARITIS — Formulaire de contact » (dérivée de `SITE_NAME`).
-- Sans ces variables, le formulaire renvoie « Le service d'envoi n'est pas
-  configuré. » — le reste du site fonctionne normalement.
+Sans aucun transport configuré, le formulaire renvoie « Le service d'envoi n'est
+pas configuré. » — le reste du site fonctionne normalement.
 
-Le runtime des Server Functions est **Node.js** (Nodemailer nécessite `net`/`tls`,
-indisponibles en runtime Edge). Ne pas basculer le projet en Edge Runtime.
+Le runtime des Server Functions est **Node.js**. Resend passe par `fetch` et
+fonctionnerait en Edge, mais le repli Nodemailer exige `net`/`tls` : ne pas
+basculer le projet en Edge Runtime.
 
 ## 4. Domaine
 

@@ -92,3 +92,20 @@ typographies `Instrument Serif` / `Inter`, dégradés et utilitaires sont
 identiques. Les KPI, les certifications, le parcours et les réalisations sont
 conservés à l'identique — seule la ligne d'activité actuelle passe de
 « Fondateur · RLAB ONE » à « Fondateur · CARITIS ».
+
+## Ajustements demandés après relecture (2026-09-10)
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| Frise « Parcours » de la section À propos — 6 jalons de SAP BusinessObjects à CARITIS | Contenu déjà publié sur le profil LinkedIn du dirigeant ; le dupliquer n'apporte rien | Lien « Parcours détaillé sur LinkedIn » à la place ; le paragraphe de synthèse (IBM, SAP BO, Prodware, Waspy, CARITIS) est conservé | Accueil allégé, parcours toujours accessible en un clic |
+
+Le socle opérationnel du hero, les chiffres clés, les certifications et les puces
+des cartes d'expertise ont été **conservés** : seule la frise était visée.
+
+| Ajout | Détail |
+| --- | --- |
+| Section « Confiance » | `src/components/site/Partners.tsx` — Guillaume Lujan et Conquistadors.io, liens vers leurs pages LinkedIn |
+| Légende du portrait | « Parcours du dirigeant : Richard Labrador » remplace le nom seul |
+| Portrait | Affiché en 240 px de large au lieu de la pleine colonne ; forme, cadre et fond inchangés |
+| Envoi du formulaire | Bascule sur l'API HTTP **Resend**, destinataire `contact@caritis.fr` ; le SMTP devient un repli |
+| Champs obligatoires | Astérisque sur Nom, Email, Sujet et Message ; « Société (optionnel) » explicite |
