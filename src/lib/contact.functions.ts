@@ -1,20 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
+import { contactSchema } from "./contact.schema";
 import { SITE_NAME, SITE_URL } from "./site";
-
-/**
- * Tous les champs sont obligatoires sauf la société.
- * `message` exige au moins 10 caractères : un formulaire vide n'a pas d'intérêt.
- */
-const schema = z.object({
-  name: z.string().trim().min(2).max(120),
-  email: z.string().trim().email().max(255),
-  company: z.string().trim().max(160).optional().default(""),
-  subject: z.string().trim().min(2).max(160),
-  message: z.string().trim().min(10).max(4000),
-  /** Honeypot : doit rester vide (les robots le remplissent). */
-  website: z.string().max(200).optional().default(""),
-});
 
 /** Destinataire par défaut de tous les messages du formulaire. */
 const DEFAULT_RECIPIENT = "contact@caritis.fr";
@@ -115,7 +101,7 @@ async function sendWithSmtp(mail: Mail): Promise<void> {
 }
 
 export const sendContactMessage = createServerFn({ method: "POST" })
-  .inputValidator((input: unknown) => schema.parse(input))
+  .inputValidator((input: unknown) => contactSchema.parse(input))
   .handler(async ({ data }) => {
     // Honeypot rempli : on répond « ok » sans rien envoyer.
     if (data.website.trim() !== "") {
@@ -134,37 +120,51 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     }
 
     const receivedAt = new Date().toISOString();
-    const company = data.company?.trim() || "—";
+    const organisation = data.organisation?.trim() || "—";
+    const phone = data.phone?.trim() || "—";
+    const usages = data.usages?.trim() || "—";
     const origin = SITE_URL.replace(/^https?:\/\//, "");
+
+    const rows: [string, string][] = [
+      ["Nom", data.name],
+      ["Organisation", organisation],
+      ["Email", data.email],
+      ["Téléphone", phone],
+      ["Profil", data.role],
+      ["Reçu le", receivedAt],
+    ];
 
     const mail: Mail = {
       to: process.env.CONTACT_TO_EMAIL || DEFAULT_RECIPIENT,
       replyTo: `"${data.name}" <${data.email}>`,
-      subject: `Nouveau message via ${origin} — ${data.subject}`,
+      subject: `Atelier de qualification — ${data.name}${
+        data.organisation?.trim() ? ` (${data.organisation.trim()})` : ""
+      }`,
       text: [
-        `Nouveau message via ${origin}`,
+        `Demande d'atelier de qualification via ${origin}`,
         ``,
-        `Nom     : ${data.name}`,
-        `Email   : ${data.email}`,
-        `Société : ${company}`,
-        `Sujet   : ${data.subject}`,
-        `Reçu le : ${receivedAt}`,
+        ...rows.map(([k, v]) => `${k.padEnd(13)}: ${v}`),
         ``,
-        `Message :`,
-        data.message,
+        `Usages d'IA :`,
+        usages,
       ].join("\n"),
       html: `
       <div style="font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;line-height:1.55;max-width:640px">
-        <h2 style="margin:0 0 16px;font-size:18px">Nouveau message via ${escapeHtml(origin)}</h2>
+        <h2 style="margin:0 0 16px;font-size:18px">Demande d'atelier de qualification via ${escapeHtml(origin)}</h2>
         <table cellpadding="0" cellspacing="0" style="font-size:14px;border-collapse:collapse">
-          <tr><td style="padding:4px 12px 4px 0;color:#555">Nom</td><td>${escapeHtml(data.name)}</td></tr>
-          <tr><td style="padding:4px 12px 4px 0;color:#555">Email</td><td><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
-          <tr><td style="padding:4px 12px 4px 0;color:#555">Société</td><td>${escapeHtml(company)}</td></tr>
-          <tr><td style="padding:4px 12px 4px 0;color:#555">Sujet</td><td>${escapeHtml(data.subject)}</td></tr>
-          <tr><td style="padding:4px 12px 4px 0;color:#555">Reçu le</td><td>${escapeHtml(receivedAt)}</td></tr>
+          ${rows
+            .map(
+              ([k, v]) =>
+                `<tr><td style="padding:4px 12px 4px 0;color:#555">${escapeHtml(k)}</td><td>${
+                  k === "Email"
+                    ? `<a href="mailto:${escapeHtml(v)}">${escapeHtml(v)}</a>`
+                    : escapeHtml(v)
+                }</td></tr>`,
+            )
+            .join("")}
         </table>
-        <h3 style="margin:24px 0 8px;font-size:15px">Message</h3>
-        <div style="white-space:pre-wrap;background:#f6f7f9;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;font-size:14px">${escapeHtml(data.message)}</div>
+        <h3 style="margin:24px 0 8px;font-size:15px">Usages d'IA</h3>
+        <div style="white-space:pre-wrap;background:#f6f7f9;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;font-size:14px">${escapeHtml(usages)}</div>
       </div>
     `,
     };

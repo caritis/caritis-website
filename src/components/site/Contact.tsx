@@ -1,19 +1,31 @@
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, CheckCircle2, Clock, Linkedin, ShieldCheck } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { sendContactMessage } from "@/lib/contact.functions";
+import { ROLES } from "@/lib/contact.schema";
 import { cta } from "@/components/site/Cta";
 
-const assurances = [
+/** Déroulé des 45 minutes — la somme des durées doit rester à 45. */
+const agenda = [
   {
-    icon: Clock,
-    title: "Réponse sous 48h ouvrées",
-    body: "Une première lecture de votre contexte et des options concrètes, sans engagement.",
+    duration: "10 min",
+    title: "Votre contexte",
+    body: "Les usages d'IA déjà en place ou envisagés, et qui les porte aujourd'hui.",
   },
   {
-    icon: ShieldCheck,
-    title: "Confidentialité",
-    body: "Vos informations servent uniquement à traiter votre demande. Aucune réutilisation commerciale.",
+    duration: "20 min",
+    title: "Deux cas d'usage passés au crible",
+    body: "Finalité, données, autonomie, personnes affectées, pré-classification réglementaire et premiers risques.",
+  },
+  {
+    duration: "10 min",
+    title: "Démonstration sur vos cas",
+    body: "Ce que donnent vos usages une fois posés dans le registre, avec leurs gates et leurs preuves attendues.",
+  },
+  {
+    duration: "5 min",
+    title: "Suite éventuelle",
+    body: "Ce qui relève d'un pilote, ce qui peut attendre, et à quelles conditions.",
   },
 ];
 
@@ -32,10 +44,11 @@ export function Contact() {
       await send({
         data: {
           name: String(fd.get("name") ?? ""),
+          organisation: String(fd.get("organisation") ?? ""),
           email: String(fd.get("email") ?? ""),
-          company: String(fd.get("company") ?? ""),
-          subject: String(fd.get("subject") ?? ""),
-          message: String(fd.get("message") ?? ""),
+          phone: String(fd.get("phone") ?? ""),
+          role: String(fd.get("role") ?? ""),
+          usages: String(fd.get("usages") ?? ""),
           // Honeypot anti-spam : doit rester vide.
           website: String(fd.get("website") ?? ""),
         },
@@ -49,86 +62,91 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
+    <section id="contact" className="relative py-14 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary">Contact</p>
-          <h1 className="mt-4 text-4xl md:text-5xl font-display leading-tight">
-            Parlons de votre <span className="text-gradient">prochain cap.</span>
+          <p className="text-xs uppercase tracking-[0.2em] text-primary">
+            Atelier de qualification
+          </p>
+          <h1 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
+            Commençons par deux cas d'usage réels.
           </h1>
           <p className="mt-5 text-muted-foreground">
-            Un projet de transformation, un audit de dette technique, une mise en conformité ou une
-            démarche de gouvernance de l'IA ? Décrivez votre contexte — je reviens vers vous avec
-            une première lecture et des options concrètes.
+            Quarante-cinq minutes, sans engagement. Nous repartons d'usages que vous avez
+            réellement, pas d'un questionnaire générique.
           </p>
 
-          <ul className="mt-8 space-y-4">
-            {assurances.map((a) => (
-              <li key={a.title} className="flex gap-3">
-                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <a.icon className="h-4 w-4" />
+          <ol className="mt-9 space-y-6 border-t border-border pt-8">
+            {agenda.map((step) => (
+              <li key={step.title} className="grid grid-cols-[72px_1fr] gap-4">
+                <span className="pt-0.5 text-sm font-medium text-primary">{step.duration}</span>
+                <span>
+                  <span className="block font-medium text-foreground">{step.title}</span>
+                  <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                    {step.body}
+                  </span>
                 </span>
-                <div>
-                  <p className="font-display text-base text-foreground">{a.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{a.body}</p>
-                </div>
               </li>
             ))}
-          </ul>
+          </ol>
 
-          <a
-            href="https://www.linkedin.com/in/rlabrador2000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition"
-          >
-            <Linkedin className="h-4 w-4" /> Me joindre sur LinkedIn
-          </a>
+          <p className="mt-9 border-t border-border pt-8 text-xs leading-relaxed text-muted-foreground">
+            Les informations transmises servent uniquement à vous recontacter au sujet de cette
+            demande. Elles ne sont ni revendues, ni utilisées à d'autres fins. Vous pouvez demander
+            leur suppression à tout moment en répondant au message que vous recevrez.
+          </p>
         </div>
 
         <form
           onSubmit={onSubmit}
-          className="lg:col-span-7 rounded-2xl border border-border/70 bg-card-grad p-7 shadow-elev"
+          className="rounded-2xl border border-border bg-card p-7 shadow-elev lg:col-span-7 lg:p-8"
         >
-          <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Nom" name="name" required placeholder="Votre nom" autoComplete="name" />
+          <h2 className="font-display text-2xl">Être rappelé</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Tous les champs sont nécessaires, sauf mention contraire.
+          </p>
+
+          <div className="mt-7 grid gap-5 sm:grid-cols-2">
+            <Field label="Nom et prénom" name="name" required autoComplete="name" />
+            <Field label="Organisation" name="organisation" optional autoComplete="organization" />
             <Field
-              label="Email"
+              label="Adresse électronique professionnelle"
               name="email"
               type="email"
               required
-              placeholder="vous@entreprise.com"
               autoComplete="email"
             />
-            <Field
-              label="Société (optionnel)"
-              name="company"
-              placeholder="Votre organisation"
-              autoComplete="organization"
-            />
-            <Field
-              label="Sujet"
-              name="subject"
-              required
-              placeholder="Audit, conformité, transfo…"
-            />
+            <Field label="Téléphone" name="phone" type="tel" optional autoComplete="tel" />
           </div>
+
           <div className="mt-5">
-            <label
-              htmlFor="contact-message"
-              className="text-xs uppercase tracking-wider text-muted-foreground"
-            >
-              Message <span className="text-primary">*</span>
-            </label>
-            <textarea
-              id="contact-message"
-              name="message"
+            <Label htmlFor="contact-role">Vous êtes</Label>
+            <select
+              id="contact-role"
+              name="role"
               required
-              minLength={10}
-              maxLength={4000}
-              rows={6}
-              placeholder="Contexte, enjeux, calendrier indicatif…"
-              className="mt-2 w-full rounded-md bg-background/60 border border-border/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30 px-4 py-3 text-sm"
+              defaultValue={ROLES[0]}
+              className="mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/25"
+            >
+              {ROLES.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mt-5">
+            <Label htmlFor="contact-usages" optional>
+              Vos usages d'IA, en deux lignes
+            </Label>
+            <textarea
+              id="contact-usages"
+              name="usages"
+              maxLength={2000}
+              rows={5}
+              placeholder="Ce que vous utilisez déjà, ou ce que vous envisagez, et ce qui vous préoccupe."
+              className="mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm placeholder:text-muted-foreground/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/25"
             />
           </div>
 
@@ -144,29 +162,22 @@ export function Contact() {
             />
           </div>
 
-          <div className="mt-7 flex flex-wrap items-center gap-4 justify-between">
-            <p className="text-xs text-muted-foreground max-w-sm">
-              <span className="text-primary">*</span> Champs obligatoires. En soumettant ce
-              formulaire, vos informations sont transmises uniquement pour traiter votre demande.
-              Aucune réutilisation commerciale.
-            </p>
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className={cta("primary", "disabled:opacity-60")}
-            >
-              {status === "loading" ? "Envoi…" : "Envoyer"} <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className={cta("primary", "mt-7 w-full disabled:opacity-60")}
+          >
+            {status === "loading" ? "Envoi…" : "Demander à être rappelé"}
+          </button>
 
           <p aria-live="polite" className="sr-only">
-            {status === "ok" ? "Message envoyé." : status === "error" ? "Envoi impossible." : ""}
+            {status === "ok" ? "Demande envoyée." : status === "error" ? "Envoi impossible." : ""}
           </p>
 
           {status === "ok" && (
             <div className="mt-5 flex items-center gap-2 text-sm text-primary">
               <CheckCircle2 className="h-4 w-4" />
-              Message bien reçu. Réponse sous 48h ouvrées.
+              Demande bien reçue. Réponse sous 48 h ouvrées pour caler l'atelier.
             </div>
           )}
           {status === "error" && <p className="mt-5 text-sm text-destructive">{error}</p>}
@@ -176,11 +187,29 @@ export function Contact() {
   );
 }
 
+function Label({
+  htmlFor,
+  optional,
+  children,
+}: {
+  htmlFor: string;
+  optional?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <label htmlFor={htmlFor} className="text-sm font-medium text-foreground">
+      {children}
+      {optional && <span className="ml-1 font-normal text-muted-foreground">(facultatif)</span>}
+    </label>
+  );
+}
+
 function Field({
   label,
   name,
   type = "text",
   required,
+  optional,
   placeholder,
   autoComplete,
 }: {
@@ -188,16 +217,16 @@ function Field({
   name: string;
   type?: string;
   required?: boolean;
+  optional?: boolean;
   placeholder?: string;
   autoComplete?: string;
 }) {
   const id = `contact-${name}`;
   return (
     <div>
-      <label htmlFor={id} className="text-xs uppercase tracking-wider text-muted-foreground">
+      <Label htmlFor={id} optional={optional}>
         {label}
-        {required && <span className="text-primary"> *</span>}
-      </label>
+      </Label>
       <input
         id={id}
         name={name}
@@ -205,7 +234,7 @@ function Field({
         required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="mt-2 w-full rounded-md bg-background/60 border border-border/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30 px-4 py-3 text-sm"
+        className="mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm placeholder:text-muted-foreground/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/25"
       />
     </div>
   );
