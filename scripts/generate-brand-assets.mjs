@@ -4,13 +4,14 @@
  *   node scripts/generate-brand-assets.mjs [--src <dossier logos>]
  *
  * Sources attendues (hors dépôt, fournies par le graphiste) :
- *   - <src>/ChatGPT Image 9 sept. 2026, 23_15_44 (2).png  monogramme seul, RGBA transparent
- *   - <src>/caritis-logo-plain.png                        monogramme + wordmark, RVB sur fond blanc
+ *   - <src>/ChatGPT Image 10 sept. 2026, 09_42_46 (2).png  monogramme 7 points, RGBA
+ *   - <src>/caritis-logo-plain.png                         monogramme + wordmark, RVB sur blanc
  *
- * Le wordmark est gris-bleu foncé sur blanc : illisible sur le fond navy du
- * site. On ne le redessine pas (interdit §16 du cahier des charges) — on le
- * détoure en convertissant sa luminance en canal alpha, puis on le recolorise
- * en near-white. L'anticrénelage d'origine est ainsi préservé.
+ * Le wordmark arrive sur fond blanc opaque. On ne le redessine pas (interdit
+ * §16 du cahier des charges) : sa luminance devient un canal alpha, ce qui
+ * préserve l'anticrénelage et permet de le reposer sur n'importe quel fond.
+ * Deux teintes sont produites — navy pour les fonds clairs (le site), et
+ * near-white pour les fonds sombres (favicons, usages externes).
  *
  * `sharp` n'est pas une dépendance permanente : l'installer le temps de la
  * génération (`bun add -d sharp`), lancer ce script, puis la retirer.
@@ -19,15 +20,18 @@ import { mkdir } from "node:fs/promises";
 import sharp from "sharp";
 
 const args = process.argv.slice(2);
-const srcDir = args.includes("--src") ? args[args.indexOf("--src") + 1] : "../logos";
+const srcDir = args.includes("--src") ? args[args.indexOf("--src") + 1] : "../logos/new";
 
-const MARK_SRC = `${srcDir}/ChatGPT Image 9 sept. 2026, 23_15_44 (2).png`;
+const MARK_SRC = `${srcDir}/ChatGPT Image 10 sept. 2026, 09_42_46 (2).png`;
 const LOGO_SRC = `${srcDir}/caritis-logo-plain.png`;
 
-/** Fond navy du site — aligné sur --background de src/styles.css. */
-const NAVY = { r: 10, g: 29, b: 41, alpha: 1 };
+/** Palette du site — doit rester alignée sur les tokens de src/styles.css. */
+const NAVY = { r: 12, g: 32, b: 54, alpha: 1 };
+const LIGHT = { r: 250, g: 252, b: 254, alpha: 1 };
+const INK = { r: 12, g: 32, b: 54 };
 const NEAR_WHITE = { r: 240, g: 246, b: 252 };
-const MUTED = "#9BA6B1";
+const TEAL = "#00787D";
+const MUTED = "#52657A";
 
 /** Rogne les bords entièrement transparents. */
 async function trimAlpha(input) {
@@ -55,11 +59,8 @@ async function trimAlpha(input) {
     .toBuffer();
 }
 
-/**
- * Détoure le wordmark du logo à fond blanc : luminance → alpha, puis
- * recolorisation en near-white pour un fond sombre.
- */
-async function extractWordmark() {
+/** Détoure le wordmark du logo à fond blanc et le recolorise dans `tint`. */
+async function extractWordmark(tint) {
   const { data, info } = await sharp(LOGO_SRC)
     .removeAlpha()
     .raw()
@@ -92,7 +93,6 @@ async function extractWordmark() {
   if (gapStart < 0) throw new Error("gouttière monogramme/wordmark introuvable");
 
   const left = gapEnd + 1;
-  const width = last - left + 1;
   let top = info.height,
     bottom = -1,
     darkest = 255;
@@ -106,6 +106,7 @@ async function extractWordmark() {
       }
     }
   }
+  const width = last - left + 1;
   const height = bottom - top + 1;
 
   // Luminance → alpha, avec plancher de bruit et remise à l'échelle.
@@ -117,9 +118,9 @@ async function extractWordmark() {
       const raw = 255 - lum(((y + top) * info.width + (x + left)) * 3);
       const a = raw <= FLOOR ? 0 : Math.min(255, Math.round(((raw - FLOOR) * 255) / span));
       const o = (y * width + x) * 4;
-      out[o] = NEAR_WHITE.r;
-      out[o + 1] = NEAR_WHITE.g;
-      out[o + 2] = NEAR_WHITE.b;
+      out[o] = tint.r;
+      out[o + 1] = tint.g;
+      out[o + 2] = tint.b;
       out[o + 3] = a;
     }
   }
@@ -132,21 +133,22 @@ async function extractWordmark() {
   };
 }
 
-/** Carré au fond navy avec le monogramme centré. */
-async function squareIcon(mark, size, ratio = 0.76) {
+/** Carré plein avec le monogramme centré. */
+async function squareIcon(mark, size, background, ratio = 0.76) {
   const inner = Math.round(size * ratio);
   const markPng = await sharp(mark)
     .resize(inner, inner, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
-  return sharp({ create: { width: size, height: size, channels: 4, background: NAVY } })
+  return sharp({ create: { width: size, height: size, channels: 4, background } })
     .composite([{ input: markPng, gravity: "centre" }])
     .png()
     .toBuffer();
 }
 
 const mark = await trimAlpha(MARK_SRC);
-const wordmark = await extractWordmark();
-console.log(`wordmark détouré : ${wordmark.width}×${wordmark.height}`);
+const inkWordmark = await extractWordmark(INK);
+const lightWordmark = await extractWordmark(NEAR_WHITE);
+console.log(`wordmark détouré : ${inkWordmark.width}×${inkWordmark.height}`);
 
 await mkdir("src/assets/brand", { recursive: true });
 await mkdir("public/brand", { recursive: true });
@@ -158,15 +160,15 @@ await sharp(mark)
   .png({ compressionLevel: 9, palette: true })
   .toFile("src/assets/brand/caritis-mark.png");
 
-// 2. Icône carrée (logo Schema.org, usages externes).
-await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png");
+// 2. Icône carrée (logo Schema.org) — fond clair, comme le site.
+await sharp(await squareIcon(mark, 512, LIGHT)).toFile("public/brand/caritis-icon.png");
 
-// 3. Verrouillage horizontal monogramme + wordmark, sur fond transparent.
+// 3. Verrouillage horizontal monogramme + wordmark navy, fond transparent.
 {
   const H = 256;
-  const wmH = Math.round(H * 0.44);
-  const wmW = Math.round((wordmark.width / wordmark.height) * wmH);
-  const gap = Math.round(H * 0.16);
+  const wmH = Math.round(H * 0.4);
+  const wmW = Math.round((inkWordmark.width / inkWordmark.height) * wmH);
+  const gap = Math.round(H * 0.14);
   const W = H + gap + wmW;
   await sharp({
     create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
@@ -180,7 +182,7 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
         top: 0,
       },
       {
-        input: await sharp(wordmark.buffer).resize(wmW, wmH).toBuffer(),
+        input: await sharp(inkWordmark.buffer).resize(wmW, wmH).toBuffer(),
         left: H + gap,
         top: Math.round((H - wmH) / 2),
       },
@@ -189,33 +191,34 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
     .toFile("public/brand/caritis-logo.png");
 }
 
-// 4. Image OpenGraph 1200×630.
+// 4. Image OpenGraph 1200×630 — fond clair, à l'image du site.
 {
   const W = 1200,
     H = 630;
   const background =
     Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <radialGradient id="glow" cx="50%" cy="0%" r="80%">
-        <stop offset="0%" stop-color="#12C281" stop-opacity="0.22"/>
-        <stop offset="70%" stop-color="#0A1D29" stop-opacity="0"/>
+      <radialGradient id="glow" cx="50%" cy="0%" r="85%">
+        <stop offset="0%" stop-color="${TEAL}" stop-opacity="0.14"/>
+        <stop offset="70%" stop-color="#FAFCFE" stop-opacity="0"/>
       </radialGradient>
     </defs>
-    <rect width="${W}" height="${H}" fill="#0A1D29"/>
+    <rect width="${W}" height="${H}" fill="#FAFCFE"/>
     <rect width="${W}" height="${H}" fill="url(#glow)"/>
+    <rect x="0" y="${H - 8}" width="${W}" height="8" fill="${TEAL}"/>
   </svg>`);
 
   const markSize = 190;
-  const wmH = 104;
-  const wmW = Math.round((wordmark.width / wordmark.height) * wmH);
+  const wmH = 96;
+  const wmW = Math.round((inkWordmark.width / inkWordmark.height) * wmH);
   const left = 100;
-  const markTop = 190;
+  const markTop = 175;
 
-  const tagline = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${left}" y="470" font-family="Ubuntu Sans, Ubuntu, DejaVu Sans, sans-serif"
-          font-size="30" letter-spacing="7" fill="${MUTED}">RESPONSIBLE AI GOVERNANCE</text>
-    <text x="${left}" y="530" font-family="Ubuntu Sans, Ubuntu, DejaVu Sans, sans-serif"
-          font-size="26" letter-spacing="1" fill="#12C281">Govern AI with care.</text>
+  const text = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+    <text x="${left}" y="458" font-family="Ubuntu Sans, Ubuntu, DejaVu Sans, sans-serif"
+          font-size="30" letter-spacing="7" fill="${TEAL}">RESPONSIBLE AI GOVERNANCE</text>
+    <text x="${left}" y="516" font-family="Ubuntu Sans, Ubuntu, DejaVu Sans, sans-serif"
+          font-size="26" letter-spacing="1" fill="${MUTED}">Govern AI with care.</text>
   </svg>`);
 
   await sharp(background)
@@ -231,25 +234,36 @@ await sharp(await squareIcon(mark, 512)).toFile("public/brand/caritis-icon.png")
         top: markTop,
       },
       {
-        input: await sharp(wordmark.buffer).resize(wmW, wmH).toBuffer(),
+        input: await sharp(inkWordmark.buffer).resize(wmW, wmH).toBuffer(),
         left: left + markSize + 46,
         top: markTop + Math.round((markSize - wmH) / 2),
       },
-      { input: tagline, left: 0, top: 0 },
+      { input: text, left: 0, top: 0 },
     ])
     .png({ compressionLevel: 9 })
     .toFile("public/brand/og-caritis.png");
 }
 
-// 5. Favicons et icône Apple — fond navy opaque (iOS ne gère pas la transparence).
+// 5. Favicons et icône Apple — fond navy : plus lisible qu'un fond clair dans
+// un onglet, et cohérent avec la couleur des CTA du site.
 for (const [file, size] of [
   ["public/favicon-32.png", 32],
   ["public/favicon-192.png", 192],
   ["public/favicon-512.png", 512],
   ["public/apple-touch-icon.png", 180],
 ]) {
-  await sharp(await squareIcon(mark, size, size <= 32 ? 0.88 : 0.78)).toFile(file);
+  await sharp(await squareIcon(mark, size, NAVY, size <= 32 ? 0.88 : 0.78)).toFile(file);
   console.log(`écrit ${file} (${size}×${size})`);
+}
+
+// 6. Wordmark clair, pour les usages sur fond sombre (signatures, slides).
+{
+  const wmH = 160;
+  const wmW = Math.round((lightWordmark.width / lightWordmark.height) * wmH);
+  await sharp(lightWordmark.buffer)
+    .resize(wmW, wmH)
+    .png({ compressionLevel: 9 })
+    .toFile("public/brand/caritis-wordmark-light.png");
 }
 
 console.log("assets de marque générés");
