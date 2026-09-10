@@ -79,7 +79,7 @@ function RealisationsPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative border-b border-border/60 bg-[oklch(0.16_0.03_240)]">
+        <section className="relative border-b border-border/60 bg-surface">
           <div className="mx-auto max-w-5xl px-6 pt-12 pb-10 lg:pt-20 lg:pb-14">
             <Link
               to="/"
@@ -209,7 +209,7 @@ function RealisationsPage() {
         {/* ——— Howner ——— */}
         <section
           id="howner"
-          className="scroll-mt-32 py-14 lg:py-20 border-b border-border/60 bg-[oklch(0.16_0.03_240)]"
+          className="scroll-mt-32 py-14 lg:py-20 border-b border-border/60 bg-surface"
         >
           <div className="mx-auto max-w-5xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">02 · howner.fr</p>
@@ -400,7 +400,7 @@ function RealisationsPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-border/60 py-16 lg:py-20 bg-[oklch(0.16_0.03_240)]">
+        <section className="border-t border-border/60 py-16 lg:py-20 bg-surface">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-display">
               Un projet à <span className="text-gradient">faire atterrir</span> ?

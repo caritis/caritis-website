@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 import { cta, CtaRow } from "@/components/site/Cta";
 import { SITE_TAGLINE } from "@/lib/site";
 
@@ -34,16 +33,6 @@ const pillars = [
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero">
-      <img
-        src={heroBg}
-        alt=""
-        aria-hidden="true"
-        width={1920}
-        height={1280}
-        className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen pointer-events-none"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
-
       <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-20 lg:pt-14 lg:pb-24">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
@@ -60,11 +49,13 @@ export function Hero() {
           démontrable, proportionnée et soutenable.
         </p>
 
-        <p className="mt-6 max-w-2xl text-base text-muted-foreground whitespace-pre-line">
+        <p className="mt-6 max-w-2xl text-base text-muted-foreground">
           Depuis plus de 20 ans, nous aidons les dirigeants à faire évoluer leur système
           d’information au service de leur performance opérationnelle. Cette expérience du terrain
           est ce qui rend la gouvernance exigible plutôt que déclarative.
-          {"\n"}
+        </p>
+
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
           Notre approche intègre les principes de l’Économie de la Fonctionnalité et de la
           Coopération (EFC) afin de développer des modèles plus durables, sobres et résilients :
           pilotage par les usages, mutualisation des capacités numériques, conformité réglementaire

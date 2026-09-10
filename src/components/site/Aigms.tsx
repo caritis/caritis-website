@@ -32,12 +32,15 @@ const capabilities = [
 
 export function Aigms() {
   return (
-    <section id="aigms" className="scroll-mt-20 relative py-16 lg:py-24 border-y border-border/60">
+    <section
+      id="aigms"
+      className="scroll-mt-20 relative border-y border-border bg-surface py-16 lg:py-24"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">Produit</p>
-            <h2 className="mt-4 text-4xl md:text-5xl font-display leading-tight">
+            <h2 className="mt-4 font-display text-3xl leading-tight md:text-4xl">
               AIGMS — <span className="text-gradient">AI Governance Management System</span>
             </h2>
             <p className="mt-2 text-sm uppercase tracking-[0.2em] text-muted-foreground">

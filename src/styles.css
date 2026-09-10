@@ -32,6 +32,8 @@
   --color-ring: var(--ring);
   --color-surface: var(--surface);
   --color-gold: var(--gold);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
 
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -40,46 +42,55 @@
 :root {
   --radius: 0.75rem;
 
-  /* Deep night navy base with emerald + warm gold accents */
-  --background: oklch(0.18 0.03 240);
-  --foreground: oklch(0.97 0.01 250);
+  /* Thème clair : fond blanc-bleuté, encre navy, accent teal du logo. */
+  --background: #fafcfe;
+  --foreground: #0c2036;
 
-  --surface: oklch(0.22 0.035 240);
-  --card: oklch(0.23 0.035 240);
-  --card-foreground: oklch(0.97 0.01 250);
-  --popover: oklch(0.23 0.035 240);
-  --popover-foreground: oklch(0.97 0.01 250);
+  --surface: #f1f6fa; /* bandes de section alternées */
+  --card: #ffffff;
+  --card-foreground: #0c2036;
+  --popover: #ffffff;
+  --popover-foreground: #0c2036;
 
-  --primary: oklch(0.72 0.16 160);            /* emerald */
-  --primary-foreground: oklch(0.18 0.03 240);
-  --secondary: oklch(0.28 0.04 240);
-  --secondary-foreground: oklch(0.97 0.01 250);
+  --primary: #00787d; /* teal du monogramme */
+  --primary-foreground: #ffffff;
+  --secondary: #edf3f8;
+  --secondary-foreground: #0c2036;
 
-  --muted: oklch(0.27 0.03 240);
-  --muted-foreground: oklch(0.72 0.02 250);
+  --muted: #edf3f8;
+  --muted-foreground: #52657a;
 
-  --accent: oklch(0.78 0.13 85);              /* warm gold */
-  --accent-foreground: oklch(0.18 0.03 240);
-  --gold: oklch(0.82 0.14 85);
+  --accent: #a15c07; /* ambre — statuts et mentions à surveiller */
+  --accent-foreground: #ffffff;
+  --gold: #8a6100;
 
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
+  /* CTA principal : navy plein, comme la maquette de référence. */
+  --cta: #0c2036;
+  --cta-foreground: #fafcfe;
 
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.72 0.16 160);
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
 
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.28 0.08 175 / 0.6), transparent 70%),
-                   linear-gradient(180deg, oklch(0.16 0.03 240), oklch(0.18 0.03 240));
-  --gradient-accent: linear-gradient(135deg, oklch(0.72 0.16 160), oklch(0.82 0.14 85));
-  --gradient-card: linear-gradient(160deg, oklch(0.25 0.035 240 / 0.9), oklch(0.20 0.03 240 / 0.9));
-  --shadow-glow: 0 30px 80px -20px oklch(0.72 0.16 160 / 0.35);
-  --shadow-soft: 0 20px 50px -25px oklch(0 0 0 / 0.6);
+  --border: #dde4ea;
+  --input: #cbd6e0;
+  --ring: #00787d;
+
+  --gradient-hero:
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgb(0 120 125 / 0.1), transparent 70%),
+    linear-gradient(180deg, #ffffff, #fafcfe);
+  --gradient-accent: linear-gradient(135deg, #00787d, #2e8b57);
+  --gradient-card: linear-gradient(160deg, #ffffff, #f7fafd);
+  --shadow-glow: 0 18px 40px -22px rgb(0 120 125 / 0.45);
+  --shadow-soft: 0 18px 40px -26px rgb(12 32 54 / 0.25);
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -87,22 +98,45 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
-  ::selection { background: var(--primary); color: var(--primary-foreground); }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
 }
 
 @layer utilities {
-  .bg-hero { background: var(--gradient-hero); }
-  .bg-card-grad { background: var(--gradient-card); }
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+  .bg-card-grad {
+    background: var(--gradient-card);
+  }
   .text-gradient {
     background: var(--gradient-accent);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .ring-glow { box-shadow: var(--shadow-glow); }
-  .shadow-elev { box-shadow: var(--shadow-soft); }
+  .ring-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-elev {
+    box-shadow: var(--shadow-soft);
+  }
   .grain::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    background-image: radial-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px);
-    background-size: 3px 3px; mix-blend-mode: overlay; opacity: 0.5;
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgb(12 32 54 / 0.05) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: multiply;
+    opacity: 0.5;
   }
 }

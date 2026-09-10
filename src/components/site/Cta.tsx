@@ -10,10 +10,10 @@ const base =
   "inline-flex h-12 items-center justify-center gap-2 rounded-md px-6 text-sm font-medium leading-none transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export const ctaVariants = {
-  primary: cn(base, "bg-primary text-primary-foreground hover:opacity-90 ring-glow"),
+  primary: cn(base, "bg-cta text-cta-foreground shadow-elev hover:bg-cta/90"),
   secondary: cn(
     base,
-    "border border-border/80 text-foreground hover:border-primary/60 hover:text-primary",
+    "border border-border bg-card text-foreground hover:border-primary/60 hover:text-primary",
   ),
 } as const;
 

@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Richard Labrador" },
       { name: "robots", content: "index, follow" },
-      { name: "theme-color", content: "#101c26" },
+      { name: "theme-color", content: "#fafcfe" },
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:locale", content: "fr_FR" },
       { property: "og:type", content: "website" },
