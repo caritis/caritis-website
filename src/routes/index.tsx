@@ -5,6 +5,7 @@ import { Aigms } from "@/components/site/Aigms";
 import { EfcBanner } from "@/components/site/EfcBanner";
 import { Services } from "@/components/site/Services";
 import { About } from "@/components/site/About";
+import { Partners } from "@/components/site/Partners";
 import { Footer } from "@/components/site/Footer";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
@@ -63,6 +64,7 @@ function Index() {
         <Services />
         <EfcBanner />
         <About />
+        <Partners />
       </main>
       <Footer />
     </div>
