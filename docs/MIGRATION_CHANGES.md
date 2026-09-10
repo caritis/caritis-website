@@ -124,3 +124,38 @@ des cartes d'expertise ont été **conservés** : seule la frise était visée.
 | Déroulé de l'atelier | 10 min contexte · 20 min deux cas d'usage · 10 min démonstration · 5 min suite — 45 min au total |
 | Logo à 7 silhouettes | Assets régénérés depuis `logos/new/`, wordmark décliné en navy et en near-white |
 | Token `--cta` | Bouton principal navy, distinct de `--primary` (teal) |
+
+## Éclatement des réalisations en pages indépendantes (2026-09-10)
+
+`/realisations` était une page unique de plus de 400 lignes, avec trois projets
+empilés derrière des ancres. Un seul titre, une seule méta-description, une
+seule URL indexable pour trois sujets sans rapport entre eux.
+
+| Avant | Après |
+| --- | --- |
+| `/realisations#wasptracker` | `/realisations/wasptracker` |
+| `/realisations#howner` | `/realisations/howner` |
+| `/realisations#aigms` | `/realisations/aigms` |
+
+Chaque page porte son titre, sa description, son canonical, ses balises
+OpenGraph et un fil d'Ariane structuré (`src/lib/seo.ts`) qui la rattache à
+`/realisations`. Le sitemap liste les quatre URLs. Aucun contenu n'a été perdu :
+l'index reprend le hero, l'expérience adossée et le CTA, et distribue les trois
+projets en cartes.
+
+| Ajout | Détail |
+| --- | --- |
+| `src/components/site/ProjectNav.tsx` | Bandeau des projets, collé sous l'en-tête et présent sur les quatre pages ; l'entrée courante est en bleu du bandeau |
+| `src/lib/projects.ts` | Source unique des trois projets — bandeau, index et JSON-LD en dépendent |
+| `src/lib/seo.ts` | Fil d'Ariane `BreadcrumbList` |
+| Page AIGMS étoffée | Reprise de `AIGMS/03_Commercial/PAGE_ACCUEIL_CARITIS.md` : constat chiffré et sourcé, six questions, cycle PLAN/DO/CHECK+ACT, registre de décisions, écosystème, calendrier réglementaire, plafonds de sanction |
+
+Les graphiques de la page AIGMS sont **monochromes** : le validateur de palette
+rejette le couple teal `#00787D` / bleu du bandeau `#016287` comme deux séries
+(ΔE 7,6 en vision normale, seuil à 15). Chaque valeur est étiquetée en clair, la
+couleur ne porte donc aucune information à elle seule, et les statuts du
+calendrier portent une icône en plus de leur couleur.
+
+La précaution du document source est conservée : **aucune formulation n'affirme
+qu'AIGMS certifie ou garantit la conformité**, et le texte des normes n'est pas
+reproduit.

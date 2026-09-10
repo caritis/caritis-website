@@ -51,6 +51,9 @@ Trois options, à trancher par Richard :
 | `/#contact` | `/contact` | Le bloc contact est devenu une page dédiée |
 | `/#case` | `/realisations` | Le bloc réalisations a quitté l'accueil |
 | `/#services` | `/#expertises` | Section renommée lors du rebranding CARITIS |
+| `/realisations#wasptracker` | `/realisations/wasptracker` | Chaque projet a désormais sa page |
+| `/realisations#howner` | `/realisations/howner` | Idem |
+| `/realisations#aigms` | `/realisations/aigms` | Idem |
 
 Ces ancres ne renvoient jamais un code HTTP (fragments côté client) : plus aucun
 lien du site ne les utilise, et un fragment inconnu se contente d'afficher le

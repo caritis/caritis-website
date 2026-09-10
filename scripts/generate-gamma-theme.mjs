@@ -11,6 +11,12 @@
  * `pptxgenjs` et `jszip` ne sont pas des dépendances permanentes : les installer
  * le temps de la génération (`bun add -d pptxgenjs jszip`), lancer ce script,
  * puis les retirer.
+ *
+ * ATTENTION — leur arbre de dépendances tire un paquet npm nommé `https`
+ * (« https mediation », v1.0.0), qui masque le module natif de Node. Il reste
+ * dans `node_modules` après un `bun remove` et casse alors le build du site :
+ * « Failed to resolve entry for package "https" » depuis nodemailer. Après
+ * génération : `rm -rf node_modules/https`.
  */
 import { writeFile } from "node:fs/promises";
 import JSZip from "jszip";
@@ -444,11 +450,26 @@ function heading(slide, text, opts = {}) {
   });
   s.addText(
     [
-      { text: "Instrument Serif pour les titres, Inter pour le texte.", options: { bullet: { code: "2022" } } },
-      { text: "Teal #00787D pour les accents, jamais pour de grandes surfaces.", options: { bullet: { code: "2022" } } },
-      { text: "Fonds clairs : #FAFCFE en page, #FFFFFF en carte, #F1F6FA en bande.", options: { bullet: { code: "2022" } } },
-      { text: "Texte secondaire #4B5C6B — contraste vérifié à 6,8:1.", options: { bullet: { code: "2022" } } },
-      { text: "AIGMS est un produit de CARITIS, pas la marque elle-même.", options: { bullet: { code: "2022" } } },
+      {
+        text: "Instrument Serif pour les titres, Inter pour le texte.",
+        options: { bullet: { code: "2022" } },
+      },
+      {
+        text: "Teal #00787D pour les accents, jamais pour de grandes surfaces.",
+        options: { bullet: { code: "2022" } },
+      },
+      {
+        text: "Fonds clairs : #FAFCFE en page, #FFFFFF en carte, #F1F6FA en bande.",
+        options: { bullet: { code: "2022" } },
+      },
+      {
+        text: "Texte secondaire #4B5C6B — contraste vérifié à 6,8:1.",
+        options: { bullet: { code: "2022" } },
+      },
+      {
+        text: "AIGMS est un produit de CARITIS, pas la marque elle-même.",
+        options: { bullet: { code: "2022" } },
+      },
     ],
     {
       x: 0.6,

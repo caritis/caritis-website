@@ -63,7 +63,7 @@ export function Aigms() {
             </p>
 
             <CtaRow className="mt-8">
-              <Link to="/realisations" hash="aigms" className={cta("primary")}>
+              <Link to="/realisations/aigms" className={cta("primary")}>
                 Voir le détail d'AIGMS <ArrowRight className="h-4 w-4" />
               </Link>
             </CtaRow>

@@ -12,12 +12,17 @@ responsable et frugale — proportionnalité des modèles, maîtrise des coûts 
 impacts, sobriété logicielle et Économie de la Fonctionnalité et de la Coopération (EFC).
 
 Produit stratégique : AIGMS — AI Governance Management System by CARITIS (en développement).
+AIGMS ne délivre aucune certification et ne garantit pas la conformité : il tient le
+registre des usages, des risques, des décisions, des contrôles et des preuves.
 
 Waspy / WaspTracker et Howner sont des réalisations et ventures antérieures, présentées
 comme telles et non comme des marques CARITIS.
 
 ## Pages
 
-- [Accueil](/): positionnement, expertises, AIGMS, parcours.
-- [Réalisations](/realisations): WaspTracker (SaaS environnement), Howner (SI fabrication hors-site), AIGMS (gouvernance IA).
-- [Contact](/contact): formulaire de contact, réponse sous 48h ouvrées.
+- [Accueil](/): positionnement, expertises, AIGMS, parcours, partenaires.
+- [Réalisations](/realisations): les trois projets.
+- [AIGMS](/realisations/aigms): registre de décisions, méthode PLAN/DO/CHECK, écosystème, calendrier réglementaire.
+- [WaspTracker](/realisations/wasptracker): SaaS environnemental déployé en collectivité.
+- [Howner](/realisations/howner): structuration SI d'une activité de fabrication hors-site.
+- [Contact](/contact): atelier de qualification de 45 minutes, formulaire de rappel.

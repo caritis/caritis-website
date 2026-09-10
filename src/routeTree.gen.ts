@@ -10,18 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RealisationsIndexRouteImport } from './routes/realisations/index'
+import { Route as RealisationsWasptrackerRouteImport } from './routes/realisations/wasptracker'
+import { Route as RealisationsHownerRouteImport } from './routes/realisations/howner'
+import { Route as RealisationsAigmsRouteImport } from './routes/realisations/aigms'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RealisationsRoute = RealisationsRouteImport.update({
-  id: '/realisations',
-  path: '/realisations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -34,39 +32,93 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RealisationsIndexRoute = RealisationsIndexRouteImport.update({
+  id: '/realisations/',
+  path: '/realisations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealisationsWasptrackerRoute = RealisationsWasptrackerRouteImport.update({
+  id: '/realisations/wasptracker',
+  path: '/realisations/wasptracker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealisationsHownerRoute = RealisationsHownerRouteImport.update({
+  id: '/realisations/howner',
+  path: '/realisations/howner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealisationsAigmsRoute = RealisationsAigmsRouteImport.update({
+  id: '/realisations/aigms',
+  path: '/realisations/aigms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/realisations': typeof RealisationsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/realisations/aigms': typeof RealisationsAigmsRoute
+  '/realisations/howner': typeof RealisationsHownerRoute
+  '/realisations/wasptracker': typeof RealisationsWasptrackerRoute
+  '/realisations/': typeof RealisationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/realisations': typeof RealisationsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/realisations/aigms': typeof RealisationsAigmsRoute
+  '/realisations/howner': typeof RealisationsHownerRoute
+  '/realisations/wasptracker': typeof RealisationsWasptrackerRoute
+  '/realisations': typeof RealisationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/realisations': typeof RealisationsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/realisations/aigms': typeof RealisationsAigmsRoute
+  '/realisations/howner': typeof RealisationsHownerRoute
+  '/realisations/wasptracker': typeof RealisationsWasptrackerRoute
+  '/realisations/': typeof RealisationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/realisations' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/realisations/aigms'
+    | '/realisations/howner'
+    | '/realisations/wasptracker'
+    | '/realisations/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/realisations' | '/sitemap.xml'
-  id: '__root__' | '/' | '/contact' | '/realisations' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/realisations/aigms'
+    | '/realisations/howner'
+    | '/realisations/wasptracker'
+    | '/realisations'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/realisations/aigms'
+    | '/realisations/howner'
+    | '/realisations/wasptracker'
+    | '/realisations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
-  RealisationsRoute: typeof RealisationsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  RealisationsAigmsRoute: typeof RealisationsAigmsRoute
+  RealisationsHownerRoute: typeof RealisationsHownerRoute
+  RealisationsWasptrackerRoute: typeof RealisationsWasptrackerRoute
+  RealisationsIndexRoute: typeof RealisationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,13 +128,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/realisations': {
-      id: '/realisations'
-      path: '/realisations'
-      fullPath: '/realisations'
-      preLoaderRoute: typeof RealisationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -99,14 +144,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/realisations/': {
+      id: '/realisations/'
+      path: '/realisations'
+      fullPath: '/realisations/'
+      preLoaderRoute: typeof RealisationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/realisations/wasptracker': {
+      id: '/realisations/wasptracker'
+      path: '/realisations/wasptracker'
+      fullPath: '/realisations/wasptracker'
+      preLoaderRoute: typeof RealisationsWasptrackerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/realisations/howner': {
+      id: '/realisations/howner'
+      path: '/realisations/howner'
+      fullPath: '/realisations/howner'
+      preLoaderRoute: typeof RealisationsHownerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/realisations/aigms': {
+      id: '/realisations/aigms'
+      path: '/realisations/aigms'
+      fullPath: '/realisations/aigms'
+      preLoaderRoute: typeof RealisationsAigmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
-  RealisationsRoute: RealisationsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  RealisationsAigmsRoute: RealisationsAigmsRoute,
+  RealisationsHownerRoute: RealisationsHownerRoute,
+  RealisationsWasptrackerRoute: RealisationsWasptrackerRoute,
+  RealisationsIndexRoute: RealisationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
