@@ -1,15 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
+import { Aigms } from "@/components/site/Aigms";
 import { EfcBanner } from "@/components/site/EfcBanner";
 import { Services } from "@/components/site/Services";
 import { About } from "@/components/site/About";
+import { Partners } from "@/components/site/Partners";
 import { Footer } from "@/components/site/Footer";
-import { SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
-const title = "RLAB ONE | Technology, Governance & Transformation";
+const title = `${SITE_NAME} | ${SITE_TAGLINE}`;
 const description =
-  "RLAB ONE accompagne dirigeants et DSI dans la transformation numérique, la gouvernance des SI et de l'IA, les risques et la conformité.";
+  "CARITIS accompagne les organisations dans la gouvernance responsable de l'IA, la conformité, la maîtrise des risques et la transformation numérique.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,18 +32,18 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Conseil SI, gouvernance IA et transformation",
+          name: "Gouvernance de l'IA, conformité et transformation des SI",
           provider: {
-            "@type": "Person",
-            name: "Richard Labrador",
+            "@type": "Organization",
+            name: SITE_NAME,
             url: SITE_URL,
           },
           areaServed: "FR",
           serviceType: [
+            "Gouvernance de l'IA (ISO/IEC 42001, AI Act)",
+            "Conformité et maîtrise des risques (RGPD, NIS2, ISO/IEC 27001)",
             "Direction et transformation des systèmes d'information",
-            "Gouvernance SI et gouvernance de l'IA",
-            "Audit de dette technique & sobriété logicielle",
-            "Conformité IT (RGPD, NIS2, ISO 27001, ISO 42001)",
+            "IA responsable et frugale — maîtrise des coûts et des impacts",
           ],
           description,
           url: `${SITE_URL}/`,
@@ -56,11 +58,13 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
+      <main id="contenu">
         <Hero />
-        <EfcBanner />
+        <Aigms />
         <Services />
+        <EfcBanner />
         <About />
+        <Partners />
       </main>
       <Footer />
     </div>

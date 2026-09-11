@@ -49,3 +49,113 @@ Le design system (`src/styles.css`) n'a pas été touché : palette navy/emerald
 typographies `Instrument Serif` / `Inter`, dégradés, ombres et utilitaires
 (`bg-hero`, `text-gradient`, `ring-glow`, `shadow-elev`) sont identiques.
 Les primitives `src/components/ui/**` (shadcn/ui) sont conservées telles quelles.
+
+---
+
+# Rebranding CARITIS (branche `migration/caritis-rebrand`)
+
+## Suppressions
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| `src/assets/brand/rlab-one-mark.png` | Monogramme RLAB ONE | `src/assets/brand/caritis-mark.png` | Logo CARITIS dans le header et le footer |
+| `public/brand/rlab-one-{icon,logo}.png`, `public/brand/og-rlab-one.png` | Assets de marque RLAB ONE | `public/brand/caritis-{icon,logo}.png`, `og-caritis.png` | Carte de partage et logo Schema.org à l'identité CARITIS |
+
+Aucun contenu éditorial n'a été supprimé.
+
+## Contenu déplacé, pas retiré
+
+- Les puces de la carte **« Audit de dette technique & sobriété logicielle »**
+  rejoignent la carte *Transformation & éco-conception du SI* (cartographie
+  applicative, plan de remédiation chiffré, standards DevOps & CI/CD). Le sujet
+  reste traité, sous un autre regroupement.
+- Les puces **conformité** de l'ancienne carte « Conformité IT, gouvernance de
+  l'IA & coopération » se répartissent entre *Gouvernance de l'IA* (ISO 42001,
+  cartographie des usages, contrôles et preuves) et *Risque & conformité*
+  (audits internes, RACI/RBAC/ITSM, RGPD/NIS2/ISO 27001).
+- Le bloc **« Savoir-faire clé en Transformation SI »** du hero est conservé à
+  l'identique, renommé *Socle opérationnel — direction et transformation SI*.
+
+## Ajouts
+
+| Changement | Détail |
+| --- | --- |
+| Section AIGMS sur l'accueil | `src/components/site/Aigms.tsx` — produit, cycle DISCOVERY → RE-ASSESS, statut *In development* |
+| `SITE_SIGNATURE` | « Govern AI with care. », employée seule pour éviter l'empilement de slogans |
+| `scripts/generate-brand-assets.mjs` | Génération reproductible des logos, favicons et carte OpenGraph |
+| `docs/CARITIS_BRAND_MIGRATION.md` | Journal de la bascule de marque |
+
+## Ce qui reste inchangé
+
+`src/styles.css` n'a toujours pas été modifié : palette navy/emerald/gold,
+typographies `Instrument Serif` / `Inter`, dégradés et utilitaires sont
+identiques. Les KPI, les certifications, le parcours et les réalisations sont
+conservés à l'identique — seule la ligne d'activité actuelle passe de
+« Fondateur · RLAB ONE » à « Fondateur · CARITIS ».
+
+## Ajustements demandés après relecture (2026-09-10)
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| Frise « Parcours » de la section À propos — 6 jalons de SAP BusinessObjects à CARITIS | Contenu déjà publié sur le profil LinkedIn du dirigeant ; le dupliquer n'apporte rien | Lien « Parcours détaillé sur LinkedIn » à la place ; le paragraphe de synthèse (IBM, SAP BO, Prodware, Waspy, CARITIS) est conservé | Accueil allégé, parcours toujours accessible en un clic |
+
+Le socle opérationnel du hero, les chiffres clés, les certifications et les puces
+des cartes d'expertise ont été **conservés** : seule la frise était visée.
+
+| Ajout | Détail |
+| --- | --- |
+| Section « Confiance » | `src/components/site/Partners.tsx` — Guillaume Lujan et Conquistadors.io, liens vers leurs pages LinkedIn |
+| Légende du portrait | « Parcours du dirigeant : Richard Labrador » remplace le nom seul |
+| Portrait | Affiché en 240 px de large au lieu de la pleine colonne ; forme, cadre et fond inchangés |
+| Envoi du formulaire | Bascule sur l'API HTTP **Resend**, destinataire `contact@caritis.fr` ; le SMTP devient un repli |
+| Champs obligatoires | Astérisque sur Nom, Email, Sujet et Message ; « Société (optionnel) » explicite |
+
+## Bascule en thème clair et atelier de qualification (2026-09-10)
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| `src/assets/hero-bg.jpg` | Image noire conçue pour le thème sombre ; sur fond clair, elle devenait un rectangle opaque | Dégradé radial teal du hero (`--gradient-hero`) | Hero plus lisible |
+| Champs `sujet` et `message` du formulaire de contact | La page devient une demande d'atelier de qualification, pas un formulaire de contact générique | Champs `profil` et `usages d'IA`, plus organisation et téléphone | Formulaire plus court et plus ciblé |
+| Palette sombre de `src/styles.css` | Décision de Richard : « le fond noir n'est pas percutant » | Thème clair documenté dans `CARITIS_BRAND_MIGRATION.md` | Lecture plus confortable ; s'écarte du §15 du cahier des charges |
+
+| Ajout | Détail |
+| --- | --- |
+| `src/lib/contact.schema.ts` | Schéma Zod et liste des profils, partagés entre le composant et la validation serveur |
+| Déroulé de l'atelier | 10 min contexte · 20 min deux cas d'usage · 10 min démonstration · 5 min suite — 45 min au total |
+| Logo à 7 silhouettes | Assets régénérés depuis `logos/new/`, wordmark décliné en navy et en near-white |
+| Token `--cta` | Bouton principal navy, distinct de `--primary` (teal) |
+
+## Éclatement des réalisations en pages indépendantes (2026-09-10)
+
+`/realisations` était une page unique de plus de 400 lignes, avec trois projets
+empilés derrière des ancres. Un seul titre, une seule méta-description, une
+seule URL indexable pour trois sujets sans rapport entre eux.
+
+| Avant | Après |
+| --- | --- |
+| `/realisations#wasptracker` | `/realisations/wasptracker` |
+| `/realisations#howner` | `/realisations/howner` |
+| `/realisations#aigms` | `/realisations/aigms` |
+
+Chaque page porte son titre, sa description, son canonical, ses balises
+OpenGraph et un fil d'Ariane structuré (`src/lib/seo.ts`) qui la rattache à
+`/realisations`. Le sitemap liste les quatre URLs. Aucun contenu n'a été perdu :
+l'index reprend le hero, l'expérience adossée et le CTA, et distribue les trois
+projets en cartes.
+
+| Ajout | Détail |
+| --- | --- |
+| `src/components/site/ProjectNav.tsx` | Bandeau des projets, collé sous l'en-tête et présent sur les quatre pages ; l'entrée courante est en bleu du bandeau |
+| `src/lib/projects.ts` | Source unique des trois projets — bandeau, index et JSON-LD en dépendent |
+| `src/lib/seo.ts` | Fil d'Ariane `BreadcrumbList` |
+| Page AIGMS étoffée | Reprise de `AIGMS/03_Commercial/PAGE_ACCUEIL_CARITIS.md` : constat chiffré et sourcé, six questions, cycle PLAN/DO/CHECK+ACT, registre de décisions, écosystème, calendrier réglementaire, plafonds de sanction |
+
+Les graphiques de la page AIGMS sont **monochromes** : le validateur de palette
+rejette le couple teal `#00787D` / bleu du bandeau `#016287` comme deux séries
+(ΔE 7,6 en vision normale, seuil à 15). Chaque valeur est étiquetée en clair, la
+couleur ne porte donc aucune information à elle seule, et les statuts du
+calendrier portent une icône en plus de leur couleur.
+
+La précaution du document source est conservée : **aucune formulation n'affirme
+qu'AIGMS certifie ou garantit la conformité**, et le texte des normes n'est pas
+reproduit.

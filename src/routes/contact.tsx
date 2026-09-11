@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
-import { SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const title = "Contact | RLAB ONE";
+const title = `Atelier de qualification | ${SITE_NAME}`;
 const description =
-  "Échangeons sur votre projet de transformation SI, d'audit de dette technique, de conformité ou de gouvernance de l'IA. Réponse sous 48h ouvrées.";
+  "Quarante-cinq minutes pour passer deux cas d'usage d'IA au crible : finalité, données, risques, preuves attendues. Sans engagement.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -29,7 +29,7 @@ function ContactPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
+      <main id="contenu">
         <Contact />
       </main>
       <Footer />
