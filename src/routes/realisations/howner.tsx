@@ -5,11 +5,12 @@ import { Footer } from "@/components/site/Footer";
 import { ProjectNav } from "@/components/site/ProjectNav";
 import { cta, CtaRow } from "@/components/site/Cta";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import hownerSite from "@/assets/howner-site.jpg";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title = `Howner — structuration SI en fabrication hors-site | ${SITE_NAME}`;
 const description =
-  "Cartographie des processus Ventes → Achats → Production → Fournisseurs, préparation de l'implémentation ERP/MRP et structuration des coûts pour une activité de construction hors-site.";
+  "Structuration SI, architecture technique, backend et agents IA pour une activité de construction hors-site : processus Ventes → Achats → Production, ERP/MRP, sécurité dès la conception et accompagnement réglementaire.";
 const path = "/realisations/howner";
 
 export const Route = createFileRoute("/realisations/howner")({
@@ -43,6 +44,9 @@ const role = [
   "Cartographie des processus Ventes → Achats → Production → Fournisseurs.",
   "Préparation de l'implémentation ERP/MRP.",
   "Structuration des coûts standards / réels et de la Supply Chain.",
+  "Architecture technique, développement du backend et des agents IA.",
+  "Sécurité technique traitée dès la conception, et non ajoutée après coup.",
+  "Accompagnement sur les aspects réglementaires.",
 ];
 
 function HownerPage() {
@@ -58,7 +62,7 @@ function HownerPage() {
             </p>
             <h1 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
               Howner — construire mieux, plus vite, grâce à la{" "}
-              <span className="text-gradient">fabrication hors-site</span>.
+              <span className="text-gradient">fabrication hors-site</span> et grâce à l'IA.
             </h1>
             <p className="mt-5 max-w-3xl text-muted-foreground">
               Howner conçoit et produit en atelier des maisons et extensions préfabriquées : délais
@@ -66,6 +70,33 @@ function HownerPage() {
               déplace la valeur du chantier vers l'usine — et qui demande un SI structuré, de la
               vente aux fournisseurs.
             </p>
+          </div>
+        </section>
+
+        <section className="pt-12 lg:pt-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <figure className="relative">
+              <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-10 blur-3xl" />
+              <a
+                href="https://howner.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block overflow-hidden rounded-2xl border border-border shadow-elev transition hover:border-primary/50"
+              >
+                <img
+                  src={hownerSite}
+                  alt="Page d'accueil du site Howner : configurateur de studios de jardin livrés prêts à vivre"
+                  width={1600}
+                  height={715}
+                  loading="lazy"
+                  className="w-full"
+                />
+              </a>
+              <figcaption className="relative mt-3 text-xs text-muted-foreground">
+                howner.fr — configurateur en ligne, deux modèles d'architecte et six exemplaires
+                numérotés.
+              </figcaption>
+            </figure>
           </div>
         </section>
 
@@ -79,7 +110,8 @@ function HownerPage() {
                 <h2 className="font-display text-xl md:text-2xl">Notre rôle</h2>
               </div>
               <p className="mt-4 text-[15px] text-muted-foreground md:text-base">
-                Structuration du SI d'une activité de fabrication hors-site.
+                Structuration du SI d'une activité de fabrication hors-site, puis conception et
+                développement de la plateforme qui la fait tourner.
               </p>
               <ul className="mt-5 space-y-3 text-[15px] text-muted-foreground md:text-base">
                 {role.map((item) => (

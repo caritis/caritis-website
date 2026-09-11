@@ -16,7 +16,7 @@ export const projects = [
     name: "Howner",
     tag: "Industrie · ERP/MRP",
     summary:
-      "Structuration du système d'information d'une activité de fabrication hors-site : maisons et extensions préfabriquées en atelier.",
+      "Structuration du système d'information d'une activité de fabrication hors-site, puis architecture technique, backend et agents IA de la plateforme.",
   },
   {
     to: "/realisations/aigms",
