@@ -83,16 +83,6 @@ function WaspTrackerPage() {
               la lutte contre le frelon asiatique. Notre rôle : cadrage métier, conduite du
               changement, déploiement progressif et encadrement de l'équipe.
             </p>
-            <CtaRow className="mt-7">
-              <a
-                href="https://waspy-portal-official-53.lovable.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cta("primary")}
-              >
-                Découvrir la plateforme <ExternalLink className="h-4 w-4" />
-              </a>
-            </CtaRow>
           </div>
         </section>
 
@@ -138,6 +128,17 @@ function WaspTrackerPage() {
               </figcaption>
             </figure>
           </div>
+
+          <CtaRow className="mx-auto mt-10 max-w-6xl justify-center px-6">
+            <a
+              href="https://waspy-portal-official-53.lovable.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cta("primary")}
+            >
+              Découvrir la plateforme <ExternalLink className="h-4 w-4" />
+            </a>
+          </CtaRow>
         </section>
 
         <section className="pb-14 lg:pb-20">

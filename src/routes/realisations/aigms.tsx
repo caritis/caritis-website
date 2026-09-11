@@ -1,5 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AlertTriangle, ArrowRight, CalendarClock, CheckCircle2, ShieldCheck } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  CalendarClock,
+  CheckCircle2,
+  ExternalLink,
+  ShieldCheck,
+} from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProjectNav } from "@/components/site/ProjectNav";
@@ -7,6 +14,8 @@ import { AigmsEcosystem } from "@/components/site/AigmsEcosystem";
 import { cta, CtaRow } from "@/components/site/Cta";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import aigmsApp from "@/assets/aigms-app.png";
+import aigmsGraphe from "@/assets/aigms-graphe.png";
 
 const title = `AIGMS — AI Governance Management System by ${SITE_NAME}`;
 const description =
@@ -467,6 +476,35 @@ function AigmsPage() {
                 </p>
               </div>
             </div>
+
+            {/* La preuve par l'écran : le gate décrit juste au-dessus, tel qu'il
+                apparaît dans l'application. */}
+            <figure className="relative mt-10">
+              <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-10 blur-3xl" />
+              <img
+                src={aigmsApp}
+                alt="Fiche de cas d'usage dans AIGMS : cycle de vie du brouillon à la surveillance, et gate de production affichant 7 préconditions satisfaites sur 8"
+                width={1457}
+                height={665}
+                loading="lazy"
+                className="relative w-full rounded-2xl border border-border shadow-elev"
+              />
+              <figcaption className="relative mt-3 text-xs text-muted-foreground">
+                Fiche de cas d'usage — le cycle de vie en haut, le gate de production à droite,
+                évalué en continu sans déclencher de transition.
+              </figcaption>
+            </figure>
+
+            <CtaRow className="mt-8 justify-center">
+              <a
+                href="https://aigms-ai-governance-mana-pkw6pp4.gamma.site/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cta("primary")}
+              >
+                Découvrir la plateforme <ExternalLink className="h-4 w-4" />
+              </a>
+            </CtaRow>
           </div>
         </section>
 
@@ -525,6 +563,24 @@ function AigmsPage() {
                 </div>
               </div>
             </div>
+
+            {/* Le graphe montre ce que la prose décrit : la chaîne qui relie
+                un processus à la preuve, en passant par le risque et le contrôle. */}
+            <figure className="relative mt-10">
+              <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-10 blur-3xl" />
+              <img
+                src={aigmsGraphe}
+                alt="Graphe de gouvernance AIGMS : chaîne reliant processus, activités, cas d'usage, risques, contrôles et preuves, avec la liste des sept risques et leur criticité"
+                width={1395}
+                height={721}
+                loading="lazy"
+                className="relative w-full rounded-2xl border border-border shadow-elev"
+              />
+              <figcaption className="relative mt-3 text-xs text-muted-foreground">
+                Graphe de gouvernance — ce qu'un arbre de dossiers ne montre pas : un contrôle
+                partagé, une preuve mutualisée, un risque dont rien ne redescend vers une preuve.
+              </figcaption>
+            </figure>
 
             <p className="mt-8 max-w-3xl text-sm italic text-muted-foreground">
               AIGMS conserve des références, des résumés internes et des exigences dérivées,

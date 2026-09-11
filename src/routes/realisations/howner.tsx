@@ -97,6 +97,17 @@ function HownerPage() {
                 numérotés.
               </figcaption>
             </figure>
+
+            <CtaRow className="mt-8 justify-center">
+              <a
+                href="https://howner.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cta("primary")}
+              >
+                Découvrir la plateforme <ExternalLink className="h-4 w-4" />
+              </a>
+            </CtaRow>
           </div>
         </section>
 
@@ -122,17 +133,6 @@ function HownerPage() {
                 ))}
               </ul>
             </article>
-
-            <CtaRow className="mt-8">
-              <a
-                href="https://howner.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cta("secondary")}
-              >
-                Voir howner.fr <ExternalLink className="h-4 w-4" />
-              </a>
-            </CtaRow>
           </div>
         </section>
 
