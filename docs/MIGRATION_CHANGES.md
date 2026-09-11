@@ -159,3 +159,21 @@ calendrier portent une icône en plus de leur couleur.
 La précaution du document source est conservée : **aucune formulation n'affirme
 qu'AIGMS certifie ou garantit la conformité**, et le texte des normes n'est pas
 reproduit.
+
+## Schéma d'écosystème sur la page AIGMS (2026-09-11)
+
+| Élément supprimé | Raison | Alternative | Impact utilisateur |
+| --- | --- | --- | --- |
+| Tableau « Outil / Ce qu'il fait le mieux » | Remplacé par le schéma radial fourni par Richard | `src/components/site/AigmsEcosystem.tsx` | Lecture plus immédiate du positionnement |
+| Ligne OneTrust | Absente du schéma de référence | — | Un concurrent de moins cité |
+
+Le schéma est **reconstruit en SVG**, pas importé en image : le texte reste net à
+toute taille, il est indexable, et il suit les tokens de couleur du site. Sous
+`md`, il cède la place à la même liste en cartes — un diagramme radial de 1000 px
+de large est illisible sur un téléphone — et sur grand écran cette liste reste
+présente pour les lecteurs d'écran, le SVG étant alors décoratif.
+
+Nouveaux satellites par rapport au tableau : Azure/Google/OpenAI/Claude, SIEM et
+GitHub. Six ancres de section ont été posées sur la page (`#constat`, `#test`,
+`#methode`, `#decisions`, `#ecosysteme`, `#calendrier`) pour permettre des liens
+profonds.

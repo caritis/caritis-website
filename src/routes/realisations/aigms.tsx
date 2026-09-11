@@ -3,6 +3,7 @@ import { AlertTriangle, ArrowRight, CalendarClock, CheckCircle2, ShieldCheck } f
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProjectNav } from "@/components/site/ProjectNav";
+import { AigmsEcosystem } from "@/components/site/AigmsEcosystem";
 import { cta, CtaRow } from "@/components/site/Cta";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -169,18 +170,6 @@ const control = [
   ["RGPD", "Analyse d'impact, article 35"],
 ] as const;
 
-const ecosystem = [
-  ["Vanta", "Automatisation de la collecte de preuves et de la conformité", false],
-  ["OneTrust", "Gouvernance IA d'entreprise et contrôles à l'exécution", false],
-  ["ServiceNow", "Tour de contrôle IA, CMDB et workflows d'entreprise", false],
-  ["Microsoft Purview", "Sécurité des données, classification et prévention des fuites", false],
-  [
-    "AIGMS",
-    "Le poste de pilotage de l'AI Governance Officer, pour une PME/ETI comme pour un cabinet suivant plusieurs organisations",
-    true,
-  ],
-] as const;
-
 const calendar = [
   ["2 février 2025", "Pratiques interdites et obligations de littératie en IA.", "Applicable"],
   [
@@ -331,7 +320,7 @@ function AigmsPage() {
         </section>
 
         {/* Le constat */}
-        <section className="py-14 lg:py-20">
+        <section id="constat" className="scroll-mt-32 py-14 lg:py-20">
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">Le constat</p>
             <blockquote className="mt-4 max-w-3xl border-l-2 border-primary pl-5 font-display text-2xl leading-snug md:text-3xl">
@@ -386,7 +375,10 @@ function AigmsPage() {
         </section>
 
         {/* Le test */}
-        <section className="border-y border-border bg-surface py-14 lg:py-20">
+        <section
+          id="test"
+          className="scroll-mt-32 border-y border-border bg-surface py-14 lg:py-20"
+        >
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">Le test</p>
             <h2 className="mt-4 max-w-3xl font-display text-3xl leading-tight md:text-4xl">
@@ -410,7 +402,7 @@ function AigmsPage() {
         </section>
 
         {/* La méthode */}
-        <section className="py-14 lg:py-20">
+        <section id="methode" className="scroll-mt-32 py-14 lg:py-20">
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">La méthode</p>
             <h2 className="mt-4 max-w-3xl font-display text-3xl leading-tight md:text-4xl">
@@ -479,7 +471,10 @@ function AigmsPage() {
         </section>
 
         {/* Le registre de décisions */}
-        <section className="border-y border-border bg-surface py-14 lg:py-20">
+        <section
+          id="decisions"
+          className="scroll-mt-32 border-y border-border bg-surface py-14 lg:py-20"
+        >
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">Le différenciateur</p>
             <h2 className="mt-4 max-w-3xl font-display text-3xl leading-tight md:text-4xl">
@@ -540,7 +535,7 @@ function AigmsPage() {
         </section>
 
         {/* Écosystème */}
-        <section className="py-14 lg:py-20">
+        <section id="ecosysteme" className="scroll-mt-32 py-14 lg:py-20">
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">Écosystème</p>
             <h2 className="mt-4 max-w-3xl font-display text-3xl leading-tight md:text-4xl">
@@ -552,44 +547,16 @@ function AigmsPage() {
               garde la trace. C'est celle-là qu'AIGMS occupe.
             </p>
 
-            <div className="mt-10 overflow-x-auto">
-              <table className="w-full min-w-[560px] border-collapse text-left">
-                <caption className="sr-only">Rôle de chaque outil de l'écosystème</caption>
-                <thead>
-                  <tr className="border-b border-border">
-                    <th
-                      scope="col"
-                      className="py-3 pr-6 text-xs uppercase tracking-wider text-muted-foreground"
-                    >
-                      Outil
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 text-xs uppercase tracking-wider text-muted-foreground"
-                    >
-                      Ce qu'il fait le mieux
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ecosystem.map(([tool, role, highlight]) => (
-                    <tr key={tool} className={highlight ? "bg-primary/5" : undefined}>
-                      <th
-                        scope="row"
-                        className={`border-b border-border py-4 pr-6 align-top font-display text-lg ${
-                          highlight ? "text-primary" : "text-foreground"
-                        }`}
-                      >
-                        {tool}
-                      </th>
-                      <td className="border-b border-border py-4 align-top text-[15px] text-muted-foreground">
-                        {role}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <AigmsEcosystem />
+
+            <p className="mt-8 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+              <span className="font-medium text-foreground">
+                AIGMS est la couche de décision et de preuve
+              </span>{" "}
+              — le poste de pilotage de l'AI Governance Officer, pour une PME ou une ETI comme pour
+              un cabinet suivant plusieurs organisations. Registre des usages, risques, impacts,
+              supervision, décisions, contrôles, preuves, incidents et actions.
+            </p>
 
             <p className="mt-6 max-w-3xl text-sm text-muted-foreground">
               Les connecteurs sont conçus en lecture seule et à moindre privilège : AIGMS lit des
@@ -599,7 +566,10 @@ function AigmsPage() {
         </section>
 
         {/* Calendrier */}
-        <section className="border-y border-border bg-surface py-14 lg:py-20">
+        <section
+          id="calendrier"
+          className="scroll-mt-32 border-y border-border bg-surface py-14 lg:py-20"
+        >
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.2em] text-primary">Le calendrier</p>
             <h2 className="mt-4 max-w-3xl font-display text-3xl leading-tight md:text-4xl">
