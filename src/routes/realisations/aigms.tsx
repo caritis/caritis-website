@@ -1,12 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AlertTriangle, ArrowRight, CalendarClock, CheckCircle2, ShieldCheck } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  CalendarClock,
+  CheckCircle2,
+  Phone,
+  ShieldCheck,
+} from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProjectNav } from "@/components/site/ProjectNav";
 import { AigmsEcosystem } from "@/components/site/AigmsEcosystem";
 import { cta, CtaRow } from "@/components/site/Cta";
 import { breadcrumbJsonLd } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { cn } from "@/lib/utils";
+import { SITE_NAME, SITE_PHONE, SITE_URL } from "@/lib/site";
 import aigmsApp from "@/assets/aigms-app.png";
 import aigmsProcessus from "@/assets/aigms-processus.png";
 import aigmsIcon from "@/assets/aigms-icon.svg";
@@ -259,6 +267,23 @@ function BarChart({
   );
 }
 
+/* --------------------------------------------------------------------- cta */
+
+/** Double appel à l'action repris en fin de chaque section. */
+function SectionCta({ className }: { className?: string }) {
+  return (
+    <CtaRow className={cn("mt-10", className)}>
+      <Link to="/contact" className={cta("primary")}>
+        Commençons par 2 cas d'usage réels <ArrowRight className="h-4 w-4" />
+      </Link>
+      <a href={SITE_PHONE.href} className={cta("secondary")}>
+        <Phone className="h-4 w-4" aria-hidden="true" /> Nous appeler
+        <span className="sr-only"> au {SITE_PHONE.display}</span>
+      </a>
+    </CtaRow>
+  );
+}
+
 /* -------------------------------------------------------------------- page */
 
 function AigmsPage() {
@@ -369,6 +394,7 @@ function AigmsPage() {
                 </div>
               </div>
             </div>
+            <SectionCta />
           </div>
         </section>
 
@@ -396,6 +422,7 @@ function AigmsPage() {
                 </li>
               ))}
             </ol>
+            <SectionCta />
           </div>
         </section>
 
@@ -483,6 +510,7 @@ function AigmsPage() {
                 évalué en continu sans déclencher de transition.
               </figcaption>
             </figure>
+            <SectionCta />
           </div>
         </section>
 
@@ -572,6 +600,7 @@ function AigmsPage() {
               versionnés et datés. Il ne reproduit pas le texte des normes et ne délivre aucune
               certification.
             </p>
+            <SectionCta />
           </div>
         </section>
 
@@ -603,6 +632,7 @@ function AigmsPage() {
               Les connecteurs sont conçus en lecture seule et à moindre privilège : AIGMS lit des
               métadonnées, des statuts et des preuves. Il ne prend pas la main sur vos systèmes.
             </p>
+            <SectionCta />
           </div>
         </section>
 
@@ -694,6 +724,7 @@ function AigmsPage() {
                 </div>
               </div>
             </div>
+            <SectionCta />
           </div>
         </section>
 
@@ -707,11 +738,7 @@ function AigmsPage() {
               Quarante-cinq minutes suffisent pour voir ce que donne votre portefeuille IA passé au
               filtre d'une gouvernance opérationnelle.
             </p>
-            <CtaRow className="mt-8 justify-center">
-              <Link to="/contact" className={cta("primary")}>
-                Demander l'atelier de qualification <ArrowRight className="h-4 w-4" />
-              </Link>
-            </CtaRow>
+            <SectionCta className="justify-center" />
 
             <div className="mt-12 rounded-2xl border border-border bg-card p-6 text-left shadow-elev md:p-8">
               <p className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary">
