@@ -5,10 +5,7 @@ import { cta } from "@/components/site/Cta";
 import caritisMark from "@/assets/brand/caritis-mark.png";
 
 /** Ancres de la page d'accueil : un lien natif, pour rester au clic simple. */
-const anchors = [
-  { href: "/#aigms", label: "AIGMS" },
-  { href: "/#expertises", label: "Expertises" },
-] as const;
+const anchors = [{ href: "/#expertises", label: "Expertises" }] as const;
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/rlabrador2000";
 
@@ -39,6 +36,9 @@ export function Header() {
         </Link>
 
         <nav aria-label="Navigation principale" className="hidden items-center gap-8 md:flex">
+          <Link to="/aigms" className={linkBase} activeProps={{ className: "text-white" }}>
+            AIGMS
+          </Link>
           {anchors.map((n) => (
             <a key={n.href} href={n.href} className={linkBase}>
               {n.label}
@@ -89,6 +89,15 @@ export function Header() {
       <div id="menu-mobile" hidden={!open} className="border-t border-white/15 bg-header md:hidden">
         <nav aria-label="Navigation principale (mobile)" className="mx-auto max-w-7xl px-6 py-3">
           <ul className="divide-y divide-white/10">
+            <li>
+              <Link
+                to="/aigms"
+                onClick={close}
+                className="block py-3 text-base text-white/90 transition hover:text-white"
+              >
+                AIGMS
+              </Link>
+            </li>
             {anchors.map((n) => (
               <li key={n.href}>
                 <a

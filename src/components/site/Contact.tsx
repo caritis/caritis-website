@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import { sendContactMessage } from "@/lib/contact.functions";
 import { ROLES } from "@/lib/contact.schema";
 import { cta } from "@/components/site/Cta";
+import { Field, Honeypot, Select, TextArea } from "@/components/site/FormField";
 
 /** Déroulé des 45 minutes — la somme des durées doit rester à 45. */
 const agenda = [
@@ -120,47 +121,19 @@ export function Contact() {
           </div>
 
           <div className="mt-5">
-            <Label htmlFor="contact-role">Vous êtes</Label>
-            <select
-              id="contact-role"
-              name="role"
-              required
-              defaultValue={ROLES[0]}
-              className="mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/25"
-            >
-              {ROLES.map((role) => (
-                <option key={role} value={role}>
-                  {role}
-                </option>
-              ))}
-            </select>
+            <Select label="Vous êtes" name="role" options={ROLES} required />
           </div>
 
           <div className="mt-5">
-            <Label htmlFor="contact-usages" optional>
-              Vos usages d'IA, en deux lignes
-            </Label>
-            <textarea
-              id="contact-usages"
+            <TextArea
+              label="Vos usages d'IA, en deux lignes"
               name="usages"
-              maxLength={2000}
-              rows={5}
+              optional
               placeholder="Ce que vous utilisez déjà, ou ce que vous envisagez, et ce qui vous préoccupe."
-              className="mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm placeholder:text-muted-foreground/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/25"
             />
           </div>
 
-          {/* Honeypot : invisible pour l'utilisateur, rempli par les robots. */}
-          <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
-            <label htmlFor="contact-website">Ne pas remplir</label>
-            <input
-              id="contact-website"
-              name="website"
-              type="text"
-              tabIndex={-1}
-              autoComplete="off"
-            />
-          </div>
+          <Honeypot />
 
           <button
             type="submit"
@@ -184,58 +157,5 @@ export function Contact() {
         </form>
       </div>
     </section>
-  );
-}
-
-function Label({
-  htmlFor,
-  optional,
-  children,
-}: {
-  htmlFor: string;
-  optional?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <label htmlFor={htmlFor} className="text-sm font-medium text-foreground">
-      {children}
-      {optional && <span className="ml-1 font-normal text-muted-foreground">(facultatif)</span>}
-    </label>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required,
-  optional,
-  placeholder,
-  autoComplete,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  optional?: boolean;
-  placeholder?: string;
-  autoComplete?: string;
-}) {
-  const id = `contact-${name}`;
-  return (
-    <div>
-      <Label htmlFor={id} optional={optional}>
-        {label}
-      </Label>
-      <input
-        id={id}
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-        className="mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm placeholder:text-muted-foreground/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/25"
-      />
-    </div>
   );
 }

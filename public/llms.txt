@@ -21,8 +21,9 @@ comme telles et non comme des marques CARITIS.
 ## Pages
 
 - [Accueil](/): positionnement, expertises, AIGMS, parcours, partenaires.
+- [AIGMS](/aigms): la plateforme, son parcours Discover → Operate, ses fonctionnalités, les profils concernés et le programme de partenariat (ESN, intégrateurs, hébergeurs, cabinets de conseil).
 - [Réalisations](/realisations): les trois projets.
-- [AIGMS](/realisations/aigms): registre de décisions, méthode PLAN/DO/CHECK, écosystème, calendrier réglementaire.
+- [AIGMS — fiche détaillée](/realisations/aigms): registre de décisions, méthode PLAN/DO/CHECK, écosystème, calendrier réglementaire.
 - [WaspTracker](/realisations/wasptracker): SaaS environnemental déployé en collectivité.
 - [Howner](/realisations/howner): structuration SI d'une activité de fabrication hors-site.
 - [Contact](/contact): atelier de qualification de 45 minutes, formulaire de rappel.

@@ -63,8 +63,11 @@ export function Aigms() {
             </p>
 
             <CtaRow className="mt-8">
-              <Link to="/realisations/aigms" className={cta("primary")}>
-                Voir le détail d'AIGMS <ArrowRight className="h-4 w-4" />
+              <Link to="/aigms" className={cta("primary")}>
+                Découvrir AIGMS <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/realisations/aigms" className={cta("secondary")}>
+                La fiche détaillée
               </Link>
             </CtaRow>
           </div>
