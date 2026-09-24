@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Phone } from "lucide-react";
 import { sendContactMessage } from "@/lib/contact.functions";
 import { ROLES } from "@/lib/contact.schema";
 import { cta } from "@/components/site/Cta";
+import { SITE_PHONE } from "@/lib/site";
 import { Field, Honeypot, Select, TextArea } from "@/components/site/FormField";
 
 /** Déroulé des 45 minutes — la somme des durées doit rester à 45. */
@@ -76,6 +77,11 @@ export function Contact() {
             Quarante-cinq minutes, sans engagement. Nous repartons d'usages que vous avez
             réellement, pas d'un questionnaire générique.
           </p>
+
+          <a href={SITE_PHONE.href} className={cta("secondary", "mt-7")}>
+            <Phone className="h-4 w-4" aria-hidden="true" /> Nous appeler
+            <span className="text-muted-foreground">{SITE_PHONE.display}</span>
+          </a>
 
           <ol className="mt-9 space-y-6 border-t border-border pt-8">
             {agenda.map((step) => (
