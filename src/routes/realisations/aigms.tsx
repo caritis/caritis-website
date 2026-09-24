@@ -15,7 +15,7 @@ import { cta, CtaRow } from "@/components/site/Cta";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import aigmsApp from "@/assets/aigms-app.png";
-import aigmsGraphe from "@/assets/aigms-graphe.png";
+import aigmsProcessus from "@/assets/aigms-processus.png";
 
 const title = `AIGMS — AI Governance Management System by ${SITE_NAME}`;
 const description =
@@ -299,32 +299,23 @@ function AigmsPage() {
               </p>
             </div>
 
-            {/* La pièce que l'outil produit */}
-            <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-elev">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Fiche de décision
-                </p>
-                <dl className="mt-4 space-y-3 text-sm">
-                  {decision.map(([k, v]) => (
-                    <div key={k} className="grid grid-cols-[104px_1fr] gap-3">
-                      <dt className="text-muted-foreground">{k}</dt>
-                      <dd
-                        className={
-                          k === "Statut"
-                            ? "font-medium text-accent"
-                            : k === "Référence"
-                              ? "font-mono text-xs text-foreground"
-                              : "text-foreground"
-                        }
-                      >
-                        {v}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
+            {/* Ce que l'outil donne à voir : la chaîne complète, d'un processus
+                métier jusqu'aux preuves. */}
+            <figure className="lg:col-span-5">
+              <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-elev">
+                <img
+                  src={aigmsProcessus}
+                  alt="Vue « Processus et risques » d'AIGMS : graphe de gouvernance reliant processus, activités, cas d'usage, actifs, risques, contrôles, outillage et preuves"
+                  width={671}
+                  height={578}
+                  className="w-full"
+                />
               </div>
-            </div>
+              <figcaption className="mt-3 text-xs text-muted-foreground">
+                Processus et risques — ce que fait l'organisation, et ce que la gouvernance de l'IA
+                y produit.
+              </figcaption>
+            </figure>
           </div>
         </section>
 
@@ -564,23 +555,30 @@ function AigmsPage() {
               </div>
             </div>
 
-            {/* Le graphe montre ce que la prose décrit : la chaîne qui relie
-                un processus à la preuve, en passant par le risque et le contrôle. */}
-            <figure className="relative mt-10">
-              <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-10 blur-3xl" />
-              <img
-                src={aigmsGraphe}
-                alt="Graphe de gouvernance AIGMS : chaîne reliant processus, activités, cas d'usage, risques, contrôles et preuves, avec la liste des sept risques et leur criticité"
-                width={1395}
-                height={721}
-                loading="lazy"
-                className="relative w-full rounded-2xl border border-border shadow-elev"
-              />
-              <figcaption className="relative mt-3 text-xs text-muted-foreground">
-                Graphe de gouvernance — ce qu'un arbre de dossiers ne montre pas : un contrôle
-                partagé, une preuve mutualisée, un risque dont rien ne redescend vers une preuve.
-              </figcaption>
-            </figure>
+            {/* La pièce que l'outil produit, à l'endroit où le texte la décrit. */}
+            <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-elev">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Fiche de décision
+              </p>
+              <dl className="mt-5 grid gap-x-10 gap-y-3 text-sm sm:grid-cols-2">
+                {decision.map(([k, v]) => (
+                  <div key={k} className="grid grid-cols-[104px_1fr] gap-3">
+                    <dt className="text-muted-foreground">{k}</dt>
+                    <dd
+                      className={
+                        k === "Statut"
+                          ? "font-medium text-accent"
+                          : k === "Référence"
+                            ? "font-mono text-xs text-foreground"
+                            : "text-foreground"
+                      }
+                    >
+                      {v}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
 
             <p className="mt-8 max-w-3xl text-sm italic text-muted-foreground">
               AIGMS conserve des références, des résumés internes et des exigences dérivées,
