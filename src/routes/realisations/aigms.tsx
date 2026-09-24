@@ -9,6 +9,7 @@ import { breadcrumbJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import aigmsApp from "@/assets/aigms-app.png";
 import aigmsProcessus from "@/assets/aigms-processus.png";
+import aigmsIcon from "@/assets/aigms-icon.svg";
 
 const title = `AIGMS — AI Governance Management System by ${SITE_NAME}`;
 const description =
@@ -276,6 +277,10 @@ function AigmsPage() {
               <h1 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
                 Gouverner l'IA. <span className="text-gradient">Décider. Prouver.</span> Améliorer.
               </h1>
+              <div className="mt-6 flex items-center gap-3">
+                <img src={aigmsIcon} alt="" width={48} height={48} className="h-12 w-12" />
+                <span className="font-display text-2xl tracking-wide">AIGMS</span>
+              </div>
               <p className="mt-5 max-w-2xl text-base text-muted-foreground md:text-lg">
                 Le registre unique des usages d'IA de votre organisation : leurs risques, les
                 décisions qui les autorisent, les contrôles qui les encadrent, et les preuves qui le
