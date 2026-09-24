@@ -1,12 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  AlertTriangle,
-  ArrowRight,
-  CalendarClock,
-  CheckCircle2,
-  ExternalLink,
-  ShieldCheck,
-} from "lucide-react";
+import { AlertTriangle, ArrowRight, CalendarClock, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProjectNav } from "@/components/site/ProjectNav";
@@ -485,17 +478,6 @@ function AigmsPage() {
                 évalué en continu sans déclencher de transition.
               </figcaption>
             </figure>
-
-            <CtaRow className="mt-8 justify-center">
-              <a
-                href="https://aigms-ai-governance-mana-pkw6pp4.gamma.site/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cta("primary")}
-              >
-                Découvrir la plateforme <ExternalLink className="h-4 w-4" />
-              </a>
-            </CtaRow>
           </div>
         </section>
 
