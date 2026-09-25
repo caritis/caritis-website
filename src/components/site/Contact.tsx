@@ -80,7 +80,7 @@ export function Contact() {
 
           <a href={SITE_PHONE.href} className={cta("secondary", "mt-7")}>
             <Phone className="h-4 w-4" aria-hidden="true" /> Nous appeler
-            <span className="text-muted-foreground">{SITE_PHONE.display}</span>
+            <span className="sr-only"> au {SITE_PHONE.display}</span>
           </a>
 
           <ol className="mt-9 space-y-6 border-t border-border pt-8">
